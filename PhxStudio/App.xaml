@@ -5,10 +5,13 @@
              xmlns:local="clr-namespace:PhxStudio">
     <Application.Resources>
         <ResourceDictionary>
+            <SolidColorBrush x:Key="ApplicationAccentBrush" x:Name="ApplicationAccentBrush" Color="#0079cb" />
+            <SolidColorBrush x:Key="ApplicationAccentBrushSecondary" x:Name="ApplicationAccentBrushSecondary" Color="#1D98EB" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <gemini:AppBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
+                <ResourceDictionary Source="UI/Images/Logos/Logos.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
