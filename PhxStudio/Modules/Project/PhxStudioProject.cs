@@ -1,5 +1,6 @@
 ﻿using KSoft;
 using EditorFileType = Gemini.Framework.Services.EditorFileType;
+using GameVersionType = KSoft.Phoenix.HaloWars.GameVersionType;
 
 namespace PhxStudio.Modules.Project
 {
@@ -56,6 +57,15 @@ namespace PhxStudio.Modules.Project
 		public bool ProjectNameIsValid { get { return ProjectName.IsNotNullOrEmpty(); } }
 		#endregion
 
+		#region GameVersion
+		GameVersionType mGameVersion = GameVersionType.DefinitiveEdition;
+		public GameVersionType GameVersion
+		{
+			get { return mGameVersion; }
+			set { this.SetFieldEnum(ref mGameVersion, value); }
+		}
+		#endregion
+
 		#region WorkDirectory
 		string mWorkDirectory;
 		public string WorkDirectory
@@ -79,6 +89,7 @@ namespace PhxStudio.Modules.Project
 			where TCursor : class
 		{
 			s.StreamElementOpt("ProjectName", this, obj => obj.ProjectName, x => x != kDefaultProjectName);
+			s.StreamElementEnumOpt("GameVersion", this, obj => obj.GameVersion, x => x != GameVersionType.DefinitiveEdition);
 			s.StreamElementOpt("WorkDir", this, obj => obj.WorkDirectory, Predicates.IsNotNullOrEmpty);
 			s.StreamElementOpt("FinalDir", this, obj => obj.WorkDirectory, Predicates.IsNotNullOrEmpty);
 		}

@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Threading;
-using SystemTasks = System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using Gemini.Framework;
-using Gemini.Framework.Results;
 using Gemini.Modules.StatusBar.ViewModels;
 using MahApps.Metro.Controls;
-using Microsoft.Win32;
 
 namespace PhxStudio.Modules.Main
 {

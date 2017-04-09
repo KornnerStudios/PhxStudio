@@ -5,6 +5,7 @@ using Caliburn.Micro;
 namespace PhxStudio.Modules.Project
 {
 	[Export(typeof(IProjectService))]
+	[PartCreationPolicy(CreationPolicy.Shared)]
 	class ProjectService
 		: PropertyChangedBase
 		, IProjectService

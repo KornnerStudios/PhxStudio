@@ -107,6 +107,9 @@
     <Compile Include="Modules\Main\MenuDefinitions.cs" />
     <Compile Include="Modules\Main\ShellViewModel.cs" />
     <Compile Include="Modules\Project\IProjectService.cs" />
+    <Compile Include="Modules\Project\PhxStudioProjectSettingsView.xaml.cs">
+      <DependentUpon>PhxStudioProjectSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Project\ProjectCommandDefinitions.cs" />
     <Compile Include="Modules\Project\ProjectCommandHandlers.cs" />
     <Compile Include="Modules\Project\ProjectService.cs" />
@@ -183,6 +186,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Modules\Project\PhxStudioProjectSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Images\Logos\Logos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

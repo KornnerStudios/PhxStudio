@@ -5,13 +5,14 @@ using Caliburn.Micro;
 using Gemini.Framework;
 using Gemini.Modules.Settings;
 using KSoft;
+using GameVersionType = KSoft.Phoenix.HaloWars.GameVersionType;
 
 namespace PhxStudio.Modules.Project
 {
 	[Export(typeof(ISettingsEditor))]
-	[PartCreationPolicy(CreationPolicy.NonShared)]
+	[PartCreationPolicy(CreationPolicy.Shared)]
 	class PhxStudioProjectSettingsViewModel
-		: Document
+		: PropertyChangedBase
 		, ISettingsEditor
 	{
 		private PhxStudioProjectViewModel mProjectViewModel;
@@ -25,6 +26,15 @@ namespace PhxStudio.Modules.Project
 		}
 
 		public bool ProjectNameIsValid { get { return ProjectName.IsNotNullOrEmpty(); } }
+		#endregion
+
+		#region GameVersion
+		GameVersionType mGameVersion = GameVersionType.DefinitiveEdition;
+		public GameVersionType GameVersion
+		{
+			get { return mGameVersion; }
+			set { this.SetFieldEnum(ref mGameVersion, value); }
+		}
 		#endregion
 
 		#region WorkDirectory
@@ -74,6 +84,7 @@ namespace PhxStudio.Modules.Project
 		private void RevertSettings()
 		{
 			ProjectName = mProjectViewModel.Model.ProjectName;
+			GameVersion = mProjectViewModel.Model.GameVersion;
 			WorkDirectory = mProjectViewModel.Model.WorkDirectory;
 			FinalDirectory = mProjectViewModel.Model.FinalDirectory;
 		}
@@ -81,6 +92,7 @@ namespace PhxStudio.Modules.Project
 		private void SaveSettings()
 		{
 			mProjectViewModel.Model.ProjectName = ProjectName;
+			mProjectViewModel.Model.GameVersion = GameVersion;
 			mProjectViewModel.Model.WorkDirectory = WorkDirectory;
 			mProjectViewModel.Model.FinalDirectory = FinalDirectory;
 		}
