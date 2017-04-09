@@ -1,0 +1,102 @@
+﻿using System;
+using System.ComponentModel.Composition;
+using System.Windows.Input;
+using Caliburn.Micro;
+using Gemini.Framework;
+using Gemini.Modules.Settings;
+using KSoft;
+
+namespace PhxStudio.Modules.Project
+{
+	[Export(typeof(ISettingsEditor))]
+	[PartCreationPolicy(CreationPolicy.NonShared)]
+	class PhxStudioProjectSettingsViewModel
+		: Document
+		, ISettingsEditor
+	{
+		private PhxStudioProjectViewModel mProjectViewModel;
+
+		#region ProjectName
+		string mProjectName;
+		public string ProjectName
+		{
+			get { return mProjectName; }
+			set { this.SetFieldObj(ref mProjectName, value); }
+		}
+
+		public bool ProjectNameIsValid { get { return ProjectName.IsNotNullOrEmpty(); } }
+		#endregion
+
+		#region WorkDirectory
+		string mWorkDirectory;
+		public string WorkDirectory
+		{
+			get { return mWorkDirectory; }
+			set { this.SetFieldObj(ref mWorkDirectory, value); }
+		}
+		#endregion
+
+		#region FinalDirectory
+		string mFinalDirectory;
+		public string FinalDirectory
+		{
+			get { return mFinalDirectory; }
+			set { this.SetFieldObj(ref mFinalDirectory, value); }
+		}
+		#endregion
+
+		#region RevertSettingsCommand
+		ICommand mRevertSettingsCommand;
+		public ICommand RevertSettingsCommand { get {
+			if (mRevertSettingsCommand == null)
+				mRevertSettingsCommand = new RelayCommand(_ => RevertSettings());
+			return mRevertSettingsCommand;
+		} }
+		#endregion
+
+		#region SaveSettingsCommand
+		ICommand mSaveSettingsCommand;
+		public ICommand SaveSettingsCommand { get {
+			if (mSaveSettingsCommand == null)
+				mSaveSettingsCommand = new RelayCommand(_ => SaveSettings());
+			return mSaveSettingsCommand;
+		} }
+		#endregion
+
+		[ImportingConstructor]
+		public PhxStudioProjectSettingsViewModel(IEventAggregator events)
+		{
+			mProjectViewModel = App.CurrentProjectViewModel;
+
+			RevertSettings();
+		}
+
+		private void RevertSettings()
+		{
+			ProjectName = mProjectViewModel.Model.ProjectName;
+			WorkDirectory = mProjectViewModel.Model.WorkDirectory;
+			FinalDirectory = mProjectViewModel.Model.FinalDirectory;
+		}
+
+		private void SaveSettings()
+		{
+			mProjectViewModel.Model.ProjectName = ProjectName;
+			mProjectViewModel.Model.WorkDirectory = WorkDirectory;
+			mProjectViewModel.Model.FinalDirectory = FinalDirectory;
+		}
+
+		#region ISettingsEditor
+		public string SettingsPagePath { get {
+			return Constants.SettingsPaths.Project;
+		} }
+		public string SettingsPageName { get {
+			return Constants.SettingsPages.Project_Info;
+		} }
+
+		public void ApplyChanges()
+		{
+			SaveSettings();
+		}
+		#endregion
+	}
+}

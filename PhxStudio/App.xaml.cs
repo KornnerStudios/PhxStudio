@@ -18,6 +18,10 @@ namespace PhxStudio
 	{
 		public static RenderTargetBitmap AppIconBitmap { get; private set; }
 
+		internal static Modules.Project.PhxStudioProjectViewModel CurrentProjectViewModel { get {
+			return (Modules.Project.PhxStudioProjectViewModel)Application.Current.FindResource("CurrentProjectViewModel");
+		} }
+
 		protected override void OnActivated(EventArgs e)
 		{
 			base.OnActivated(e);

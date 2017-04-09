@@ -2,9 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:gemini="http://schemas.timjones.tw/gemini"
-             xmlns:local="clr-namespace:PhxStudio">
+             xmlns:local="clr-namespace:PhxStudio"
+             xmlns:modulesProject="clr-namespace:PhxStudio.Modules.Project">
     <Application.Resources>
         <ResourceDictionary>
+            <modulesProject:PhxStudioProjectViewModel x:Key="CurrentProjectViewModel" />
             <SolidColorBrush x:Key="ApplicationAccentBrush" x:Name="ApplicationAccentBrush" Color="#0079cb" />
             <SolidColorBrush x:Key="ApplicationAccentBrushSecondary" x:Name="ApplicationAccentBrushSecondary" Color="#1D98EB" />
             <ResourceDictionary.MergedDictionaries>

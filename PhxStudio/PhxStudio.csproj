@@ -103,8 +103,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Modules\Main\MainModule.cs" />
+    <Compile Include="Modules\Main\MenuDefinitions.cs" />
+    <Compile Include="Modules\Main\ShellViewModel.cs" />
+    <Compile Include="Modules\Project\IProjectService.cs" />
+    <Compile Include="Modules\Project\ProjectCommandDefinitions.cs" />
+    <Compile Include="Modules\Project\ProjectCommandHandlers.cs" />
+    <Compile Include="Modules\Project\ProjectService.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\PhxStudioUtils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\Project\PhxStudioProject.cs" />
+    <Compile Include="Modules\Project\PhxStudioProjectSettingsViewModel.cs" />
+    <Compile Include="Modules\Project\PhxStudioProjectViewModel.cs" />
+    <Compile Include="Modules\Project\ProjectClosingEventArgs.cs" />
+    <Compile Include="Modules\Project\ProjectOpeningEventArgs.cs" />
     <Compile Include="Modules\Startup\StartupModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
