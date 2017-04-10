@@ -5,6 +5,7 @@ namespace PhxStudio.Modules.Main
 {
 	public static class MenuDefinitions
 	{
+		#region File
 		[Export]
 		public static MenuItemDefinition FileNewProject = new CommandMenuItemDefinition
 			<Project.Commands.FileNewProjectCommandDefinition>(
@@ -24,5 +25,13 @@ namespace PhxStudio.Modules.Main
 		public static MenuItemDefinition FileSaveProjectAs = new CommandMenuItemDefinition
 			<Project.Commands.FileSaveProjectAsCommandDefinition>(
 				Gemini.Modules.MainMenu.MenuDefinitions.FileSaveMenuGroup, 2);
+		#endregion
+
+		#region View
+		[Export]
+		public static MenuItemDefinition ViewProjectExplorer = new CommandMenuItemDefinition
+			<ProjectExplorer.Commands.ViewProjectExplorerDefinition>(
+				Gemini.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup, 0);
+		#endregion
 	}
 }

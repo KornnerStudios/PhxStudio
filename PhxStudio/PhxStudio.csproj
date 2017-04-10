@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.0.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -103,9 +104,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Debug\Trace.cs" />
+    <Compile Include="Modules\Main\IEditorProviderSelector.cs" />
     <Compile Include="Modules\Main\MainModule.cs" />
     <Compile Include="Modules\Main\MenuDefinitions.cs" />
     <Compile Include="Modules\Main\ShellViewModel.cs" />
+    <Compile Include="Modules\ProjectExplorer\ProjectExplorerCommandDefinitions.cs" />
+    <Compile Include="Modules\ProjectExplorer\ProjectExplorerCommandHandlers.cs" />
+    <Compile Include="Modules\ProjectExplorer\ProjectExplorerView.xaml.cs">
+      <DependentUpon>ProjectExplorerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ProjectExplorer\ProjectExplorerViewModel.cs" />
     <Compile Include="Modules\Project\IProjectService.cs" />
     <Compile Include="Modules\Project\PhxStudioProjectSettingsView.xaml.cs">
       <DependentUpon>PhxStudioProjectSettingsView.xaml</DependentUpon>
@@ -113,7 +122,12 @@
     <Compile Include="Modules\Project\ProjectCommandDefinitions.cs" />
     <Compile Include="Modules\Project\ProjectCommandHandlers.cs" />
     <Compile Include="Modules\Project\ProjectService.cs" />
+    <Compile Include="UI\ViewModels\FileTreeView\FileItemViewModel.cs" />
+    <Compile Include="UI\ViewModels\FileTreeView\FolderItemViewModel.cs" />
+    <Compile Include="UI\ViewModels\FileTreeView\ITreeViewItem.cs" />
+    <Compile Include="UI\ViewModels\FileTreeView\TreeViewItemBase.cs" />
     <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\FileIconsLoader.cs" />
     <Compile Include="Utils\PhxStudioUtils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,9 +199,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Modules\ProjectBrowser\" />
+    <Resource Include="Modules\ProjectExplorer\Images\Folder_Closed16.png" />
+    <Resource Include="Modules\ProjectExplorer\Images\Folder_Open16.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Modules\ProjectExplorer\ProjectExplorerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\Project\PhxStudioProjectSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

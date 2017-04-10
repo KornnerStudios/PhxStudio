@@ -78,6 +78,27 @@ namespace PhxStudio
 			return true;
 		}
 
+		public static bool SetFieldRef<T>(this PropertyChangedBase obj
+			, ref T field, T value
+			, bool overrideChecks = false
+			, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = "")
+			where T : class
+		{
+			if (obj == null)
+				return false;
+
+			if (!overrideChecks)
+				if (object.ReferenceEquals(field, value))
+					return false;
+
+			field = value;
+
+			if (obj.IsNotifying)
+				obj.NotifyOfPropertyChange(propertyName);
+
+			return true;
+		}
+
 		public static bool SetField<T>(this PropertyChangedBase obj
 			, ref T field, T value
 			, bool overrideChecks = false
@@ -91,6 +112,18 @@ namespace PhxStudio
 					return false;
 
 			field = value;
+
+			if (obj.IsNotifying)
+				obj.NotifyOfPropertyChange(propertyName);
+
+			return true;
+		}
+
+		public static bool SetPropertyChanged(this PropertyChangedBase obj
+			, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = "")
+		{
+			if (obj == null)
+				return false;
 
 			if (obj.IsNotifying)
 				obj.NotifyOfPropertyChange(propertyName);
