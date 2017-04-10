@@ -184,7 +184,9 @@
       <Name>KSoft.Phoenix</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Modules\ProjectBrowser\" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Modules\Project\PhxStudioProjectSettingsView.xaml">
       <SubType>Designer</SubType>

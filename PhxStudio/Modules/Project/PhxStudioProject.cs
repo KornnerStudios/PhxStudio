@@ -8,6 +8,8 @@ namespace PhxStudio.Modules.Project
 		: KSoft.ObjectModel.BasicViewModel
 		, KSoft.IO.ITagElementStringNameStreamable
 	{
+		public const string XmlRootName = "Project";
+
 		#region FileType
 		public static string FileExtension { get { return ".phxproj"; } }
 		private static EditorFileType gFileType;

@@ -59,10 +59,12 @@ namespace PhxStudio.Modules.Project
 						"Tried to save project with a null-or-empty path.");
 				}
 
-				using (var s = new XmlElementStream(path, FileAccess.Write))
+				using (var s = XmlElementStream.CreateForWrite(PhxStudioProject.XmlRootName))
 				{
 					s.InitializeAtRootElement();
 					Model.Serialize(s);
+
+					s.Document.Save(path);
 				}
 			} catch (Exception ex)
 			{

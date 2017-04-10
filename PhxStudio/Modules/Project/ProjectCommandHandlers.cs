@@ -158,7 +158,7 @@ namespace PhxStudio.Modules.Project.Commands
 		private Exception SaveProjectAsCallback(object state)
 		{
 			var file_name = (string)state;
-			return mProjectService.Open(file_name);
+			return mProjectService.Save(file_name);
 		}
 	};
 }
