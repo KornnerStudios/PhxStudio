@@ -93,7 +93,7 @@ namespace PhxStudio.Modules.Project
 			s.StreamElementOpt("ProjectName", this, obj => obj.ProjectName, x => x != kDefaultProjectName);
 			s.StreamElementEnumOpt("GameVersion", this, obj => obj.GameVersion, x => x != GameVersionType.DefinitiveEdition);
 			s.StreamElementOpt("WorkDir", this, obj => obj.WorkDirectory, Predicates.IsNotNullOrEmpty);
-			s.StreamElementOpt("FinalDir", this, obj => obj.WorkDirectory, Predicates.IsNotNullOrEmpty);
+			s.StreamElementOpt("FinalDir", this, obj => obj.FinalDirectory, Predicates.IsNotNullOrEmpty);
 		}
 	};
 }

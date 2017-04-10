@@ -34,13 +34,10 @@ namespace PhxStudio.Modules.Main
 		public MainModule(IEventAggregator eventAggregator)
 		{
 			mEventAggregator = eventAggregator;
-			mEventAggregator.Subscribe(this);
 		}
 
 		private void OnAppClosing()
 		{
-			mEventAggregator.Unsubscribe(this);
-
 			StoreWindowLocation();
 		}
 

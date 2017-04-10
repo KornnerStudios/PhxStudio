@@ -15,13 +15,13 @@
                 <HierarchicalDataTemplate DataType="{x:Type FileTreeViewModels:FolderItemViewModel}" ItemsSource="{Binding Children}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Modules/ProjectExplorer/Images/Folder_Closed16.png"  Width="16" Height="16" />
-                        <TextBlock Text="{Binding Name}" Margin="4 2 0 2" />
+                        <TextBlock Text="{Binding FileName}" Margin="4 2 0 2" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
                 <DataTemplate DataType="{x:Type FileTreeViewModels:FileItemViewModel}">
                     <StackPanel Orientation="Horizontal" cal:Message.Attach="[Event MouseDown] = [Action OnMouseDown($source, $dataContext, $eventArgs)];" >
                         <Image Source="{Binding Icon}" Width="16" Height="16" />
-                        <TextBlock Text="{Binding Name}" Margin="3 1 0 1"/>
+                        <TextBlock Text="{Binding FileName}" Margin="3 1 0 1"/>
                     </StackPanel>
                     <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsEditorAvailable}" Value="False">

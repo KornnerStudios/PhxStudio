@@ -122,6 +122,7 @@
     <Compile Include="Modules\Project\ProjectCommandDefinitions.cs" />
     <Compile Include="Modules\Project\ProjectCommandHandlers.cs" />
     <Compile Include="Modules\Project\ProjectService.cs" />
+    <Compile Include="Modules\Project\ProjectWorkDirectoryChangedEventArgs.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\FileItemViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\FolderItemViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\ITreeViewItem.cs" />

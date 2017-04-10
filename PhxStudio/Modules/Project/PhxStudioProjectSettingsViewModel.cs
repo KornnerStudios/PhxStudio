@@ -15,6 +15,8 @@ namespace PhxStudio.Modules.Project
 		: PropertyChangedBase
 		, ISettingsEditor
 	{
+		private IEventAggregator mEventAggregator;
+
 		private PhxStudioProjectViewModel mProjectViewModel;
 
 		#region ProjectName
@@ -76,6 +78,7 @@ namespace PhxStudio.Modules.Project
 		[ImportingConstructor]
 		public PhxStudioProjectSettingsViewModel(IEventAggregator events)
 		{
+			mEventAggregator = events;
 			mProjectViewModel = App.CurrentProjectViewModel;
 
 			RevertSettings();
@@ -91,10 +94,20 @@ namespace PhxStudio.Modules.Project
 
 		private void SaveSettings()
 		{
+			bool workDirChanged =
+				!string.Equals(mProjectViewModel.Model.WorkDirectory, WorkDirectory, StringComparison.OrdinalIgnoreCase);
+			bool finalDirChanged =
+				!string.Equals(mProjectViewModel.Model.FinalDirectory, FinalDirectory, StringComparison.OrdinalIgnoreCase);
+
 			mProjectViewModel.Model.ProjectName = ProjectName;
 			mProjectViewModel.Model.GameVersion = GameVersion;
 			mProjectViewModel.Model.WorkDirectory = WorkDirectory;
 			mProjectViewModel.Model.FinalDirectory = FinalDirectory;
+
+			if (workDirChanged)
+				mEventAggregator.PublishOnUIThread(new ProjectWorkDirectoryChangedEventArgs());
+			if (finalDirChanged)
+				mEventAggregator.PublishOnUIThread(new ProjectWorkDirectoryChangedEventArgs());
 		}
 
 		#region ISettingsEditor
