@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,12 @@ namespace PhxStudio
 	/// </summary>
 	public partial class App : Application
 	{
+		public static List<TraceSource> AllTraceSources { get; private set; } = KSoft.Debug.AssemblyTraceSourcesCollector.FromClasses(null
+			, KSoft.Program.DebugTraceClass
+			, KSoft.Phoenix.Program.DebugTraceClass
+			, typeof(Debug.Trace)
+			);
+
 		public static RenderTargetBitmap AppIconBitmap { get; private set; }
 
 		internal static Modules.Project.PhxStudioProjectViewModel CurrentProjectViewModel { get {
