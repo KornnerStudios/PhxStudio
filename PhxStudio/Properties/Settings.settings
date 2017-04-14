@@ -17,5 +17,10 @@
     <Setting Name="MainWindowState" Type="System.Windows.WindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
+    <Setting Name="TraceSourceOptions" Type="PhxStudio.Modules.TraceList.TraceSourceSettings" Scope="User">
+      <Value Profile="(Default)">&lt;TraceSourceSettings&gt;
+&lt;/TraceSourceSettings&gt;
+        </Value>
+    </Setting>
   </Settings>
 </SettingsFile>

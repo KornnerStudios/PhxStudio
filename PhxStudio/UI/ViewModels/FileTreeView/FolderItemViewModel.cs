@@ -57,8 +57,8 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 			catch (UnauthorizedAccessException ex)
 			{
 				Debug.Trace.PhxStudio.TraceData(System.Diagnostics.TraceEventType.Error, 0,
-					"Encountered unauthorized access to a path in: " + FilePath,
-					ex);
+					"Encountered unauthorized access to a path",
+					FilePath, ex);
 			}
 
 			return childs;

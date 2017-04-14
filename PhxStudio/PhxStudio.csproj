@@ -123,6 +123,12 @@
     <Compile Include="Modules\Project\ProjectCommandHandlers.cs" />
     <Compile Include="Modules\Project\ProjectService.cs" />
     <Compile Include="Modules\Project\ProjectWorkDirectoryChangedEventArgs.cs" />
+    <Compile Include="Modules\TraceList\TraceSourceOptionsView.xaml.cs">
+      <DependentUpon>TraceSourceOptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraceList\TraceSourceOptionsViewModel.cs" />
+    <Compile Include="Modules\TraceList\TraceSourceSetting.cs" />
+    <Compile Include="Modules\TraceList\TraceSourceSettings.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\FileItemViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\FolderItemViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\ITreeViewItem.cs" />
@@ -212,6 +218,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\TraceList\TraceSourceOptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Images\Logos\Logos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,6 +231,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

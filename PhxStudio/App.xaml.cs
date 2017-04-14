@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace PhxStudio
 {
@@ -21,27 +22,53 @@ namespace PhxStudio
 			, KSoft.Program.DebugTraceClass
 			, KSoft.Phoenix.Program.DebugTraceClass
 			, typeof(Debug.Trace)
-			);
-
-		public static RenderTargetBitmap AppIconBitmap { get; private set; }
+			).SortAndReturn(CompareTraceSourcesByName);
+		private static int CompareTraceSourcesByName(TraceSource x, TraceSource y)
+		{
+			return string.CompareOrdinal(x.Name, y.Name);
+		}
 
 		internal static Modules.Project.PhxStudioProjectViewModel CurrentProjectViewModel { get {
 			return (Modules.Project.PhxStudioProjectViewModel)Application.Current.FindResource("CurrentProjectViewModel");
 		} }
 
-		protected override void OnActivated(EventArgs e)
+		protected override void OnStartup(StartupEventArgs e)
 		{
-			base.OnActivated(e);
+			base.OnStartup(e);
 
-			RenderAppIconBitmap();
+			KSoft.Program.Initialize();
+			KSoft.Phoenix.Program.Initialize();
+
+			var settings = PhxStudio.Properties.Settings.Default;
+			if (settings.TraceSourceOptions == null)
+				settings.TraceSourceOptions = new Modules.TraceList.TraceSourceSettings();
+
+			settings.TraceSourceOptions.UpdateAfterSettingsLoaded();
 		}
 
-		private void RenderAppIconBitmap()
+		protected override void OnExit(ExitEventArgs e)
 		{
-			if (AppIconBitmap != null)
-				return;
+			base.OnExit(e);
 
-			var grid = (Grid)FindResource("PhxLogoGrid");
+			KSoft.Phoenix.Program.Dispose();
+			KSoft.Program.Dispose();
+		}
+
+		#region AppIconBitmap
+		static RenderTargetBitmap gAppIconBitmap;
+		public static RenderTargetBitmap AppIconBitmap { get {
+			// I used to have this setup in OnActivated, but that is called every time the app is put in the foreground.
+			// Initializing it in OnStartup or OnLoaded is too late.
+			// Lazy loading, however, works (on my machine)
+			if (gAppIconBitmap == null)
+				RenderAppIconBitmap();
+
+			return gAppIconBitmap;
+		} }
+
+		private static void RenderAppIconBitmap()
+		{
+			var grid = (Grid)Application.Current.FindResource("PhxLogoGrid");
 			if (grid == null)
 				throw new ArgumentException("Failed to find logo Grid", "PhxLogoGrid");
 
@@ -59,8 +86,9 @@ namespace PhxStudio
 				dpiY *= viewbox_ps.CompositionTarget.TransformToDevice.M22;
 			}
 
-			AppIconBitmap = new RenderTargetBitmap((int)viewbox.ActualWidth, (int)viewbox.ActualHeight, dpiX, dpiY, PixelFormats.Pbgra32);
-			AppIconBitmap.Render(viewbox);
+			gAppIconBitmap = new RenderTargetBitmap((int)viewbox.ActualWidth, (int)viewbox.ActualHeight, dpiX, dpiY, PixelFormats.Pbgra32);
+			gAppIconBitmap.Render(viewbox);
 		}
+		#endregion
 	};
 }

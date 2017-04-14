@@ -11,6 +11,7 @@ namespace PhxStudio.Modules.Main
 {
 	[Export(typeof(IModule))]
 	[Export(typeof(MainModule))]
+	[PartCreationPolicy(CreationPolicy.Shared)]
 	sealed class MainModule
 		: ModuleBase
 	{

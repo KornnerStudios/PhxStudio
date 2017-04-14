@@ -8,6 +8,13 @@ namespace PhxStudio
 {
 	static class PhxStudioUtils
 	{
+		public static List<T> SortAndReturn<T>(this List<T> list, Comparison<T> comparison)
+		{
+			list.Sort(comparison);
+			return list;
+		}
+
+		#region PropertyChangedBase
 		public static bool SetFieldVal<T>(this PropertyChangedBase obj
 			, ref T field, T value
 			, bool overrideChecks = false
@@ -130,6 +137,7 @@ namespace PhxStudio
 
 			return true;
 		}
+		#endregion
 
 		public static void SetupViaEditorFileType(this FileDialog dialog, EditorFileType fileType)
 		{

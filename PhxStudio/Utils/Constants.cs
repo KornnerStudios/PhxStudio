@@ -21,6 +21,7 @@ namespace PhxStudio
 			// Gemini
 			public const string Environment_General = "General";
 
+			public const string Environment_TraceSources = "TraceSources";
 			public const string Project_Info = "Info";
 		};
 	};

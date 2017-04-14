@@ -82,5 +82,17 @@ namespace PhxStudio.Properties {
                 this["MainWindowState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<TraceSourceSettings>\r\n</TraceSourceSettings>\r\n        ")]
+        public global::PhxStudio.Modules.TraceList.TraceSourceSettings TraceSourceOptions {
+            get {
+                return ((global::PhxStudio.Modules.TraceList.TraceSourceSettings)(this["TraceSourceOptions"]));
+            }
+            set {
+                this["TraceSourceOptions"] = value;
+            }
+        }
     }
 }
