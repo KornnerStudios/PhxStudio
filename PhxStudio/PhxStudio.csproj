@@ -130,6 +130,7 @@
     <Compile Include="Modules\TraceList\TraceListItem.cs" />
     <Compile Include="Modules\TraceList\TraceListItemType.cs" />
     <Compile Include="Modules\TraceList\TraceListItemTypeToImageConverter.cs" />
+    <Compile Include="Modules\TraceList\TraceListTraceListener.cs" />
     <Compile Include="Modules\TraceList\TraceListView.xaml.cs">
       <DependentUpon>TraceListView.xaml</DependentUpon>
     </Compile>
