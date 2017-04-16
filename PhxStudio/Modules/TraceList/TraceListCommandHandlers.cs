@@ -22,6 +22,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 
 		public override Task Run(Command command)
 		{
+			Debug.Trace.PhxStudio.TraceInformation("Showing TraceList");
 			mShell.ShowTool<ITraceList>();
 			return TaskUtility.Completed;
 		}

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
+using Caliburn.Micro;
 using KSoft;
 
 namespace PhxStudio.Modules.TraceList
@@ -12,13 +12,12 @@ namespace PhxStudio.Modules.TraceList
 	{
 		const string kTraceAsTraceSource = "Trace";
 
-		#region Imports
-#pragma warning disable 649
+		ITraceList mTraceList;
 
-		[Import] ITraceList mTraceList;
-
-#pragma warning restore 649
-		#endregion
+		public TraceListTraceListener()
+		{
+			mTraceList = IoC.Get<ITraceList>();
+		}
 
 		public override void Write(string message)
 		{
