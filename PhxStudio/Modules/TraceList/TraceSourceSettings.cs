@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Caliburn.Micro;
 
@@ -15,6 +13,14 @@ namespace PhxStudio.Modules.TraceList
 	public sealed class TraceSourceSettings
 		: PropertyChangedBase
 	{
+		int mMaxTraceListItems = KSoft.TypeExtensions.kNone;
+		[DefaultSettingValue("-1")]
+		public int MaxTraceListItems
+		{
+			get { return mMaxTraceListItems; }
+			set { this.SetFieldVal(ref mMaxTraceListItems, value); }
+		}
+
 		[XmlArray(ElementName="SourceSettings")]
 		[XmlArrayItem(ElementName="Source", Type=typeof(TraceSourceSetting))]
 		public ObservableCollection<TraceSourceSetting> SourceSettings { get; private set; }
@@ -23,6 +29,9 @@ namespace PhxStudio.Modules.TraceList
 		public TraceSourceSettings Clone()
 		{
 			var copy = new TraceSourceSettings();
+
+			copy.MaxTraceListItems = this.MaxTraceListItems;
+
 			foreach (var src_setting in this.SourceSettings)
 			{
 				var dst_setting = src_setting.Clone();
@@ -36,6 +45,8 @@ namespace PhxStudio.Modules.TraceList
 		{
 			if (this.SourceSettings.Count != src.SourceSettings.Count)
 				throw new ArgumentException("Counts are not equal");
+
+			this.MaxTraceListItems = src.MaxTraceListItems;
 
 			for (int x = 0; x < SourceSettings.Count; x++)
 			{

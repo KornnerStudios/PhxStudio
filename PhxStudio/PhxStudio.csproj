@@ -123,6 +123,17 @@
     <Compile Include="Modules\Project\ProjectCommandHandlers.cs" />
     <Compile Include="Modules\Project\ProjectService.cs" />
     <Compile Include="Modules\Project\ProjectWorkDirectoryChangedEventArgs.cs" />
+    <Compile Include="Modules\TraceList\ITraceList.cs" />
+    <Compile Include="Modules\TraceList\ToolBarDefinitions.cs" />
+    <Compile Include="Modules\TraceList\TraceListCommandDefinitions.cs" />
+    <Compile Include="Modules\TraceList\TraceListCommandHandlers.cs" />
+    <Compile Include="Modules\TraceList\TraceListItem.cs" />
+    <Compile Include="Modules\TraceList\TraceListItemType.cs" />
+    <Compile Include="Modules\TraceList\TraceListItemTypeToImageConverter.cs" />
+    <Compile Include="Modules\TraceList\TraceListView.xaml.cs">
+      <DependentUpon>TraceListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraceList\TraceListViewModel.cs" />
     <Compile Include="Modules\TraceList\TraceSourceOptionsView.xaml.cs">
       <DependentUpon>TraceSourceOptionsView.xaml</DependentUpon>
     </Compile>
@@ -136,6 +147,7 @@
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\FileIconsLoader.cs" />
     <Compile Include="Utils\PhxStudioUtils.cs" />
+    <Compile Include="Utils\TypeExtensionsPhxStudio.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modules\Project\PhxStudioProject.cs" />
@@ -218,6 +230,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\TraceList\TraceListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\TraceList\TraceSourceOptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,7 +247,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Modules\TraceList\Images\Start.png" />
+    <Resource Include="Modules\TraceList\Images\Resume.png" />
+    <Resource Include="Modules\TraceList\Images\Stop.png" />
+    <Resource Include="Modules\TraceList\Images\Suspend.png" />
+    <Resource Include="Modules\TraceList\Images\Transfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\TraceList\Images\Error.png" />
+    <Resource Include="Modules\TraceList\Images\Information.png" />
+    <Resource Include="Modules\TraceList\Images\Verbose.png" />
+    <Resource Include="Modules\TraceList\Images\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\TraceList\Images\Critical.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

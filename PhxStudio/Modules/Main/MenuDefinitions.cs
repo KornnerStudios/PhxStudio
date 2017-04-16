@@ -32,6 +32,11 @@ namespace PhxStudio.Modules.Main
 		public static MenuItemDefinition ViewProjectExplorer = new CommandMenuItemDefinition
 			<ProjectExplorer.Commands.ViewProjectExplorerDefinition>(
 				Gemini.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup, 0);
+
+		[Export]
+		public static MenuItemDefinition ViewTraceList = new CommandMenuItemDefinition
+			<TraceList.Commands.ViewTraceListCommandDefinition>(
+				Gemini.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup, 1);
 		#endregion
 	}
 }
