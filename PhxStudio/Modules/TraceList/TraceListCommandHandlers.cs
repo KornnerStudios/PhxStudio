@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.Composition;
-using System.Linq;
 using System.Threading.Tasks;
 using Gemini.Framework.Commands;
 using Gemini.Framework.Services;
@@ -22,7 +21,6 @@ namespace PhxStudio.Modules.TraceList.Commands
 
 		public override Task Run(Command command)
 		{
-			Debug.Trace.PhxStudio.TraceInformation("Showing TraceList");
 			mShell.ShowTool<ITraceList>();
 			return TaskUtility.Completed;
 		}
@@ -197,6 +195,63 @@ namespace PhxStudio.Modules.TraceList.Commands
 					count++;
 
 			return count;
+		}
+	};
+
+
+	[CommandHandler]
+	public sealed class DebugTestTraceListCommandHandler
+		: CommandHandlerBase<DebugTestTraceListCommandDefinition>
+	{
+		public override Task Run(Command command)
+		{
+			Debug.Trace.PhxStudio.TraceInformation("Testing TraceList");
+			Debug.Trace.PhxStudio.TraceData(System.Diagnostics.TraceEventType.Information, 0,
+				"Test TraceData",
+				GetTestException(),
+				new ArgumentException("Test2")
+			);
+			return TaskUtility.Completed;
+		}
+
+		private static Exception GetTestException()
+		{
+			try
+			{
+				Test();
+			} catch (Exception e)
+			{
+				return e;
+			}
+
+			throw new Exception("FAILED TO TEST????");
+		}
+
+		private static void Test()
+		{
+			try
+			{
+				InnerTest();
+			} catch (Exception inner)
+			{
+				throw new Exception("Test", inner);
+			}
+		}
+
+		private static void InnerTest()
+		{
+			try
+			{
+				InnerInnerTest();
+			} catch (Exception inner)
+			{
+				throw new Exception("Inner Test", inner);
+			}
+		}
+
+		private static void InnerInnerTest()
+		{
+			throw new Exception("Inner Inner Test");
 		}
 	};
 }

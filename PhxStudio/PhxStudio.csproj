@@ -34,8 +34,16 @@
       <HintPath>..\packages\Gemini.Modules.GraphEditor.0.6.2\lib\net45\Gemini.Modules.GraphEditor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Gemini.Modules.Inspector, Version=0.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gemini.Modules.Inspector.0.6.2\lib\net45\Gemini.Modules.Inspector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Gemini.Modules.Output, Version=0.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Gemini.Modules.Output.0.6.2\lib\net45\Gemini.Modules.Output.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gemini.Modules.PropertyGrid, Version=0.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gemini.Modules.PropertyGrid.0.6.2\lib\net45\Gemini.Modules.PropertyGrid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
@@ -124,10 +132,18 @@
     <Compile Include="Modules\Project\ProjectService.cs" />
     <Compile Include="Modules\Project\ProjectWorkDirectoryChangedEventArgs.cs" />
     <Compile Include="Modules\TraceList\ITraceList.cs" />
+    <Compile Include="Modules\TraceList\MenuDefinitions.cs" />
     <Compile Include="Modules\TraceList\ToolBarDefinitions.cs" />
+    <Compile Include="Modules\TraceList\Inspectors\TraceDataArrayControl.xaml.cs">
+      <DependentUpon>TraceDataArrayControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\TraceList\TraceListCommandDefinitions.cs" />
     <Compile Include="Modules\TraceList\TraceListCommandHandlers.cs" />
     <Compile Include="Modules\TraceList\TraceListItem.cs" />
+    <Compile Include="Modules\TraceList\Inspectors\TraceDataEditorView.xaml.cs">
+      <DependentUpon>TraceDataEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraceList\Inspectors\TraceDataEditorViewModel.cs" />
     <Compile Include="Modules\TraceList\TraceListItemType.cs" />
     <Compile Include="Modules\TraceList\TraceListItemTypeToImageConverter.cs" />
     <Compile Include="Modules\TraceList\TraceListTraceListener.cs" />
@@ -228,6 +244,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Project\PhxStudioProjectSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\TraceList\Inspectors\TraceDataArrayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\TraceList\Inspectors\TraceDataEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

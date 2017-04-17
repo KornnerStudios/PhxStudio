@@ -22,25 +22,25 @@
             TransferImageSource="pack://application:,,,/PhxStudio;component/Modules/TraceList/Images/Transfer.png"
             />
     </UserControl.Resources>
-    <Grid>
-        <DataGrid
-            ItemsSource="{Binding FilteredItems}"
-            AutoGenerateColumns="False" IsReadOnly="True"
-            HorizontalGridLinesBrush="WhiteSmoke" VerticalGridLinesBrush="WhiteSmoke"
-            MouseDoubleClick="OnDataGridMouseDoubleClick" BorderThickness="0"
-            Background="Transparent">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Width="SizeToCells">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding ItemType, Converter={StaticResource ItemTypeToImageConverter}}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Width="SizeToCells" Binding="{Binding Number}" />
-                <DataGridTextColumn Width="SizeToCells" MinWidth="100" Header="Source" Binding="{Binding SourceName}" />
-                <DataGridTextColumn Width="*" Header="Message" Binding="{Binding Message}" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+    <DataGrid
+        ItemsSource="{Binding FilteredItems}"
+        AutoGenerateColumns="False" IsReadOnly="True"
+        HorizontalGridLinesBrush="WhiteSmoke" VerticalGridLinesBrush="WhiteSmoke"
+        MouseDoubleClick="OnDataGridMouseDoubleClick" BorderThickness="0"
+        Background="Transparent"
+        SelectionChanged="OnDataGridSelectionChanged"
+        >
+        <DataGrid.Columns>
+            <DataGridTemplateColumn Width="SizeToCells">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding ItemType, Converter={StaticResource ItemTypeToImageConverter}}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Width="SizeToCells" Binding="{Binding Number}" />
+            <DataGridTextColumn Width="SizeToCells" MinWidth="100" Header="Source" Binding="{Binding SourceName}" />
+            <DataGridTextColumn Width="*" Header="Message" Binding="{Binding Message}" />
+        </DataGrid.Columns>
+    </DataGrid>
 </UserControl>

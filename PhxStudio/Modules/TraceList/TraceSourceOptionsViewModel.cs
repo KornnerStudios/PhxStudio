@@ -21,6 +21,8 @@ namespace PhxStudio.Modules.TraceList
 			var settings = PhxStudio.Properties.Settings.Default;
 			Model = settings.TraceSourceOptions.Clone();
 
+			Model.PropertyChanged += ModelSourceSettingPropertyChanged;
+
 			foreach (var source_setting in Model.SourceSettings)
 				source_setting.PropertyChanged += ModelSourceSettingPropertyChanged;
 		}

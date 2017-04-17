@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
 using Gemini.Framework;
+using Gemini.Modules.StatusBar;
 using Gemini.Modules.StatusBar.ViewModels;
 using MahApps.Metro.Controls;
 
@@ -18,18 +19,14 @@ namespace PhxStudio.Modules.Main
 		#region Imports
 #pragma warning disable 649
 
+		[Import] IStatusBar mStatusBar;
+
 #pragma warning restore 649
 		#endregion
 
 		private IEventAggregator mEventAggregator;
 
-		private StatusBarItemViewModel mFirstStatusBarItem;
-		public StatusBarItemViewModel FirstStatusBarItem { get {
-			if (mFirstStatusBarItem == null)
-				mFirstStatusBarItem = Shell.StatusBar.Items.FirstOrDefault(p => p.Index == 0);
-
-			return mFirstStatusBarItem;
-		} }
+		public StatusBarItemViewModel AppStateStatusBarItem { get; private set; }
 
 		[ImportingConstructor]
 		public MainModule(IEventAggregator eventAggregator)
@@ -46,9 +43,10 @@ namespace PhxStudio.Modules.Main
 		{
 			base.Initialize();
 
-			Shell.StatusBar.AddItem("Ready", new GridLength(1, GridUnitType.Star));
-			Shell.StatusBar.AddItem("", new GridLength(100));
-			Shell.StatusBar.AddItem("", new GridLength(100));
+			mStatusBar.AddItem("Ready", new GridLength(1, GridUnitType.Star));
+			AppStateStatusBarItem = mStatusBar.Items[0];
+			//mStatusBar.AddItem("", new GridLength(100));
+			//mStatusBar.AddItem("", new GridLength(100));
 
 			RestoreWindowLocation();
 		}

@@ -38,5 +38,17 @@ namespace PhxStudio.Modules.Main
 			<TraceList.Commands.ViewTraceListCommandDefinition>(
 				Gemini.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup, 1);
 		#endregion
-	}
+
+		#region Debug
+		[Export]
+		public static MenuDefinition DebugMenu = new MenuDefinition(
+			Gemini.Modules.MainMenu.MenuDefinitions.MainMenuBar,
+			int.MaxValue,
+			"DEBUG");
+
+		[Export]
+		public static MenuItemGroupDefinition DebugTestMenuGroup = new MenuItemGroupDefinition(
+			DebugMenu, 0);
+		#endregion
+	};
 }

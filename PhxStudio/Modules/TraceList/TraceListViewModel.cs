@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Caliburn.Micro;
 using Gemini.Framework;
 using Gemini.Framework.Services;
+using Gemini.Modules.Inspector;
 using KSoft;
 
 namespace PhxStudio.Modules.TraceList
@@ -17,6 +19,14 @@ namespace PhxStudio.Modules.TraceList
 		public override PaneLocation PreferredLocation { get {
 			return PaneLocation.Bottom;
 		} }
+
+		#region Imports
+#pragma warning disable 649
+
+		[Import] IInspectorTool mInspectorTool;
+
+#pragma warning restore 649
+		#endregion
 
 		BindableCollection<TraceListItem> mItems;
 		public IObservableCollection<TraceListItem> Items { get { return mItems; } }
@@ -247,12 +257,46 @@ namespace PhxStudio.Modules.TraceList
 				Data = data,
 				OnClick = onClick,
 			};
+
 			Items.Add(item);
 		}
 
 		public void ClearAll()
 		{
 			Items.Clear();
+		}
+
+		public void OnSelectedItemChanged(TraceListItem selectedItem)
+		{
+			if (mInspectorTool == null)
+				return;
+
+			if (selectedItem == null)
+			{
+				mInspectorTool.SelectedObject = null;
+				return;
+			}
+
+			var item_inspector = new InspectableObjectBuilder()
+				.WithObjectProperties(selectedItem, TraceListItemPropertyFilter);
+			if (selectedItem.HasData)
+				item_inspector
+					.WithEditor(selectedItem, x => x.Data, new Inspectors.TraceDataEditorViewModel());
+
+			mInspectorTool.SelectedObject = item_inspector.ToInspectableObject();
+		}
+
+		private static bool TraceListItemPropertyFilter(PropertyDescriptor pd)
+		{
+			switch (pd.Name)
+			{
+				case nameof(TraceListItem.SourceName):
+				case nameof(TraceListItem.Message):
+					return true;
+
+				default:
+					return false;
+			}
 		}
 	};
 }

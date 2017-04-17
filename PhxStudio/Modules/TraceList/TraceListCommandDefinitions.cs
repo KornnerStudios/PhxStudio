@@ -172,4 +172,22 @@ namespace PhxStudio.Modules.TraceList.Commands
 		{
 		}
 	};
+
+
+	[CommandDefinition]
+	public sealed class DebugTestTraceListCommandDefinition
+		: CommandDefinition
+	{
+		public const string CommandName = "Debug.TestTraceList";
+
+		public override string Name { get { return CommandName; } }
+
+		public override string Text { get {
+			return "Test Trace List";
+		} }
+
+		public override string ToolTip { get {
+			return "Test Trace List";
+		} }
+	};
 }
