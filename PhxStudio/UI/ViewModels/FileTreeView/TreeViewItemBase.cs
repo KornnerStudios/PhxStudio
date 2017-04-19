@@ -29,6 +29,15 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 			private set { this.SetFieldObj(ref mFileExtension, value, overrideChecks: true); }
 		}
 
+		public string FileNameAndExtension { get; private set; }
+
+		object mUserData;
+		public object UserData
+		{
+			get { return mUserData; }
+			set { this.SetField(ref mUserData, value); }
+		}
+
 		protected void SetPathToFile(string filePath)
 		{
 			if (string.Equals(mFilePath, filePath, StringComparison.OrdinalIgnoreCase))
@@ -37,6 +46,7 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 			FilePath = filePath;
 			FileName = Path.GetFileNameWithoutExtension(filePath);
 			FileExtension = Path.GetExtension(filePath) ?? "";
+			FileNameAndExtension = FileName + FileExtension;
 		}
 
 		protected void SetPathToDirectory(string directoryPath)
@@ -47,6 +57,7 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 			FilePath = directoryPath;
 			FileName = Path.GetFileNameWithoutExtension(directoryPath);
 			FileExtension = null;
+			FileNameAndExtension = FileName;
 		}
 	};
 }

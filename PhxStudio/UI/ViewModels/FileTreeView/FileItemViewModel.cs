@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Collections;
+using System.Windows.Media;
 using Gemini.Framework.Services;
 
 namespace PhxStudio.UI.ViewModels.FileTreeView
@@ -20,6 +21,11 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 
 		public IEditorProvider EditorProvider { get; private set; }
 		public bool IsEditorAvailable { get { return EditorProvider != null; } }
+
+		// #HACK working around an issue where we get errors like:
+		//BindingExpression path error: 'Children' property not found on 'object' ''FileItemViewModel' (HashCode=4583446)'. BindingExpression:Path=Children; DataItem='FileItemViewModel' (HashCode=4583446); target element is 'TreeViewItem' (Name=''); target property is 'ItemsSource' (type 'IEnumerable')
+		// due to where we specify ItemsSource in the Folder's HierarchicalDataTemplate in ProjectExplorerView. Also possibly due to virturalization
+		public IEnumerable Children { get { return null; } }
 
 		public FileItemViewModel(IEditorProviderSelector editorProviderSelector, string filePath)
 		{
