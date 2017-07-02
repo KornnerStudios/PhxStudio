@@ -350,14 +350,10 @@
   <ItemGroup>
     <Folder Include="ProtoData\Civs\Editors\" />
     <Folder Include="ProtoData\Leaders\Editors\" />
-    <Folder Include="ProtoData\Leaders\Explorer\" />
     <Folder Include="ProtoData\Objects\Editors\" />
-    <Folder Include="ProtoData\Objects\Explorer\" />
     <Folder Include="ProtoData\Powers\Editors\" />
     <Folder Include="ProtoData\Squads\Editors\" />
-    <Folder Include="ProtoData\Squads\Explorer\" />
     <Folder Include="ProtoData\Techs\Editors\" />
-    <Folder Include="ProtoData\Techs\Explorer\" />
     <Folder Include="Scenario\" />
     <Folder Include="Terrain\" />
     <Folder Include="TriggerSystem\" />

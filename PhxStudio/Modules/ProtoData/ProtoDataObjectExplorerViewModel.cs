@@ -112,36 +112,6 @@ namespace PhxStudio.Modules.ProtoData
 			SourceObjectDatabaseUndefinedMembers = list.UndefinedInterface.UndefinedMembers;
 		}
 
-		public void OnFilterSourceObjectDatabaseCollection(object sender, System.Windows.Data.FilterEventArgs e)
-		{
-			string filter = SourceObjectDatabaseCollectionFilter;
-			e.Accepted = false;
-
-			if (string.IsNullOrEmpty(filter))
-			{
-				e.Accepted = true;
-				return;
-			}
-			else if (e.Item == null)
-			{
-				return;
-			}
-
-			var item = e.Item as KSoft.Collections.IListAutoIdObject;
-			if (item != null)
-			{
-				e.Accepted = item.Data != null && item.Data.Contains(filter);
-				return;
-			}
-
-			var itemAsStr = e.Item as string;
-			if (itemAsStr != null)
-			{
-				e.Accepted = itemAsStr.Contains(filter);
-				return;
-			}
-		}
-
 		public bool IsSourceObjectDatabaseCollectionItemFiltered(object obj)
 		{
 			string filter = SourceObjectDatabaseCollectionFilter;
