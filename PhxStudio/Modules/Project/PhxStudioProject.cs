@@ -1,4 +1,5 @@
 ﻿using KSoft;
+using Caliburn.Micro;
 using EditorFileType = Gemini.Framework.Services.EditorFileType;
 using GameVersionType = KSoft.Phoenix.HaloWars.GameVersionType;
 
@@ -73,7 +74,13 @@ namespace PhxStudio.Modules.Project
 		public string WorkDirectory
 		{
 			get { return mWorkDirectory; }
-			set { this.SetFieldObj(ref mWorkDirectory, value); }
+			set
+			{
+				if (this.SetFieldObj(ref mWorkDirectory, value))
+				{
+					CreateOrUnloadEngine();
+				}
+			}
 		}
 		#endregion
 
@@ -86,14 +93,65 @@ namespace PhxStudio.Modules.Project
 		}
 		#endregion
 
+		#region Engine
+		KSoft.Phoenix.Engine.PhxEngine mEngine;
+		public KSoft.Phoenix.Engine.PhxEngine Engine
+		{
+			get { return mEngine; }
+			private set { this.SetField(ref mEngine, value); }
+		}
+		#endregion
+
+		bool mEngineCreationDisabled;
+		private void CreateOrUnloadEngine()
+		{
+			if (mEngineCreationDisabled)
+				return;
+
+			// don't do anything when the engine was never loaded to begin with
+			if (WorkDirectory.IsNullOrEmpty() && Engine == null)
+				return;
+
+			var eventAggregator = IoC.Get<IEventAggregator>();
+
+			bool unload = Engine != null;
+			bool reload = unload && WorkDirectory.IsNotNullOrEmpty();
+			bool load = !unload && WorkDirectory.IsNotNullOrEmpty();
+
+			if (unload)
+			{
+				Engine = null;
+				eventAggregator.PublishOnUIThread(new ProjectEngineUnloadedEventArgs());
+			}
+
+			if (reload || load)
+			{
+				var engine = KSoft.Phoenix.Engine.PhxEngine.CreateForHaloWars(
+					WorkDirectory, WorkDirectory,
+					GameVersion == GameVersionType.Xbox360);
+
+				Engine = engine;
+				eventAggregator.PublishOnUIThread(new ProjectEngineCreatedEventArgs(Engine));
+			}
+		}
+
 		public void Serialize<TDoc, TCursor>(KSoft.IO.TagElementStream<TDoc, TCursor, string> s)
 			where TDoc : class
 			where TCursor : class
 		{
+			mEngineCreationDisabled = true;
+
 			s.StreamElementOpt("ProjectName", this, obj => obj.ProjectName, x => x != kDefaultProjectName);
 			s.StreamElementEnumOpt("GameVersion", this, obj => obj.GameVersion, x => x != GameVersionType.DefinitiveEdition);
 			s.StreamElementOpt("WorkDir", this, obj => obj.WorkDirectory, Predicates.IsNotNullOrEmpty);
 			s.StreamElementOpt("FinalDir", this, obj => obj.FinalDirectory, Predicates.IsNotNullOrEmpty);
+
+			mEngineCreationDisabled = false;
+
+			if (s.IsReading)
+			{
+				CreateOrUnloadEngine();
+			}
 		}
 	};
 }

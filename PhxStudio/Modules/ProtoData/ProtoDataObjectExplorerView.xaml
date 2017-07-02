@@ -1,0 +1,40 @@
+﻿<UserControl
+    x:Class="PhxStudio.Modules.ProtoData.ProtoDataObjectExplorerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:PhxStudio.Modules.ProtoData"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:KSoftPhxCollections="clr-namespace:KSoft.Collections;assembly=KSoft.Phoenix"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    Loaded="OnLoaded"
+    >
+    <TabControl>
+        <TabItem Header="Entries">
+            <!--Not using StackPanel here: https://stackoverflow.com/a/2927974/444977-->
+            <DockPanel>
+                <!--Have to use PropertyChanged here since we need the ViewModel to have the filter text before the TextChanged causes the CollectionView to refresh, instead of when focus moves from the box-->
+                <TextBox Text="{Binding SourceObjectDatabaseCollectionFilter, UpdateSourceTrigger=PropertyChanged}"
+                    DockPanel.Dock="Top" TextChanged="OnFilterTextChanged" />
+
+                <ListView Name="SourceObjectDatabaseCollectionListView" ItemsSource="{Binding SourceObjectDatabaseCollection}"
+                    DockPanel.Dock="Top" >
+                    <ListView.Resources>
+                        <DataTemplate DataType="{x:Type System:String}">
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type KSoftPhxCollections:IListAutoIdObject}">
+                            <TextBlock Text="{Binding Data}" />
+                        </DataTemplate>
+                    </ListView.Resources>
+                </ListView>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="Undefined" IsEnabled="{Binding HasSourceObjectDatabaseUndefinedMembers}">
+            <ListView ItemsSource="{Binding SourceObjectDatabaseUndefinedMembers}">
+            </ListView>
+        </TabItem>
+    </TabControl>
+</UserControl>

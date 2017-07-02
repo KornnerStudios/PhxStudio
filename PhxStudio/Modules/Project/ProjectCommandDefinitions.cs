@@ -69,4 +69,38 @@ namespace PhxStudio.Modules.Project.Commands
 			return "Save current project to a new file";
 		} }
 	};
+
+	[CommandDefinition]
+	public sealed class ProjectEnginePreloadCommandDefinition
+		: CommandDefinition
+	{
+		public const string CommandName = "Project.PreloadEngine";
+
+		public override string Name { get { return CommandName; } }
+
+		public override string Text { get {
+			return "Preload Engine System";
+		} }
+
+		public override string ToolTip { get {
+			return "Preloads core ProtoData used by the engine";
+		} }
+	};
+
+	[CommandDefinition]
+	public sealed class ProjectEngineLoadCommandDefinition
+		: CommandDefinition
+	{
+		public const string CommandName = "Project.LoadEngine";
+
+		public override string Name { get { return CommandName; } }
+
+		public override string Text { get {
+			return "Load Engine System";
+		} }
+
+		public override string ToolTip { get {
+			return "Loads core ProtoData used by the engine";
+		} }
+	};
 }

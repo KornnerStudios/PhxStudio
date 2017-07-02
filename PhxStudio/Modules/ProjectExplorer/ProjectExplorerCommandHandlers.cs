@@ -1,8 +1,5 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Threading;
+﻿using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using Caliburn.Micro;
 using Gemini.Framework.Commands;
 using Gemini.Framework.Services;
 using Gemini.Framework.Threading;

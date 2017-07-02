@@ -12,7 +12,7 @@ namespace PhxStudio.Modules.Project
 		public PhxStudioProject Model
 		{
 			get { return mModel; }
-			private set { SetField(ref mModel, value); }
+			private set { this.SetField(ref mModel, value); }
 		}
 
 		internal Exception CreateNewInternal()
@@ -70,6 +70,65 @@ namespace PhxStudio.Modules.Project
 			{
 				caught_exception = ex;
 			}
+			return caught_exception;
+		}
+
+		internal Exception PreloadEngineInternal()
+		{
+			if (Model == null)
+			{
+				return new InvalidOperationException("No Model is loaded");
+			}
+			else if (Model.Engine == null)
+			{
+				return new InvalidOperationException("No Model.Engine is loaded");
+			}
+
+			Exception caught_exception = null;
+			try
+			{
+				var engine = Model.Engine;
+
+				if (!engine.Preload())
+				{
+					return new InvalidOperationException("Failed to Preload engine system");
+				}
+
+			} catch (Exception ex)
+			{
+				caught_exception = ex;
+			}
+
+			return caught_exception;
+		}
+
+		internal Exception LoadEngineInternal()
+		{
+			if (Model == null)
+			{
+				return new InvalidOperationException("No Model is loaded");
+			}
+			else if (Model.Engine == null)
+			{
+				return new InvalidOperationException("No Model.Engine is loaded");
+			}
+
+			Exception caught_exception = null;
+			try
+			{
+				var engine = Model.Engine;
+
+				if (!engine.Load())
+				{
+					return new InvalidOperationException("Failed to Load engine system");
+				}
+
+			}
+			catch (Exception ex)
+			{
+				caught_exception = ex;
+			}
+
 			return caught_exception;
 		}
 	};

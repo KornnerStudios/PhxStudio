@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Caliburn.Micro;
 
 namespace PhxStudio.Modules.Project
@@ -9,9 +8,12 @@ namespace PhxStudio.Modules.Project
 	{
 		PhxStudioProjectViewModel CurrentProject { get; }
 		string CurrentProjectFilePath { get; }
+		KSoft.Phoenix.Engine.PhxEngine Engine { get; }
 
 		Exception CreateNew();
 		Exception Open(string path);
 		Exception Save(string path = null);
+		Exception PreloadEngine();
+		Exception LoadEngine();
 	};
 }

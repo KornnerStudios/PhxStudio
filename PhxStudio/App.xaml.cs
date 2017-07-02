@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using KSoft;
 
 namespace PhxStudio
 {
@@ -34,6 +35,9 @@ namespace PhxStudio
 
 		protected override void OnStartup(StartupEventArgs e)
 		{
+			AppDomain.CurrentDomain.UnhandledException += new
+				UnhandledExceptionEventHandler(this.AppDomainUnhandledExceptionHandler);
+
 			base.OnStartup(e);
 
 			KSoft.Program.Initialize();
@@ -52,6 +56,14 @@ namespace PhxStudio
 
 			KSoft.Phoenix.Program.Dispose();
 			KSoft.Program.Dispose();
+		}
+
+		void AppDomainUnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs ea)
+		{
+			Exception e = (Exception)ea.ExceptionObject;
+			Debug.Trace.PhxStudio.TraceData(TraceEventType.Error, TypeExtensions.kNone,
+				"Unhandled Exception!",
+				e);
 		}
 
 		#region AppIconBitmap

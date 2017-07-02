@@ -1,22 +1,22 @@
 ﻿using System;
 using Gemini.Framework.Commands;
 
-namespace PhxStudio.Modules.ProjectExplorer.Commands
+namespace PhxStudio.ProtoData.Powers.Commands
 {
 	[CommandDefinition]
-	sealed class ViewProjectExplorerDefinition
+	sealed class ViewPowersExplorerDefinition
 		: CommandDefinition
 	{
-		public const string CommandName = "View.ProjectExplorer";
+		public const string CommandName = "View.PowersExplorer";
 
 		public override string Name { get { return CommandName; } }
 
 		public override string Text { get {
-			return "Project Explorer";
+			return "Powers Explorer";
 		} }
 
 		public override string ToolTip { get {
-			return "Open Project Explorer";
+			return "Open Powers Explorer";
 		} }
 
 		public override Uri IconSource { get { return new Uri(

@@ -25,6 +25,11 @@ namespace PhxStudio.Modules.Project.Commands
 
 		public override async Task Run(Command command)
 		{
+			if (mProjectService.Engine != null)
+			{
+				mEventAggregator.PublishOnUIThread(new ProjectEngineUnloadedEventArgs());
+			}
+
 			mEventAggregator.PublishOnUIThread(new ProjectClosingEventArgs());
 
 			var project_task = Task.Factory.StartNew(mProjectService.CreateNew,
@@ -58,6 +63,11 @@ namespace PhxStudio.Modules.Project.Commands
 			dialog.SetupViaEditorFileType(PhxStudioProject.FileType);
 			if (dialog.ShowDialog() != true)
 				return;
+
+			if (mProjectService.Engine != null)
+			{
+				mEventAggregator.PublishOnUIThread(new ProjectEngineUnloadedEventArgs());
+			}
 
 			mEventAggregator.PublishOnUIThread(new ProjectClosingEventArgs());
 
@@ -159,6 +169,94 @@ namespace PhxStudio.Modules.Project.Commands
 		{
 			var file_name = (string)state;
 			return mProjectService.Save(file_name);
+		}
+	};
+
+	[CommandHandler]
+	class ProjectEnginePreloadCommandHandler
+		: CommandHandlerBase<ProjectEnginePreloadCommandDefinition>
+	{
+#pragma warning disable 649
+		[Import] IEventAggregator mEventAggregator;
+		[Import] IProjectService mProjectService;
+#pragma warning restore 649
+
+		[ImportingConstructor]
+		public ProjectEnginePreloadCommandHandler(IEventAggregator eventAggregator
+			, IProjectService service)
+		{
+			mEventAggregator = eventAggregator;
+			mProjectService = service;
+		}
+
+		public override async Task Run(Command command)
+		{
+			var project_task = Task.Factory.StartNew(PreloadEngineCallback, mProjectService,
+				CancellationToken.None,
+				TaskCreationOptions.None,
+				TaskScheduler.Default);
+			var project_task_result = await project_task;
+			if (project_task_result != null)
+				return;
+		}
+
+		private static Exception PreloadEngineCallback(object state)
+		{
+			var service = (IProjectService)state;
+			return service.PreloadEngine();
+		}
+
+		public override void Update(Command command)
+		{
+			base.Update(command);
+
+			var engine = mProjectService.CurrentProject.Model.Engine;
+
+			command.Enabled = engine != null && !engine.HasAlreadyPreloaded;
+		}
+	};
+
+	[CommandHandler]
+	class ProjectEngineLoadCommandHandler
+		: CommandHandlerBase<ProjectEngineLoadCommandDefinition>
+	{
+#pragma warning disable 649
+		[Import] IEventAggregator mEventAggregator;
+		[Import] IProjectService mProjectService;
+#pragma warning restore 649
+
+		[ImportingConstructor]
+		public ProjectEngineLoadCommandHandler(IEventAggregator eventAggregator
+			, IProjectService service)
+		{
+			mEventAggregator = eventAggregator;
+			mProjectService = service;
+		}
+
+		public override async Task Run(Command command)
+		{
+			var project_task = Task.Factory.StartNew(LoadEngineCallback, mProjectService,
+				CancellationToken.None,
+				TaskCreationOptions.None,
+				TaskScheduler.Default);
+			var project_task_result = await project_task;
+			if (project_task_result != null)
+				return;
+		}
+
+		private static Exception LoadEngineCallback(object state)
+		{
+			var service = (IProjectService)state;
+			return service.LoadEngine();
+		}
+
+		public override void Update(Command command)
+		{
+			base.Update(command);
+
+			var engine = mProjectService.CurrentProject.Model.Engine;
+
+			command.Enabled = engine != null && !engine.HasAlreadyLoaded;
 		}
 	};
 }

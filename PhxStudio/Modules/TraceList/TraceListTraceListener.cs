@@ -104,6 +104,9 @@ namespace PhxStudio.Modules.TraceList
 
 		private object[] GetDataForTraceListItem(params object[] args)
 		{
+			if (args.IsNullOrEmpty())
+				return args;
+
 			var result = new object[args.Length];
 
 			for (int x = 0; x < result.Length; x++)
@@ -117,6 +120,9 @@ namespace PhxStudio.Modules.TraceList
 
 		private object GetDataEntryForTraceListItem(object data)
 		{
+			if (data == null)
+				return data;
+
 			var result = data;
 			if (result is Exception)
 			{

@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -117,6 +118,28 @@
     <Compile Include="Modules\Main\MainModule.cs" />
     <Compile Include="Modules\Main\MenuDefinitions.cs" />
     <Compile Include="Modules\Main\ShellViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Controls\PhxInspectorGrid.cs" />
+    <Compile Include="Modules\PhxInspectors\Controls\PhxInspectorItemTemplateSelector.cs" />
+    <Compile Include="Modules\PhxInspectors\Conventions\DefaultPropertyInspectors.cs" />
+    <Compile Include="Modules\PhxInspectors\Conventions\PropertyEditorBuilder.cs" />
+    <Compile Include="Modules\PhxInspectors\Conventions\RangePropertyEditorBuilder.cs" />
+    <Compile Include="Modules\PhxInspectors\InspectableObject.cs" />
+    <Compile Include="Modules\PhxInspectors\InspectorBuilder.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\BitmapSourceEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\ChangeObjectValueAction.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\CheckBoxEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\CollapsibleGroupViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\ColorEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\EnumEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\IEditor.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\IInspector.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\Point3DEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\RangeEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\ResetObjectValueAction.cs" />
+    <Compile Include="Modules\PhxInspectors\PhxInspectorView.xaml.cs">
+      <DependentUpon>PhxInspectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\PhxInspectors\PhxInspectorViewModel.cs" />
     <Compile Include="Modules\ProjectExplorer\ProjectExplorerCommandDefinitions.cs" />
     <Compile Include="Modules\ProjectExplorer\ProjectExplorerCommandHandlers.cs" />
     <Compile Include="Modules\ProjectExplorer\ProjectExplorerView.xaml.cs">
@@ -131,6 +154,10 @@
     <Compile Include="Modules\Project\ProjectCommandHandlers.cs" />
     <Compile Include="Modules\Project\ProjectService.cs" />
     <Compile Include="Modules\Project\ProjectWorkDirectoryChangedEventArgs.cs" />
+    <Compile Include="Modules\ProtoData\ProtoDataObjectExplorerView.xaml.cs">
+      <DependentUpon>ProtoDataObjectExplorerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ProtoData\ProtoDataObjectExplorerViewModel.cs" />
     <Compile Include="Modules\TraceList\ITraceList.cs" />
     <Compile Include="Modules\TraceList\MenuDefinitions.cs" />
     <Compile Include="Modules\TraceList\ToolBarDefinitions.cs" />
@@ -157,6 +184,18 @@
     <Compile Include="Modules\TraceList\TraceSourceOptionsViewModel.cs" />
     <Compile Include="Modules\TraceList\TraceSourceSetting.cs" />
     <Compile Include="Modules\TraceList\TraceSourceSettings.cs" />
+    <Compile Include="ProtoData\Civs\CivsCommandDefinitions.cs" />
+    <Compile Include="ProtoData\Civs\CivsCommandHandlers.cs" />
+    <Compile Include="ProtoData\Civs\CivsExplorerView.xaml.cs">
+      <DependentUpon>CivsExplorerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProtoData\Civs\CivsExplorerViewModel.cs" />
+    <Compile Include="ProtoData\Powers\PowersExplorerView.xaml.cs">
+      <DependentUpon>PowersExplorerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProtoData\Powers\PowersCommandDefinitions.cs" />
+    <Compile Include="ProtoData\Powers\PowersCommandHandlers.cs" />
+    <Compile Include="ProtoData\Powers\PowersExplorerViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\FileItemViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\FolderItemViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\ITreeViewItem.cs" />
@@ -239,11 +278,23 @@
     <Resource Include="Modules\ProjectExplorer\Images\Folder_Open16.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Modules\PhxInspectors\PhxInspectorsResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\PhxInspectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\ProjectExplorer\ProjectExplorerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Project\PhxStudioProjectSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\ProtoData\ProtoDataObjectExplorerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -262,6 +313,14 @@
     <Page Include="Modules\TraceList\TraceSourceOptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProtoData\Civs\CivsExplorerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProtoData\Powers\PowersExplorerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Images\Logos\Logos.xaml">
       <SubType>Designer</SubType>
@@ -287,6 +346,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Modules\TraceList\Images\Critical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProtoData\Civs\Editors\" />
+    <Folder Include="ProtoData\Leaders\Editors\" />
+    <Folder Include="ProtoData\Leaders\Explorer\" />
+    <Folder Include="ProtoData\Objects\Editors\" />
+    <Folder Include="ProtoData\Objects\Explorer\" />
+    <Folder Include="ProtoData\Powers\Editors\" />
+    <Folder Include="ProtoData\Squads\Editors\" />
+    <Folder Include="ProtoData\Squads\Explorer\" />
+    <Folder Include="ProtoData\Techs\Editors\" />
+    <Folder Include="ProtoData\Techs\Explorer\" />
+    <Folder Include="Scenario\" />
+    <Folder Include="Terrain\" />
+    <Folder Include="TriggerSystem\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

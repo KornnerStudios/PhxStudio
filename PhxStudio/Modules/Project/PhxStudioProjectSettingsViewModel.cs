@@ -107,7 +107,7 @@ namespace PhxStudio.Modules.Project
 			if (workDirChanged)
 				mEventAggregator.PublishOnUIThread(new ProjectWorkDirectoryChangedEventArgs());
 			if (finalDirChanged)
-				mEventAggregator.PublishOnUIThread(new ProjectWorkDirectoryChangedEventArgs());
+				mEventAggregator.PublishOnUIThread(new ProjectFinalDirectoryChangedEventArgs());
 		}
 
 		#region ISettingsEditor

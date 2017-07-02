@@ -10,9 +10,18 @@ namespace PhxStudio.Modules.Project
 		: PropertyChangedBase
 		, IProjectService
 	{
+#pragma warning disable 649
+		[Import] IEventAggregator mEventAggregator;
+#pragma warning restore 649
+
 		public PhxStudioProjectViewModel CurrentProject
 		{
 			get { return App.CurrentProjectViewModel; }
+		}
+
+		public KSoft.Phoenix.Engine.PhxEngine Engine
+		{
+			get { return CurrentProject.Model.Engine; }
 		}
 
 		string mCurrentProjectFilePath;
@@ -60,6 +69,30 @@ namespace PhxStudio.Modules.Project
 				return operation_exception;
 
 			CurrentProjectFilePath = CurrentProject.Model.ProjectFilePath;
+
+			return operation_exception;
+		}
+
+		public Exception PreloadEngine()
+		{
+			var operation_exception = CurrentProject.PreloadEngineInternal();
+
+			if (operation_exception == null)
+			{
+				mEventAggregator.PublishOnUIThread(new ProjectEnginePreloadedEventArgs(this.Engine));
+			}
+
+			return operation_exception;
+		}
+
+		public Exception LoadEngine()
+		{
+			var operation_exception = CurrentProject.LoadEngineInternal();
+
+			if (operation_exception == null)
+			{
+				mEventAggregator.PublishOnUIThread(new ProjectEngineLoadedEventArgs(this.Engine));
+			}
 
 			return operation_exception;
 		}

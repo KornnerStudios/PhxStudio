@@ -25,6 +25,8 @@
                 <ResourceDictionary>
                     <gemini:AppBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
+                <!--Added this so I don't get bullshit about failing to resolve DynamicResources like EnvironmentToolWindowText-->
+                <ResourceDictionary Source="pack://application:,,,/Gemini;component/Themes/VS2013/DarkTheme.xaml" />
                 <ResourceDictionary Source="UI/Images/Logos/Logos.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
