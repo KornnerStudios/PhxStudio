@@ -18,6 +18,11 @@ namespace PhxStudio.Modules.TraceList.Commands
 		public override string ToolTip { get {
 			return "View the app tracing list";
 		} }
+
+		public override Uri IconSource { get { return new Uri(
+				"pack://application:,,,/PhxStudio;component/Modules/TraceList/Images/Information.png"
+			);
+		} }
 	};
 
 	[CommandDefinition]

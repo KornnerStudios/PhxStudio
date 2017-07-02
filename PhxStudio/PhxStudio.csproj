@@ -190,12 +190,36 @@
       <DependentUpon>CivsExplorerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProtoData\Civs\CivsExplorerViewModel.cs" />
+    <Compile Include="ProtoData\Leaders\LeadersCommandDefinitions.cs" />
+    <Compile Include="ProtoData\Leaders\LeadersCommandHandlers.cs" />
+    <Compile Include="ProtoData\Leaders\LeadersExplorerView.xaml.cs">
+      <DependentUpon>LeadersExplorerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProtoData\Leaders\LeadersExplorerViewModel.cs" />
+    <Compile Include="ProtoData\Objects\ObjectsCommandDefinitions.cs" />
+    <Compile Include="ProtoData\Objects\ObjectsCommandHandlers.cs" />
+    <Compile Include="ProtoData\Objects\ObjectsExplorerView.xaml.cs">
+      <DependentUpon>ObjectsExplorerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProtoData\Objects\ObjectsExplorerViewModel.cs" />
     <Compile Include="ProtoData\Powers\PowersExplorerView.xaml.cs">
       <DependentUpon>PowersExplorerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProtoData\Powers\PowersCommandDefinitions.cs" />
     <Compile Include="ProtoData\Powers\PowersCommandHandlers.cs" />
     <Compile Include="ProtoData\Powers\PowersExplorerViewModel.cs" />
+    <Compile Include="ProtoData\Squads\SquadsCommandDefinitions.cs" />
+    <Compile Include="ProtoData\Squads\SquadsCommandHandlers.cs" />
+    <Compile Include="ProtoData\Squads\SquadsExplorerView.xaml.cs">
+      <DependentUpon>SquadsExplorerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProtoData\Squads\SquadsExplorerViewModel.cs" />
+    <Compile Include="ProtoData\Techs\TechsCommandDefinitions.cs" />
+    <Compile Include="ProtoData\Techs\TechsCommandHandlers.cs" />
+    <Compile Include="ProtoData\Techs\TechsExplorerView.xaml.cs">
+      <DependentUpon>TechsExplorerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProtoData\Techs\TechsExplorerViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\FileItemViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\FolderItemViewModel.cs" />
     <Compile Include="UI\ViewModels\FileTreeView\ITreeViewItem.cs" />
@@ -318,7 +342,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProtoData\Leaders\LeadersExplorerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProtoData\Objects\ObjectsExplorerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ProtoData\Powers\PowersExplorerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProtoData\Squads\SquadsExplorerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProtoData\Techs\TechsExplorerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -51,6 +51,17 @@ namespace PhxStudio.Modules.Main
 
 		#region View
 		[Export]
+		public static ExcludeMenuItemDefinition ExcludeViewErrorListMenuItem = new ExcludeMenuItemDefinition(
+			Gemini.Modules.ErrorList.MenuDefinitions.ViewErrorListMenuItem);
+		[Export]
+		public static ExcludeMenuItemDefinition ExcludeViewOutputMenuItem = new ExcludeMenuItemDefinition(
+			Gemini.Modules.Output.MenuDefinitions.ViewOutputMenuItem);
+		[Export]
+		public static ExcludeMenuItemDefinition ExcludeViewToolboxMenuItem = new ExcludeMenuItemDefinition(
+			Gemini.Modules.Toolbox.MenuDefinitions.ViewToolboxMenuItem);
+
+
+		[Export]
 		public static MenuItemDefinition ViewProjectExplorer = new CommandMenuItemDefinition
 			<ProjectExplorer.Commands.ViewProjectExplorerDefinition>(
 				Gemini.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup, 0);
@@ -61,14 +72,38 @@ namespace PhxStudio.Modules.Main
 				Gemini.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup, 1);
 
 		[Export]
+		public static MenuItemGroupDefinition ViewProtoDataMenuGroup = new MenuItemGroupDefinition(
+			Gemini.Modules.MainMenu.MenuDefinitions.ViewMenu, 10);
+
+		[Export]
 		public static MenuItemDefinition ViewProtoDataCivsExplorer = new CommandMenuItemDefinition
 			<PhxStudio.ProtoData.Civs.Commands.ViewCivsExplorerDefinition>(
-				Gemini.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup, 2);
+				ViewProtoDataMenuGroup, 0);
+
+		[Export]
+		public static MenuItemDefinition ViewProtoDataLeadersExplorer = new CommandMenuItemDefinition
+			<PhxStudio.ProtoData.Leaders.Commands.ViewLeadersExplorerDefinition>(
+				ViewProtoDataMenuGroup, 1);
+
+		[Export]
+		public static MenuItemDefinition ViewProtoDataObjectsExplorer = new CommandMenuItemDefinition
+			<PhxStudio.ProtoData.Objects.Commands.ViewObjectsExplorerDefinition>(
+				ViewProtoDataMenuGroup, 2);
 
 		[Export]
 		public static MenuItemDefinition ViewProtoDataPowersExplorer = new CommandMenuItemDefinition
 			<PhxStudio.ProtoData.Powers.Commands.ViewPowersExplorerDefinition>(
-				Gemini.Modules.MainMenu.MenuDefinitions.ViewToolsMenuGroup, 3);
+				ViewProtoDataMenuGroup, 3);
+
+		[Export]
+		public static MenuItemDefinition ViewProtoDataSquadsExplorer = new CommandMenuItemDefinition
+			<PhxStudio.ProtoData.Squads.Commands.ViewSquadsExplorerDefinition>(
+				ViewProtoDataMenuGroup, 4);
+
+		[Export]
+		public static MenuItemDefinition ViewProtoDataTechsExplorer = new CommandMenuItemDefinition
+			<PhxStudio.ProtoData.Techs.Commands.ViewTechsExplorerDefinition>(
+				ViewProtoDataMenuGroup, 5);
 		#endregion
 
 		#region Debug
