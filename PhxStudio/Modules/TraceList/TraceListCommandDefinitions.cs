@@ -26,6 +26,50 @@ namespace PhxStudio.Modules.TraceList.Commands
 	};
 
 	[CommandDefinition]
+	public sealed class ClearTraceListCommandDefinition
+		: CommandDefinition
+	{
+		public const string CommandName = "TraceList.Clear";
+
+		public override string Name { get { return CommandName; } }
+
+		public override string Text { get {
+			return "Clear";
+		} }
+
+		public override string ToolTip { get {
+			return "Clears all items in the Trace List";
+		} }
+
+		public override Uri IconSource { get { return new Uri(
+				"pack://application:,,,/PhxStudio;component/Modules/TraceList/Images/Clear.png"
+			);
+		} }
+	};
+
+	[CommandDefinition]
+	public sealed class ToggleTailTraceListCommandDefinition
+		: CommandDefinition
+	{
+		public const string CommandName = "TraceList.ToggleTail";
+
+		public override string Name { get { return CommandName; } }
+
+		public override string Text { get {
+			return "Tail";
+		} }
+
+		public override string ToolTip { get {
+			return "When enabled, UI will snap to new traces as they come in";
+		} }
+
+		public override Uri IconSource { get { return new Uri(
+				"pack://application:,,,/PhxStudio;component/Modules/TraceList/Images/Tail.png"
+			);
+		} }
+	};
+
+	[CommandDefinition]
 	public abstract class ToggleGroupCommandDefinitionBase
 		: CommandDefinition
 	{
@@ -62,7 +106,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleCriticalGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleCritical";
+		public const string CommandName = "TraceList.ToggleCritical";
 
 		public ToggleCriticalGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Critical)
@@ -74,7 +118,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleErrorsGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleErrors";
+		public const string CommandName = "TraceList.ToggleErrors";
 
 		public ToggleErrorsGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Error)
@@ -86,7 +130,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleWarningsGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleWarnings";
+		public const string CommandName = "TraceList.ToggleWarnings";
 
 		public ToggleWarningsGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Warning)
@@ -98,7 +142,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleInformationGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleInformation";
+		public const string CommandName = "TraceList.ToggleInformation";
 
 		public ToggleInformationGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Information)
@@ -110,7 +154,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleVerboseGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleVerbose";
+		public const string CommandName = "TraceList.ToggleVerbose";
 
 		public ToggleVerboseGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Verbose)
@@ -122,7 +166,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleStartGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleStart";
+		public const string CommandName = "TraceList.ToggleStart";
 
 		public ToggleStartGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Start)
@@ -134,7 +178,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleStopGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleStop";
+		public const string CommandName = "TraceList.ToggleStop";
 
 		public ToggleStopGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Stop)
@@ -146,7 +190,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleSuspendGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleSuspend";
+		public const string CommandName = "TraceList.ToggleSuspend";
 
 		public ToggleSuspendGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Suspend)
@@ -158,7 +202,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleResumeGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleResume";
+		public const string CommandName = "TraceList.ToggleResume";
 
 		public ToggleResumeGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Resume)
@@ -170,7 +214,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 	public sealed class ToggleTransferGroupCommandDefinition
 		: ToggleGroupCommandDefinitionBase
 	{
-		public const string CommandName = "ErrorList.ToggleTransfer";
+		public const string CommandName = "TraceList.ToggleTransfer";
 
 		public ToggleTransferGroupCommandDefinition()
 			: base(CommandName, TraceListItemType.Transfer)

@@ -10,6 +10,8 @@ using KSoft;
 
 namespace PhxStudio.Modules.TraceList
 {
+	// #TODO Filtering should probably be done with a CollectionViewSoruce instead
+
 	[Export(typeof(ITraceList))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
 	public sealed class TraceListViewModel
@@ -27,6 +29,8 @@ namespace PhxStudio.Modules.TraceList
 
 #pragma warning restore 649
 		#endregion
+
+		private int mItemNumber;
 
 		BindableCollection<TraceListItem> mItems;
 		public IObservableCollection<TraceListItem> Items { get { return mItems; } }
@@ -213,6 +217,16 @@ namespace PhxStudio.Modules.TraceList
 		}
 		#endregion
 
+		#region TailTraces
+		bool mTailTraces = true;
+		[Description("When enabled, UI will snap to new traces as they come in")]
+		public bool TailTraces
+		{
+			get { return mTailTraces; }
+			set { this.SetFieldVal(ref mTailTraces, value); }
+		}
+		#endregion
+
 		public TraceListViewModel()
 		{
 			DisplayName = "Trace List";
@@ -250,7 +264,7 @@ namespace PhxStudio.Modules.TraceList
 			var item = new TraceListItem
 			{
 				ItemType = type,
-				Number = Items.Count,
+				Number = ++mItemNumber,
 				TimeStamp = timeStamp,
 				SourceName = sourceName,
 				Message = message,
@@ -280,8 +294,10 @@ namespace PhxStudio.Modules.TraceList
 			var item_inspector = new InspectableObjectBuilder()
 				.WithObjectProperties(selectedItem, TraceListItemPropertyFilter);
 			if (selectedItem.HasData)
+			{
 				item_inspector
 					.WithEditor(selectedItem, x => x.Data, new Inspectors.TraceDataEditorViewModel());
+			}
 
 			mInspectorTool.SelectedObject = item_inspector.ToInspectableObject();
 		}

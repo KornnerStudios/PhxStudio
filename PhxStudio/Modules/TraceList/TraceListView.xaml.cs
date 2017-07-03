@@ -8,6 +8,8 @@ namespace PhxStudio.Modules.TraceList
 	/// </summary>
 	public partial class TraceListView : UserControl
 	{
+		private TraceListViewModel ViewModel { get { return (TraceListViewModel)DataContext; } }
+
 		public TraceListView()
 		{
 			InitializeComponent();
@@ -30,9 +32,19 @@ namespace PhxStudio.Modules.TraceList
 			if (dataGrid.SelectedItems == null || dataGrid.SelectedItems.Count != 1)
 				return;
 
-			var traceList = (TraceListViewModel)DataContext;
+			var traceList = ViewModel;
 			var traceListItem = (TraceListItem)dataGrid.SelectedItem;
 			traceList.OnSelectedItemChanged(traceListItem);
+		}
+
+		private void OnDataGridLoadingRow(object sender, DataGridRowEventArgs e)
+		{
+			var traceList = ViewModel;
+			if (traceList.TailTraces)
+			{
+				var dataGrid = (DataGrid)sender;
+				dataGrid.ScrollIntoView(e.Row.Item);
+			}
 		}
 	};
 }

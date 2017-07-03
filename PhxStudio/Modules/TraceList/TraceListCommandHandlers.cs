@@ -27,6 +27,51 @@ namespace PhxStudio.Modules.TraceList.Commands
 	};
 
 	[CommandHandler]
+	public sealed class ClearTraceListCommandHandler
+		: CommandHandlerBase<ClearTraceListCommandDefinition>
+	{
+		#region Imports
+#pragma warning disable 649
+
+		[Import] ITraceList mTraceList;
+
+#pragma warning restore 649
+		#endregion
+
+		public override Task Run(Command command)
+		{
+			mTraceList.ClearAll();
+			return TaskUtility.Completed;
+		}
+	};
+
+	[CommandHandler]
+	public sealed class ToggleTailTraceListCommandHandler
+		: CommandHandlerBase<ToggleTailTraceListCommandDefinition>
+	{
+		#region Imports
+#pragma warning disable 649
+
+		[Import] ITraceList mTraceList;
+
+#pragma warning restore 649
+		#endregion
+
+		public override Task Run(Command command)
+		{
+			mTraceList.TailTraces = !mTraceList.TailTraces;
+			return TaskUtility.Completed;
+		}
+
+		public override void Update(Command command)
+		{
+			base.Update(command);
+
+			command.Checked = mTraceList.TailTraces;
+		}
+	};
+
+	[CommandHandler]
 	public sealed class ToggleGroupsCommandHandler
 		: ICommandHandler<ToggleCriticalGroupCommandDefinition>
 		, ICommandHandler<ToggleErrorsGroupCommandDefinition>

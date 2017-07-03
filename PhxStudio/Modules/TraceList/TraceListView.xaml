@@ -22,13 +22,14 @@
             TransferImageSource="pack://application:,,,/PhxStudio;component/Modules/TraceList/Images/Transfer.png"
             />
     </UserControl.Resources>
-    <DataGrid
+    <DataGrid Name="TraceDataGrid"
         ItemsSource="{Binding FilteredItems}"
         AutoGenerateColumns="False" IsReadOnly="True"
         HorizontalGridLinesBrush="WhiteSmoke" VerticalGridLinesBrush="WhiteSmoke"
         MouseDoubleClick="OnDataGridMouseDoubleClick" BorderThickness="0"
         Background="Transparent"
         SelectionChanged="OnDataGridSelectionChanged"
+        LoadingRow="OnDataGridLoadingRow"
         >
         <DataGrid.Columns>
             <DataGridTemplateColumn Width="SizeToCells">

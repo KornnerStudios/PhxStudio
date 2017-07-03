@@ -1,5 +1,4 @@
-﻿using System;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Gemini.Framework;
 
 namespace PhxStudio.Modules.TraceList
@@ -18,6 +17,8 @@ namespace PhxStudio.Modules.TraceList
 		bool ShowSuspend { get; set; }
 		bool ShowResume { get; set; }
 		bool ShowTransfer { get; set; }
+
+		bool TailTraces { get; set; }
 
 		IObservableCollection<TraceListItem> Items { get; }
 
