@@ -29,31 +29,32 @@
                         <ColumnDefinition Width="{Binding Path=(PhxInspectorControls:PhxInspectorGrid.PropertyValueColumnWidth), Mode=TwoWay}" MinWidth="50" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0"
-                           ToolTip="{Binding Description}"
-                           HorizontalContentAlignment="Left"
-                           VerticalAlignment="Center">
-                        <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" Foreground="{DynamicResource EnvironmentToolWindowText}" />
+                    <Label Grid.Column="0" ToolTip="{Binding Description}"
+                        HorizontalContentAlignment="Left"
+                        VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Name}"
+                            TextTrimming="CharacterEllipsis"
+                            Foreground="{DynamicResource EnvironmentToolWindowText}"
+                            />
                     </Label>
                     <GeminiInspectorControls:SimpleGridSplitter Grid.Column="1" Width="5" ResizeBehavior="PreviousAndNext" />
                     <Border Grid.Column="2" Padding="0 2 5 2" VerticalAlignment="Center">
                         <ContentControl cal:View.Model="{Binding}" IsTabStop="False" />
                     </Border>
-                    <Button Grid.Column="3" Margin="5,0,0,0"
-                            Content="⟲"
-                            ToolTip="Reset"
-                            Foreground="{DynamicResource EnvironmentToolWindowText}"
-                            Style="{StaticResource ResetButton}"
-                            IsEnabled="{Binding IsDirty}"
-                            Visibility="{Binding CanReset, Converter={StaticResource BoolToVisibilityConverter}}"
-                            cal:Message.Attach="Reset"/>
+                    <Button Grid.Column="3" Margin="5,0,0,0" ToolTip="Reset"
+                        Content="⟲"
+                        Foreground="{DynamicResource EnvironmentToolWindowText}"
+                        Style="{StaticResource ResetButton}"
+                        IsEnabled="{Binding IsDirty}"
+                        Visibility="{Binding CanReset, Converter={StaticResource BoolToVisibilityConverter}}"
+                        cal:Message.Attach="Reset"/>
                 </Grid>
             </DataTemplate>
         </PhxInspectorControls:PhxInspectorItemTemplateSelector.LabelledTemplate>
         <PhxInspectorControls:PhxInspectorItemTemplateSelector.DefaultTemplate>
             <DataTemplate>
                 <ContentControl cal:View.Model="{Binding}"
-                                IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}" />
+                    IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}" />
             </DataTemplate>
         </PhxInspectorControls:PhxInspectorItemTemplateSelector.DefaultTemplate>
     </PhxInspectorControls:PhxInspectorItemTemplateSelector>

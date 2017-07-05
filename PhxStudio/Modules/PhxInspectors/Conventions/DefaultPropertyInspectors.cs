@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
+using Vector4f = SlimMath.Vector4;
 
 namespace PhxStudio.Modules.PhxInspectors.Conventions
 {
@@ -25,18 +26,39 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 				new EnumPropertyEditorBuilder(),
 
 				new StandardPropertyEditorBuilder<bool, CheckBoxEditorViewModel>(),
-				new StandardPropertyEditorBuilder<Color, ColorEditorViewModel>(),
-				new StandardPropertyEditorBuilder<double, TextBoxEditorViewModel<double>>(),
-				new StandardPropertyEditorBuilder<float, TextBoxEditorViewModel<float>>(),
+
+				new StandardPropertyEditorBuilder<sbyte, TextBoxEditorViewModel<sbyte>>(),
+
+				new StandardPropertyEditorBuilder<short, TextBoxEditorViewModel<short>>(),
+
 				new StandardPropertyEditorBuilder<int, TextBoxEditorViewModel<int>>(),
-				new StandardPropertyEditorBuilder<double?, TextBoxEditorViewModel<double?>>(),
-				new StandardPropertyEditorBuilder<float?, TextBoxEditorViewModel<float?>>(),
 				new StandardPropertyEditorBuilder<int?, TextBoxEditorViewModel<int?>>(),
-				new StandardPropertyEditorBuilder<Point3D, Point3DEditorViewModel>(),
+
+				new StandardPropertyEditorBuilder<float, TextBoxEditorViewModel<float>>(),
+				new StandardPropertyEditorBuilder<float?, TextBoxEditorViewModel<float?>>(),
+
+				new StandardPropertyEditorBuilder<double, TextBoxEditorViewModel<double>>(),
+				new StandardPropertyEditorBuilder<double?, TextBoxEditorViewModel<double?>>(),
+
 				new StandardPropertyEditorBuilder<string, TextBoxEditorViewModel<string>>(),
 
+				new StandardPropertyEditorBuilder<Vector4f, SlimMathVector4ViewModel>(),
+
+				new StandardPropertyEditorBuilder<Color, ColorEditorViewModel>(),
+				new StandardPropertyEditorBuilder<Point3D, Point3DEditorViewModel>(),
 				new StandardPropertyEditorBuilder<BitmapSource, BitmapSourceEditorViewModel>()
 			};
+		}
+
+		public static void Add(PropertyEditorBuilder builder)
+		{
+			InspectorBuilders.Add(builder);
+		}
+
+		public static void AddStandard<T, TEditor>()
+			where TEditor : IEditor, new()
+		{
+			Add(new StandardPropertyEditorBuilder<T, TEditor>());
 		}
 
 		public static IEditor CreateEditor(PropertyDescriptor propertyDescriptor)

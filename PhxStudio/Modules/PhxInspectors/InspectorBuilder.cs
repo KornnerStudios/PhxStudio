@@ -21,16 +21,53 @@ namespace PhxStudio.Modules.PhxInspectors
 			get { return mInspectors; }
 		}
 
+		public bool HasInspectors { get { return mInspectors != null && mInspectors.Count > 0; } }
+
+		private Dictionary<Type, PropertyDescriptorCollection> mCachedPropertyDescriptors;
+
 		public TBuilder WithCollapsibleGroup(string name, Func<CollapsibleGroupBuilder, CollapsibleGroupBuilder> callback)
 		{
 			var builder = new CollapsibleGroupBuilder();
-			mInspectors.Add(callback(builder).ToCollapsibleGroup(name));
+			return WithCollapsibleGroup(name, callback(builder));
+		}
+
+		public TBuilder WithCollapsibleGroup(string name, CollapsibleGroupBuilder builder)
+		{
+			mInspectors.Add(builder.ToCollapsibleGroup(name));
 			return (TBuilder)this;
+		}
+
+		protected PropertyDescriptorCollection GetPropertyDescriptors(Type type)
+		{
+			if (mCachedPropertyDescriptors == null)
+				mCachedPropertyDescriptors = new Dictionary<Type, PropertyDescriptorCollection>();
+
+			PropertyDescriptorCollection pdc;
+			if (!mCachedPropertyDescriptors.TryGetValue(type, out pdc))
+			{
+				pdc = TypeDescriptor.GetProperties(type);
+				mCachedPropertyDescriptors.Add(type, pdc);
+			}
+
+			return pdc;
 		}
 
 		public TBuilder WithCheckBoxEditor<T>(T instance, Expression<Func<T, bool>> propertyExpression)
 		{
 			return WithEditor<T, bool, CheckBoxEditorViewModel>(instance, propertyExpression);
+		}
+
+		public TBuilder WithSignedEditor<T>(T instance, Expression<Func<T, sbyte>> propertyExpression)
+		{
+			return WithEditor<T, sbyte, TextBoxEditorViewModel<sbyte>>(instance, propertyExpression);
+		}
+		public TBuilder WithSignedEditor<T>(T instance, Expression<Func<T, short>> propertyExpression)
+		{
+			return WithEditor<T, short, TextBoxEditorViewModel<short>>(instance, propertyExpression);
+		}
+		public TBuilder WithSignedEditor<T>(T instance, Expression<Func<T, int>> propertyExpression)
+		{
+			return WithEditor<T, int, TextBoxEditorViewModel<int>>(instance, propertyExpression);
 		}
 
 		public TBuilder WithColorEditor<T>(T instance, Expression<Func<T, Color>> propertyExpression)
@@ -103,6 +140,15 @@ namespace PhxStudio.Modules.PhxInspectors
 			return (TBuilder)this;
 		}
 
+		public TBuilder WithObjectProperty<T, TProperty>(T instance, Expression<Func<T, TProperty>> propertyExpression)
+		{
+			var propertyName = KSoft.Reflection.Util.PropertyNameFromExpr(propertyExpression);
+			var propDescs = GetPropertyDescriptors(typeof(T));
+			var propDesc = propDescs.Find(propertyName, ignoreCase: false);
+
+			return WithObjectProperty(instance, propDesc);
+		}
+
 		public TBuilder WithObjectProperty(object instance, PropertyDescriptor property)
 		{
 			var editor = DefaultPropertyInspectors.CreateEditor(property);
@@ -126,6 +172,15 @@ namespace PhxStudio.Modules.PhxInspectors
 					inspectors.Add(editor);
 				}
 			}
+		}
+	};
+
+	public class InspectablePhxObjectBuilder
+		: InspectorBuilder<InspectablePhxObjectBuilder>
+	{
+		public InspectableObject ToInspectableObject()
+		{
+			return new InspectableObject(Inspectors);
 		}
 	};
 }

@@ -103,6 +103,10 @@
       <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SlimMath">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(VitaRootDir)shared\external_libraries\SlimMath.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -125,17 +129,45 @@
     <Compile Include="Modules\PhxInspectors\Conventions\RangePropertyEditorBuilder.cs" />
     <Compile Include="Modules\PhxInspectors\InspectableObject.cs" />
     <Compile Include="Modules\PhxInspectors\InspectorBuilder.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\BitmapSourceEditorView.xaml.cs">
+      <DependentUpon>BitmapSourceEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\PhxInspectors\Inspectors\BitmapSourceEditorViewModel.cs" />
     <Compile Include="Modules\PhxInspectors\Inspectors\ChangeObjectValueAction.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\CheckBoxEditorView.xaml.cs">
+      <DependentUpon>CheckBoxEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\PhxInspectors\Inspectors\CheckBoxEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\CollapsibleGroupView.xaml.cs">
+      <DependentUpon>CollapsibleGroupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\PhxInspectors\Inspectors\CollapsibleGroupViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\ColorEditorView.xaml.cs">
+      <DependentUpon>ColorEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\PhxInspectors\Inspectors\ColorEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\EnumEditorView.xaml.cs">
+      <DependentUpon>EnumEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\PhxInspectors\Inspectors\EnumEditorViewModel.cs" />
     <Compile Include="Modules\PhxInspectors\Inspectors\IEditor.cs" />
     <Compile Include="Modules\PhxInspectors\Inspectors\IInspector.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\Point3DEditorView.xaml.cs">
+      <DependentUpon>Point3DEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\PhxInspectors\Inspectors\Point3DEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\RangeEditorView.xaml.cs">
+      <DependentUpon>RangeEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\PhxInspectors\Inspectors\RangeEditorViewModel.cs" />
     <Compile Include="Modules\PhxInspectors\Inspectors\ResetObjectValueAction.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\SlimMathVector4View.xaml.cs">
+      <DependentUpon>SlimMathVector4View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\PhxInspectors\Inspectors\SlimMathVector4ViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\TextBoxEditorView.xaml.cs">
+      <DependentUpon>TextBoxEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\PhxInspectors\PhxInspectorView.xaml.cs">
       <DependentUpon>PhxInspectorView.xaml</DependentUpon>
     </Compile>
@@ -154,6 +186,10 @@
     <Compile Include="Modules\Project\ProjectCommandHandlers.cs" />
     <Compile Include="Modules\Project\ProjectService.cs" />
     <Compile Include="Modules\Project\ProjectWorkDirectoryChangedEventArgs.cs" />
+    <Compile Include="Modules\ProtoData\ProtoDataObjectEditorView.xaml.cs">
+      <DependentUpon>ProtoDataObjectEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ProtoData\ProtoDataObjectEditorViewModel.cs" />
     <Compile Include="Modules\ProtoData\ProtoDataObjectExplorerView.xaml.cs">
       <DependentUpon>ProtoDataObjectExplorerView.xaml</DependentUpon>
     </Compile>
@@ -184,6 +220,10 @@
     <Compile Include="Modules\TraceList\TraceSourceOptionsViewModel.cs" />
     <Compile Include="Modules\TraceList\TraceSourceSetting.cs" />
     <Compile Include="Modules\TraceList\TraceSourceSettings.cs" />
+    <Compile Include="ProtoData\Civs\CivEditorView.xaml.cs">
+      <DependentUpon>CivEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProtoData\Civs\CivEditorViewModel.cs" />
     <Compile Include="ProtoData\Civs\CivsCommandDefinitions.cs" />
     <Compile Include="ProtoData\Civs\CivsCommandHandlers.cs" />
     <Compile Include="ProtoData\Civs\CivsExplorerView.xaml.cs">
@@ -298,10 +338,42 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Modules\ProjectExplorer\Images\Folder_Closed16.png" />
-    <Resource Include="Modules\ProjectExplorer\Images\Folder_Open16.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Page Include="Modules\PhxInspectors\Inspectors\BitmapSourceEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\Inspectors\CheckBoxEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\Inspectors\CollapsibleGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\Inspectors\ColorEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\Inspectors\EnumEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\Inspectors\Point3DEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\Inspectors\RangeEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\Inspectors\SlimMathVector4View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\Inspectors\TextBoxEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\PhxInspectors\PhxInspectorsResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -315,6 +387,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Project\PhxStudioProjectSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\ProtoData\ProtoDataObjectEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,6 +411,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\TraceList\TraceSourceOptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProtoData\Civs\CivEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -372,37 +452,86 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Modules\TraceList\Images\Start.png" />
-    <Resource Include="Modules\TraceList\Images\Resume.png" />
-    <Resource Include="Modules\TraceList\Images\Stop.png" />
-    <Resource Include="Modules\TraceList\Images\Suspend.png" />
-    <Resource Include="Modules\TraceList\Images\Transfer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Modules\TraceList\Images\Error.png" />
-    <Resource Include="Modules\TraceList\Images\Information.png" />
-    <Resource Include="Modules\TraceList\Images\Verbose.png" />
-    <Resource Include="Modules\TraceList\Images\Warning.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Modules\TraceList\Images\Critical.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ProtoData\Civs\Editors\" />
-    <Folder Include="ProtoData\Leaders\Editors\" />
-    <Folder Include="ProtoData\Objects\Editors\" />
-    <Folder Include="ProtoData\Powers\Editors\" />
-    <Folder Include="ProtoData\Squads\Editors\" />
-    <Folder Include="ProtoData\Techs\Editors\" />
     <Folder Include="Scenario\" />
     <Folder Include="Terrain\" />
     <Folder Include="TriggerSystem\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Modules\ProjectExplorer\Images\Folder_Closed16.png" />
+    <Resource Include="Modules\ProjectExplorer\Images\Folder_Open16.png" />
+    <Resource Include="Modules\TraceList\Images\Start.png" />
+    <Resource Include="Modules\TraceList\Images\Resume.png" />
+    <Resource Include="Modules\TraceList\Images\Stop.png" />
+    <Resource Include="Modules\TraceList\Images\Suspend.png" />
+    <Resource Include="Modules\TraceList\Images\Transfer.png" />
+    <Resource Include="Modules\TraceList\Images\Error.png" />
+    <Resource Include="Modules\TraceList\Images\Information.png" />
+    <Resource Include="Modules\TraceList\Images\Verbose.png" />
+    <Resource Include="Modules\TraceList\Images\Warning.png" />
+    <Resource Include="Modules\TraceList\Images\Critical.png" />
     <Resource Include="Modules\TraceList\Images\Tail.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Modules\TraceList\Images\Clear.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Activity_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Backward_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Bug_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Cancel_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Cancel_disable_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\ContinuousFolder_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\FileExclude_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\FileGroup_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\FileWarning_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Filter_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Folder_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\FolderOpen_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Forward_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\GoToBottom_color_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Help_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\HistoryTable_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Hourglass_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\InputParameter_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\NewScript_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Open_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\OpenFolder_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\OutputParameter_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Parameter_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Pause_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\PinnedItem_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\ProjectFolderOpen_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Property_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Pushpin_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Pushpin_disabled_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\PushpinUnpin_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\PushpinUnpin_disabled_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Refresh_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Run_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\RunExclude_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Save_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\SaveAll_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Script_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\ScriptGroup_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Search_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Settings_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\SettingsFile_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusAlert_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusBlocked_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusCriticalError_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusHelp_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusInformation_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusInvalid_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusOK_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusPause_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusRun_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusStop_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusUpdate_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\StatusWarning_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Stop_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\TriggeredFolder_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\TriggerScript_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\Uninstall_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\XMLFile_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\ZoomIn_32x.png" />
+    <Resource Include="UI\Images\2015_VSIcon\ZoomOut_32x.png" />
+    <Resource Include="UI\Images\ImageCatalog\ClearWindowContent.16.16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

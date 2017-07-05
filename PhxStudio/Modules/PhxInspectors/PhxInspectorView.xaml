@@ -23,7 +23,8 @@
             </StackPanel>
             <Grid SnapsToDevicePixels="True" UseLayoutRounding="True">
                 <ItemsControl ItemsSource="{Binding InspectableModel.Inspectors}"
-                              ItemTemplateSelector="{StaticResource InspectorItemTemplateSelector}" />
+                    ItemTemplateSelector="{StaticResource InspectorItemTemplateSelector}"
+                    />
             </Grid>
         </StackPanel>
     </ScrollViewer>

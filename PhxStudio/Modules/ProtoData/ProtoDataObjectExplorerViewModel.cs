@@ -24,9 +24,12 @@ namespace PhxStudio.Modules.ProtoData
 		#region Imports
 #pragma warning disable 649
 
+		[Import] IShell mShell;
 		IEventAggregator mEventAggregator;
 
 #pragma warning restore 649
+
+		protected IShell Shell { get { return mShell; } }
 		#endregion
 
 		public override PaneLocation PreferredLocation { get { return PaneLocation.Right; } }
@@ -110,6 +113,17 @@ namespace PhxStudio.Modules.ProtoData
 			var provider = SourceObjectDatabase.Provider;
 			var list = provider.GetNamesInterface(SourceObjectDatabaseKindId);
 			SourceObjectDatabaseCollection = list.UnderlyingObjectsCollection;
+		}
+
+		private void SetupSourceObjectDatabaseUndefinedMembers()
+		{
+			if (SourceObjectDatabase == null)
+			{
+				return;
+			}
+
+			var provider = SourceObjectDatabase.Provider;
+			var list = provider.GetNamesInterface(SourceObjectDatabaseKindId);
 			SourceObjectDatabaseUndefinedMembers = list.UndefinedInterface.UndefinedMembers;
 		}
 
@@ -164,12 +178,13 @@ namespace PhxStudio.Modules.ProtoData
 		}
 		protected virtual void OnProjectEnginePreloaded(Project.ProjectEnginePreloadedEventArgs message)
 		{
-			if (mObjectsArePreloaded == false)
-				return;
+			if (mObjectsArePreloaded)
+			{
 
-			var engine = message.Engine;
+				var engine = message.Engine;
 
-			SourceObjectDatabase = ObjectSource.GetObjectDatabase(engine);
+				SourceObjectDatabase = ObjectSource.GetObjectDatabase(engine);
+			}
 		}
 		#endregion
 
@@ -180,12 +195,15 @@ namespace PhxStudio.Modules.ProtoData
 		}
 		protected virtual void OnProjectEngineLoaded(Project.ProjectEngineLoadedEventArgs message)
 		{
-			if (mObjectsArePreloaded == true)
-				return;
+			if (mObjectsArePreloaded == false)
+			{
+				var engine = message.Engine;
 
-			var engine = message.Engine;
+				SourceObjectDatabase = ObjectSource.GetObjectDatabase(engine);
+			}
 
-			SourceObjectDatabase = ObjectSource.GetObjectDatabase(engine);
+			// This needs to be setup after Load because the undefined members are modified during load, so there would be a data binding error if we set up after Preload
+			SetupSourceObjectDatabaseUndefinedMembers();
 		}
 		#endregion
 
@@ -193,7 +211,12 @@ namespace PhxStudio.Modules.ProtoData
 		{
 			if (args.LeftButton == MouseButtonState.Pressed && args.ClickCount == 2)
 			{
+				OnOpenObject(obj);
 			}
+		}
+
+		protected virtual void OnOpenObject(object obj)
+		{
 		}
 	};
 

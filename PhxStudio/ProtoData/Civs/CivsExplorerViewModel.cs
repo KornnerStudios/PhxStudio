@@ -22,5 +22,13 @@ namespace PhxStudio.ProtoData.Civs
 
 			base.mObjectsArePreloaded = false;
 		}
+
+		protected override void OnOpenObject(object obj)
+		{
+			var vm = new CivEditorViewModel();
+			vm.Proto = (KSoft.Phoenix.Phx.BCiv)obj;
+
+			Shell.OpenDocument(vm);
+		}
 	};
 }

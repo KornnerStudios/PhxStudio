@@ -77,7 +77,10 @@ namespace PhxStudio.Modules.ProtoData
 		{
 			var element = container as FrameworkElement;
 
-			if (item is KSoft.Phoenix.Phx.IDatabaseIdObject)
+			if (item is KSoft.Phoenix.Phx.IDatabaseIdObject
+				// #NOTE the DBID in techs is not used by the engine
+				&& !(item is KSoft.Phoenix.Phx.BProtoTech)
+				)
 			{
 				if (IDatabaseIdObjectDataTemplate == null)
 					IDatabaseIdObjectDataTemplate = element.FindResource("IDatabaseIdObjectDataTemplate") as DataTemplate;

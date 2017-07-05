@@ -18,7 +18,7 @@
             <TextBlock Text="{Binding}" />
         </DataTemplate>
         <DataTemplate x:Key="IListAutoIdObjectDataTemplate" DataType="{x:Type KSoftPhxCollections:IListAutoIdObject}">
-            <TextBlock Text="{Binding KSoftPhxCollections:IListAutoIdObject.Data}"
+            <TextBlock Text="{Binding Path=(KSoftPhxCollections:IListAutoIdObject.Data)}"
                 cal:Message.Attach="[Event MouseDown] = [Action OnMouseDown($source, $dataContext, $eventArgs)];"
                 />
         </DataTemplate>
