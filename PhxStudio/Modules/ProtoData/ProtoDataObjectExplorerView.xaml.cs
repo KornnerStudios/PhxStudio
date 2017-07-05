@@ -62,5 +62,44 @@ namespace PhxStudio.Modules.ProtoData
 			if (view != null)
 				view.Refresh();
 		}
-	}
+	};
+
+	class SourceObjectDatabaseCollectionListViewDataTemplateSelector
+		: DataTemplateSelector
+	{
+		private DataTemplate
+			IDatabaseIdObjectDataTemplate,
+			IListAutoIdObjectDataTemplate,
+			StringDataTemplate
+			;
+
+		public override DataTemplate SelectTemplate(object item, DependencyObject container)
+		{
+			var element = container as FrameworkElement;
+
+			if (item is KSoft.Phoenix.Phx.IDatabaseIdObject)
+			{
+				if (IDatabaseIdObjectDataTemplate == null)
+					IDatabaseIdObjectDataTemplate = element.FindResource("IDatabaseIdObjectDataTemplate") as DataTemplate;
+
+				return IDatabaseIdObjectDataTemplate;
+			}
+			else if (item is KSoft.Collections.IListAutoIdObject)
+			{
+				if (IListAutoIdObjectDataTemplate == null)
+					IListAutoIdObjectDataTemplate = element.FindResource("IListAutoIdObjectDataTemplate") as DataTemplate;
+
+				return IListAutoIdObjectDataTemplate;
+			}
+			else if (item is string)
+			{
+				if (StringDataTemplate == null)
+					StringDataTemplate = element.FindResource("StringDataTemplate") as DataTemplate;
+
+				return StringDataTemplate;
+			}
+
+			return null;
+		}
+	};
 }

@@ -105,6 +105,12 @@ namespace PhxStudio.Modules.ProjectExplorer
 			UpdateTree();
 		}
 
+		private void Close()
+		{
+			Root = null;
+			UpdateTree();
+		}
+
 		public void OnMouseDown(object source, FileItemViewModel fileItem, MouseButtonEventArgs args)
 		{
 			if (args.LeftButton == MouseButtonState.Pressed && args.ClickCount == 2)
@@ -149,7 +155,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 
 		void IHandle<ProjectClosingEventArgs>.Handle(ProjectClosingEventArgs message)
 		{
-			Root = null;
+			Close();
 		}
 
 		void IHandle<ProjectWorkDirectoryChangedEventArgs>.Handle(ProjectWorkDirectoryChangedEventArgs message)

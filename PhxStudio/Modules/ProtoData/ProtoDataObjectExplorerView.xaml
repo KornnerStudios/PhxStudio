@@ -6,11 +6,36 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:PhxStudio.Modules.ProtoData"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:cal="http://www.caliburnproject.org"
     xmlns:KSoftPhxCollections="clr-namespace:KSoft.Collections;assembly=KSoft.Phoenix"
+    xmlns:KSoftPhoenixPhx="clr-namespace:KSoft.Phoenix.Phx;assembly=KSoft.Phoenix"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     Loaded="OnLoaded"
     >
+    <UserControl.Resources>
+        <DataTemplate x:Key="StringDataTemplate" DataType="{x:Type System:String}">
+            <TextBlock Text="{Binding}" />
+        </DataTemplate>
+        <DataTemplate x:Key="IListAutoIdObjectDataTemplate" DataType="{x:Type KSoftPhxCollections:IListAutoIdObject}">
+            <TextBlock Text="{Binding KSoftPhxCollections:IListAutoIdObject.Data}"
+                cal:Message.Attach="[Event MouseDown] = [Action OnMouseDown($source, $dataContext, $eventArgs)];"
+                />
+        </DataTemplate>
+        <DataTemplate x:Key="IDatabaseIdObjectDataTemplate" DataType="{x:Type KSoftPhoenixPhx:IDatabaseIdObject}">
+            <TextBlock
+                cal:Message.Attach="[Event MouseDown] = [Action OnMouseDown($source, $dataContext, $eventArgs)];"
+                >
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="#{0} - {1}">
+                        <Binding Path="DbId" />
+                        <Binding Path="Name" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </DataTemplate>
+        <local:SourceObjectDatabaseCollectionListViewDataTemplateSelector x:Key="SourceObjectDatabaseCollectionListViewDataTemplateSelector" />
+    </UserControl.Resources>
     <TabControl>
         <TabItem Header="Entries">
             <!--Not using StackPanel here: https://stackoverflow.com/a/2927974/444977-->
@@ -20,16 +45,9 @@
                     DockPanel.Dock="Top" TextChanged="OnFilterTextChanged" />
 
                 <ListView Name="SourceObjectDatabaseCollectionListView" ItemsSource="{Binding SourceObjectDatabaseCollection}"
-                    DockPanel.Dock="Top" >
-                    <ListView.Resources>
-                        <DataTemplate DataType="{x:Type System:String}">
-                            <TextBlock Text="{Binding}" />
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type KSoftPhxCollections:IListAutoIdObject}">
-                            <TextBlock Text="{Binding Data}" />
-                        </DataTemplate>
-                    </ListView.Resources>
-                </ListView>
+                    DockPanel.Dock="Top"
+                    ItemTemplateSelector="{StaticResource SourceObjectDatabaseCollectionListViewDataTemplateSelector}"
+                    />
             </DockPanel>
         </TabItem>
         <TabItem Header="Undefined" IsEnabled="{Binding HasSourceObjectDatabaseUndefinedMembers}">

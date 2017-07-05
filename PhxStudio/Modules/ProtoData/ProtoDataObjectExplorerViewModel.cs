@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Windows.Input;
 using Caliburn.Micro;
 using Gemini.Framework;
 using Gemini.Framework.Commands;
@@ -87,7 +88,7 @@ namespace PhxStudio.Modules.ProtoData
 		}
 
 		// #HACK Civs and Leaders are not currently preloaded and need this set
-		protected bool mObjectsArePreloaded = true;
+		protected bool mObjectsArePreloaded = false;//true;
 
 		protected ProtoDataObjectExplorerViewModel(IEventAggregator eventAggregator, int sourceObjectDatabaseKindId)
 		{
@@ -187,6 +188,13 @@ namespace PhxStudio.Modules.ProtoData
 			SourceObjectDatabase = ObjectSource.GetObjectDatabase(engine);
 		}
 		#endregion
+
+		public void OnMouseDown(object source, KSoft.Collections.IListAutoIdObject obj, MouseButtonEventArgs args)
+		{
+			if (args.LeftButton == MouseButtonState.Pressed && args.ClickCount == 2)
+			{
+			}
+		}
 	};
 
 	abstract class ProtoDataViewObjectExplorerCommandHandlerBase<TCommandDefinition>
