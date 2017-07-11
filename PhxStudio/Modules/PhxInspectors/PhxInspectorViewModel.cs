@@ -14,6 +14,20 @@ namespace PhxStudio.Modules.PhxInspectors
 			set { this.SetField(ref mInspectableModel, value); }
 		}
 
+		public void HandleViewLoaded()
+		{
+			if (InspectableModel == null)
+				return;
+
+			RecurseEditors(InspectableModel.Inspectors, HandleViewLoadedAction);
+		}
+
+		private static void HandleViewLoadedAction(Inspectors.IEditor editor)
+		{
+			if (editor != null)
+				editor.HandleViewLoaded();
+		}
+
 		public void ResetAll()
 		{
 			if (InspectableModel == null)

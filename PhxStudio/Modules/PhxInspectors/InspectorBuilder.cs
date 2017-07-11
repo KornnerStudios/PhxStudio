@@ -12,8 +12,7 @@ namespace PhxStudio.Modules.PhxInspectors
 	using Conventions;
 	using Inspectors;
 
-	public class InspectorBuilder<TBuilder>
-		where TBuilder : InspectorBuilder<TBuilder>
+	public abstract class InspectorBuilderBase
 	{
 		private readonly List<IInspector> mInspectors = new List<IInspector>();
 		protected List<IInspector> Inspectors
@@ -24,18 +23,6 @@ namespace PhxStudio.Modules.PhxInspectors
 		public bool HasInspectors { get { return mInspectors != null && mInspectors.Count > 0; } }
 
 		private Dictionary<Type, PropertyDescriptorCollection> mCachedPropertyDescriptors;
-
-		public TBuilder WithCollapsibleGroup(string name, Func<CollapsibleGroupBuilder, CollapsibleGroupBuilder> callback)
-		{
-			var builder = new CollapsibleGroupBuilder();
-			return WithCollapsibleGroup(name, callback(builder));
-		}
-
-		public TBuilder WithCollapsibleGroup(string name, CollapsibleGroupBuilder builder)
-		{
-			mInspectors.Add(builder.ToCollapsibleGroup(name));
-			return (TBuilder)this;
-		}
 
 		protected PropertyDescriptorCollection GetPropertyDescriptors(Type type)
 		{
@@ -50,6 +37,36 @@ namespace PhxStudio.Modules.PhxInspectors
 			}
 
 			return pdc;
+		}
+
+		protected static void AddProperties(object instance, IEnumerable<PropertyDescriptor> properties, List<IInspector> inspectors)
+		{
+			foreach (var property in properties)
+			{
+				var editor = DefaultPropertyInspectors.CreateEditor(property);
+				if (editor != null)
+				{
+					editor.BoundPropertyDescriptor = new BoundPropertyDescriptor(instance, property);
+					inspectors.Add(editor);
+				}
+			}
+		}
+	};
+
+	public class InspectorBuilder<TBuilder>
+		: InspectorBuilderBase
+		where TBuilder : InspectorBuilder<TBuilder>
+	{
+		public TBuilder WithCollapsibleGroup(string name, Func<CollapsibleGroupBuilder, CollapsibleGroupBuilder> callback)
+		{
+			var builder = new CollapsibleGroupBuilder();
+			return WithCollapsibleGroup(name, callback(builder));
+		}
+
+		public TBuilder WithCollapsibleGroup(string name, CollapsibleGroupBuilder builder)
+		{
+			Inspectors.Add(builder.ToCollapsibleGroup(name));
+			return (TBuilder)this;
 		}
 
 		public TBuilder WithCheckBoxEditor<T>(T instance, Expression<Func<T, bool>> propertyExpression)
@@ -106,7 +123,7 @@ namespace PhxStudio.Modules.PhxInspectors
 		{
 			var propertyName = KSoft.Reflection.Util.PropertyNameFromExpr(propertyExpression);
 			editor.BoundPropertyDescriptor = BoundPropertyDescriptor.FromProperty(instance, propertyName);
-			mInspectors.Add(editor);
+			Inspectors.Add(editor);
 			return (TBuilder)this;
 		}
 
@@ -129,12 +146,12 @@ namespace PhxStudio.Modules.PhxInspectors
 					var collapsibleGroupBuilder = new CollapsibleGroupBuilder();
 					AddProperties(instance, category, collapsibleGroupBuilder.Inspectors);
 					if (collapsibleGroupBuilder.Inspectors.Any())
-						mInspectors.Add(collapsibleGroupBuilder.ToCollapsibleGroup(actualCategory));
+						Inspectors.Add(collapsibleGroupBuilder.ToCollapsibleGroup(actualCategory));
 				}
 			}
 			else // Otherwise, show properties in flat list.
 			{
-				AddProperties(instance, properties, mInspectors);
+				AddProperties(instance, properties, Inspectors);
 			}
 
 			return (TBuilder)this;
@@ -143,8 +160,29 @@ namespace PhxStudio.Modules.PhxInspectors
 		public TBuilder WithObjectProperty<T, TProperty>(T instance, Expression<Func<T, TProperty>> propertyExpression)
 		{
 			var propertyName = KSoft.Reflection.Util.PropertyNameFromExpr(propertyExpression);
-			var propDescs = GetPropertyDescriptors(typeof(T));
+
+			return WithObjectProperty(instance, propertyName, typeof(T));
+		}
+
+		public TBuilder WithObjectProperty(object instance, string propertyName, Type instanceType = null)
+		{
+			if (string.IsNullOrEmpty(propertyName))
+				throw new ArgumentNullException(nameof(propertyName));
+
+			if (instance == null)
+				throw new ArgumentNullException(nameof(instance), propertyName);
+
+			if (instanceType == null)
+				instanceType = instance.GetType();
+
+			var propDescs = GetPropertyDescriptors(instanceType);
 			var propDesc = propDescs.Find(propertyName, ignoreCase: false);
+
+			if (propDesc == null)
+				throw new ArgumentException(string.Format(
+					"Property '{0}' not found on {1}",
+					propertyName, instanceType)
+					, nameof(propertyName));
 
 			return WithObjectProperty(instance, propDesc);
 		}
@@ -155,23 +193,10 @@ namespace PhxStudio.Modules.PhxInspectors
 			if (editor != null)
 			{
 				editor.BoundPropertyDescriptor = new BoundPropertyDescriptor(instance, property);
-				mInspectors.Add(editor);
+				Inspectors.Add(editor);
 			}
 
 			return (TBuilder)this;
-		}
-
-		private static void AddProperties(object instance, IEnumerable<PropertyDescriptor> properties, List<IInspector> inspectors)
-		{
-			foreach (var property in properties)
-			{
-				var editor = DefaultPropertyInspectors.CreateEditor(property);
-				if (editor != null)
-				{
-					editor.BoundPropertyDescriptor = new BoundPropertyDescriptor(instance, property);
-					inspectors.Add(editor);
-				}
-			}
 		}
 	};
 

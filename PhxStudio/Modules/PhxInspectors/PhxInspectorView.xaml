@@ -7,7 +7,9 @@
     xmlns:local="clr-namespace:PhxStudio.Modules.PhxInspectors"
     xmlns:cal="http://www.caliburnproject.org"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="300">
+    d:DesignHeight="300" d:DesignWidth="300"
+    Loaded="OnLoaded"
+    >
     <UserControl.Resources>
         <ResourceDictionary Source="PhxInspectorsResources.xaml" />
     </UserControl.Resources>

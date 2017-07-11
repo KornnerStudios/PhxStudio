@@ -4,6 +4,7 @@ namespace PhxStudio.ProtoData.Civs
 {
 	using Modules.ProtoData;
 	using Modules.PhxInspectors;
+	using Modules.PhxInspectors.Inspectors;
 
 	[Export(typeof(CivEditorViewModel))]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
@@ -29,9 +30,16 @@ namespace PhxStudio.ProtoData.Civs
 				.WithObjectProperty(Proto, o => o.TerrainPushOffRadius)
 				.WithObjectProperty(Proto, o => o.BuildingMagnetRange)
 				.WithObjectProperty(Proto, o => o.SoundBank)
-				.WithObjectProperty(Proto, o => o.LeaderMenuNameID)
 				.WithObjectProperty(Proto, o => o.UIControlBackground)
 				;
+		}
+
+		protected override void BuildInspectorForUserInterfaceText(CollapsibleGroupBuilder group)
+		{
+			base.BuildInspectorForUserInterfaceText(group);
+
+			group
+				.WithObjectProperty(Proto, o => o.LeaderMenuNameID);
 		}
 	};
 }

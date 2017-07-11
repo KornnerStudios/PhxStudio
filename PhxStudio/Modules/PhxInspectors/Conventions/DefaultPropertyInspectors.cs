@@ -25,6 +25,9 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 				new RangePropertyEditorBuilder(),
 				new EnumPropertyEditorBuilder(),
 
+				// #NOTE needs to come before int editors! else they will take priority
+				new ProtoReferenceEditorBuilder(),
+
 				new StandardPropertyEditorBuilder<bool, CheckBoxEditorViewModel>(),
 
 				new StandardPropertyEditorBuilder<sbyte, TextBoxEditorViewModel<sbyte>>(),
@@ -46,7 +49,7 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 
 				new StandardPropertyEditorBuilder<Color, ColorEditorViewModel>(),
 				new StandardPropertyEditorBuilder<Point3D, Point3DEditorViewModel>(),
-				new StandardPropertyEditorBuilder<BitmapSource, BitmapSourceEditorViewModel>()
+				new StandardPropertyEditorBuilder<BitmapSource, BitmapSourceEditorViewModel>(),
 			};
 		}
 

@@ -7,11 +7,13 @@
     xmlns:local="clr-namespace:PhxStudio.Modules.ProtoData"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:cal="http://www.caliburnproject.org"
+    xmlns:KSoftWpf="clr-namespace:KSoft.WPF;assembly=KSoft.WPF"
     xmlns:KSoftPhxCollections="clr-namespace:KSoft.Collections;assembly=KSoft.Phoenix"
     xmlns:KSoftPhoenixPhx="clr-namespace:KSoft.Phoenix.Phx;assembly=KSoft.Phoenix"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     >
     <UserControl.Resources>
         <DataTemplate x:Key="StringDataTemplate" DataType="{x:Type System:String}">
@@ -41,17 +43,20 @@
             <!--Not using StackPanel here: https://stackoverflow.com/a/2927974/444977-->
             <DockPanel>
                 <!--Have to use PropertyChanged here since we need the ViewModel to have the filter text before the TextChanged causes the CollectionView to refresh, instead of when focus moves from the box-->
-                <TextBox Text="{Binding SourceObjectDatabaseCollectionFilter, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding LookupViewModel.SourceObjectDatabaseCollectionFilter, UpdateSourceTrigger=PropertyChanged}"
                     DockPanel.Dock="Top" TextChanged="OnFilterTextChanged" />
 
-                <ListView Name="SourceObjectDatabaseCollectionListView" ItemsSource="{Binding SourceObjectDatabaseCollection}"
+                <ListView Name="SourceObjectDatabaseCollectionListView" ItemsSource="{Binding LookupViewModel.SourceObjectDatabaseCollection}"
                     DockPanel.Dock="Top"
                     ItemTemplateSelector="{StaticResource SourceObjectDatabaseCollectionListViewDataTemplateSelector}"
                     />
             </DockPanel>
         </TabItem>
-        <TabItem Header="Undefined" IsEnabled="{Binding HasSourceObjectDatabaseUndefinedMembers}">
-            <ListView ItemsSource="{Binding SourceObjectDatabaseUndefinedMembers}">
+        <TabItem Header="Undefined"
+            IsEnabled="{Binding LookupViewModel.HasSourceObjectDatabaseUndefinedMembers}"
+            Visibility="{Binding LookupViewModel.HasSourceObjectDatabaseUndefinedMembers, Converter={x:Static KSoftWpf:BoolToVisiblityConverter.VisibleOrCollapsed}}"
+            >
+            <ListView ItemsSource="{Binding LookupViewModel.SourceObjectDatabaseUndefinedMembers}">
             </ListView>
         </TabItem>
     </TabControl>

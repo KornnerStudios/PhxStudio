@@ -39,4 +39,37 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 			return new EnumEditorViewModel(propertyDescriptor.PropertyType);
 		}
 	};
+
+	public sealed class ProtoReferenceEditorBuilder
+		: PropertyEditorBuilder
+	{
+		public override bool IsApplicable(PropertyDescriptor propertyDescriptor)
+		{
+			if (propertyDescriptor.PropertyType != typeof(int))
+			{
+				return false;
+			}
+
+			foreach (var attr in propertyDescriptor.Attributes)
+			{
+				if (attr is KSoft.Phoenix.Phx.Meta.IProtoDataReferenceAttribute)
+					return true;
+			}
+
+			return false;
+		}
+
+		public override IEditor BuildEditor(PropertyDescriptor propertyDescriptor)
+		{
+			foreach (var attr in propertyDescriptor.Attributes)
+			{
+				var refAttr = attr as KSoft.Phoenix.Phx.Meta.IProtoDataReferenceAttribute;
+				if (refAttr != null)
+				{
+					return new ProtoDataReferenceViewModel(refAttr);
+				}
+			}
+			return null;
+		}
+	};
 }

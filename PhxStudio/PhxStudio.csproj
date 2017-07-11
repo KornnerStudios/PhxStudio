@@ -156,6 +156,10 @@
       <DependentUpon>Point3DEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\PhxInspectors\Inspectors\Point3DEditorViewModel.cs" />
+    <Compile Include="Modules\PhxInspectors\Inspectors\ProtoDataReferenceView.xaml.cs">
+      <DependentUpon>ProtoDataReferenceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\PhxInspectors\Inspectors\ProtoDataReferenceViewModel.cs" />
     <Compile Include="Modules\PhxInspectors\Inspectors\RangeEditorView.xaml.cs">
       <DependentUpon>RangeEditorView.xaml</DependentUpon>
     </Compile>
@@ -194,6 +198,7 @@
       <DependentUpon>ProtoDataObjectExplorerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\ProtoData\ProtoDataObjectExplorerViewModel.cs" />
+    <Compile Include="Modules\ProtoData\ProtoDataObjectLookupViewModel.cs" />
     <Compile Include="Modules\TraceList\ITraceList.cs" />
     <Compile Include="Modules\TraceList\MenuDefinitions.cs" />
     <Compile Include="Modules\TraceList\ToolBarDefinitions.cs" />
@@ -359,6 +364,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\PhxInspectors\Inspectors\Point3DEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\PhxInspectors\Inspectors\ProtoDataReferenceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

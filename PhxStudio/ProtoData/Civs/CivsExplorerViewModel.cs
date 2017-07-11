@@ -10,17 +10,10 @@ namespace PhxStudio.ProtoData.Civs
 	class CivsExplorerViewModel
 		: ProtoDataObjectExplorerViewModel
 	{
-		[ImportingConstructor]
-		public CivsExplorerViewModel(IEventAggregator eventAggregator)
-			: base(eventAggregator, (int)KSoft.Phoenix.Phx.DatabaseObjectKind.Civ)
+		public CivsExplorerViewModel()
 		{
 			DisplayName = "Civs";
-
-			base.ObjectSource = new KSoft.Phoenix.Phx.ProtoDataObjectSource(
-				KSoft.Phoenix.Phx.ProtoDataObjectSourceKind.Database,
-				KSoft.Phoenix.Phx.BCiv.kXmlFileInfo);
-
-			base.mObjectsArePreloaded = false;
+			LookupViewModel = IoC.Get<CivsLookupViewModel>();
 		}
 
 		protected override void OnOpenObject(object obj)
@@ -29,6 +22,29 @@ namespace PhxStudio.ProtoData.Civs
 			vm.Proto = (KSoft.Phoenix.Phx.BCiv)obj;
 
 			Shell.OpenDocument(vm);
+		}
+	};
+
+	[Export(typeof(CivsLookupViewModel))]
+	[Export(kExportContractName, typeof(IProtoDataObjectLookup))]
+	[PartCreationPolicy(CreationPolicy.Shared)]
+	class CivsLookupViewModel
+		: ProtoDataObjectLookupViewModel
+	{
+		public const string kExportContractName
+			= nameof(KSoft.Phoenix.Phx.ProtoDataObjectSourceKind.Database)
+			+ "."
+			+ nameof(KSoft.Phoenix.Phx.DatabaseObjectKind.Civ)
+			;
+
+		public CivsLookupViewModel()
+			: base((int)KSoft.Phoenix.Phx.DatabaseObjectKind.Civ)
+		{
+			base.ObjectSource = new KSoft.Phoenix.Phx.ProtoDataObjectSource(
+				KSoft.Phoenix.Phx.ProtoDataObjectSourceKind.Database,
+				KSoft.Phoenix.Phx.BCiv.kXmlFileInfo);
+
+			base.mObjectsArePreloaded = false;
 		}
 	};
 }

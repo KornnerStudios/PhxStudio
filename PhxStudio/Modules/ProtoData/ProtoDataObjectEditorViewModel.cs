@@ -63,34 +63,44 @@ namespace PhxStudio.Modules.ProtoData
 
 			var group = new PhxInspectors.Inspectors.CollapsibleGroupBuilder();
 
-			if (data.HasNameID)
-				group.WithObjectProperty(data, o => o.NameID);
-			if (data.HasDisplayNameID)
-				group.WithObjectProperty(data, o => o.DisplayNameID);
-			if (data.HasDisplayName2ID)
-				group.WithObjectProperty(data, o => o.DisplayName2ID);
-			if (data.HasDescriptionID)
-				group.WithObjectProperty(data, o => o.DescriptionID);
-			if (data.HasLongDescriptionID)
-				group.WithObjectProperty(data, o => o.LongDescriptionID);
-			if (data.HasPrereqTextID)
-				group.WithObjectProperty(data, o => o.PrereqTextID);
-			if (data.HasStatsNameID)
-				group.WithObjectProperty(data, o => o.StatsNameID);
-			if (data.HasRoleTextID)
-				group.WithObjectProperty(data, o => o.RoleTextID);
-			if (data.HasRolloverTextID)
-				group.WithObjectProperty(data, o => o.RolloverTextID);
-			if (data.HasEnemyRolloverTextID)
-				group.WithObjectProperty(data, o => o.EnemyRolloverTextID);
+			if (data != null)
+			{
+				if (data.HasNameID)
+					group.WithObjectProperty(data, o => o.NameID);
+				if (data.HasDisplayNameID)
+					group.WithObjectProperty(data, o => o.DisplayNameID);
+				if (data.HasDisplayName2ID)
+					group.WithObjectProperty(data, o => o.DisplayName2ID);
+				if (data.HasDescriptionID)
+					group.WithObjectProperty(data, o => o.DescriptionID);
+				if (data.HasLongDescriptionID)
+					group.WithObjectProperty(data, o => o.LongDescriptionID);
+				if (data.HasPrereqTextID)
+					group.WithObjectProperty(data, o => o.PrereqTextID);
+				if (data.HasStatsNameID)
+					group.WithObjectProperty(data, o => o.StatsNameID);
+				if (data.HasRoleTextID)
+					group.WithObjectProperty(data, o => o.RoleTextID);
+				if (data.HasRolloverTextID)
+					group.WithObjectProperty(data, o => o.RolloverTextID);
+				if (data.HasEnemyRolloverTextID)
+					group.WithObjectProperty(data, o => o.EnemyRolloverTextID);
 
-			// #TODO GaiaRolloverText
+				// #TODO GaiaRolloverText
 
-			if (data.HasChooseTextID)
-				group.WithObjectProperty(data, o => o.ChooseTextID);
+				if (data.HasChooseTextID)
+					group.WithObjectProperty(data, o => o.ChooseTextID);
+			}
+
+			BuildInspectorForUserInterfaceText(group);
 
 			if (group.HasInspectors)
 				builder.WithCollapsibleGroup("UI Text", group);
+		}
+
+		protected virtual void BuildInspectorForUserInterfaceText(PhxInspectors.Inspectors.CollapsibleGroupBuilder group)
+		{
+
 		}
 	};
 }

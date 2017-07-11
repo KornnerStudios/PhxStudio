@@ -16,6 +16,8 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 		BoundPropertyDescriptor BoundPropertyDescriptor { get; set; }
 		bool CanReset { get; }
 		void Reset();
+
+		void HandleViewLoaded();
 	};
 
 	public abstract class EditorBase<TValue>
@@ -68,6 +70,10 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 					BoundPropertyDescriptor.PropertyDescriptor.ResetValue(BoundPropertyDescriptor.PropertyOwner);
 				}
 			}
+		}
+
+		public virtual void HandleViewLoaded()
+		{
 		}
 
 		public string Description { get {

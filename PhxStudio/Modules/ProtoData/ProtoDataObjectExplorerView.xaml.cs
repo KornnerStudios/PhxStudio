@@ -36,21 +36,30 @@ namespace PhxStudio.Modules.ProtoData
 			var vm = ViewModel;
 			if (vm != null)
 			{
-				vm.PropertyChanged += OnViewModelPropertyChanged;
+				vm.LookupViewModel.PropertyChanged += OnViewModelPropertyChanged;
+			}
+		}
+
+		private void OnUnloaded(object sender, RoutedEventArgs e)
+		{
+			var vm = ViewModel;
+			if (vm != null)
+			{
+				vm.LookupViewModel.PropertyChanged -= OnViewModelPropertyChanged;
 			}
 		}
 
 		private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName == nameof(ProtoDataObjectExplorerViewModel.SourceObjectDatabaseCollection))
+			if (e.PropertyName == nameof(ProtoDataObjectLookupViewModel.SourceObjectDatabaseCollection))
 			{
 				var vm = ViewModel;
-				if (vm.SourceObjectDatabaseCollection != null)
+				if (vm.LookupViewModel.SourceObjectDatabaseCollection != null)
 				{
 					var view = SourceObjectDatabaseCollectionView;
 					if (view != null)
 					{
-						view.Filter = vm.IsSourceObjectDatabaseCollectionItemFiltered;
+						view.Filter = vm.LookupViewModel.IsSourceObjectDatabaseCollectionItemFiltered;
 					}
 				}
 			}
@@ -61,6 +70,11 @@ namespace PhxStudio.Modules.ProtoData
 			var view = SourceObjectDatabaseCollectionView;
 			if (view != null)
 				view.Refresh();
+		}
+
+		private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+		{
+
 		}
 	};
 
