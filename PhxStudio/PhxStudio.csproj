@@ -119,9 +119,12 @@
     </Compile>
     <Compile Include="Debug\Trace.cs" />
     <Compile Include="Modules\Main\IEditorProviderSelector.cs" />
+    <Compile Include="Modules\Main\MainCommandDefinitions.cs" />
+    <Compile Include="Modules\Main\MainCommandHandlers.cs" />
     <Compile Include="Modules\Main\MainModule.cs" />
     <Compile Include="Modules\Main\MenuDefinitions.cs" />
     <Compile Include="Modules\Main\ShellViewModel.cs" />
+    <Compile Include="Modules\Main\ToolBarDefinitions.cs" />
     <Compile Include="Modules\PhxInspectors\Controls\PhxInspectorGrid.cs" />
     <Compile Include="Modules\PhxInspectors\Controls\PhxInspectorItemTemplateSelector.cs" />
     <Compile Include="Modules\PhxInspectors\Conventions\DefaultPropertyInspectors.cs" />

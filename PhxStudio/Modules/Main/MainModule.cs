@@ -43,6 +43,8 @@ namespace PhxStudio.Modules.Main
 		{
 			base.Initialize();
 
+			Shell.ToolBars.Visible = true;
+
 			mStatusBar.AddItem("Ready", new GridLength(1, GridUnitType.Star));
 			AppStateStatusBarItem = mStatusBar.Items[0];
 			//mStatusBar.AddItem("", new GridLength(100));
