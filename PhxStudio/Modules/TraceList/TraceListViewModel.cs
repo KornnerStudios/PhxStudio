@@ -54,6 +54,24 @@ namespace PhxStudio.Modules.TraceList
 			return items;
 		} }
 
+		#region PauseTracing
+		bool mPauseTracing;
+		public bool PauseTracing
+		{
+			get { return mPauseTracing; }
+			set { this.SetFieldVal(ref mPauseTracing, value); }
+		}
+		#endregion
+
+		#region TotalNumberOfTraces
+		int mTotalNumberOfTraces;
+		public int TotalNumberOfTraces
+		{
+			get { return mTotalNumberOfTraces; }
+			set { this.SetFieldVal(ref mTotalNumberOfTraces, value); }
+		}
+		#endregion
+
 		private bool ShowEverything { get {
 			return ShowCritical
 				&& ShowError
@@ -245,6 +263,14 @@ namespace PhxStudio.Modules.TraceList
 		public void AddItem(TraceListItemType type, long timeStamp, string sourceName, string message
 			, object[] data = null, System.Action onClick = null)
 		{
+			if (PauseTracing)
+			{
+				// #NOTE I think I still want to track the total number of would-be traces
+				++mItemNumber;
+				TotalNumberOfTraces = mItemNumber;
+				return;
+			}
+
 			var settings = PhxStudio.Properties.Settings.Default;
 			var traceSettings = settings.TraceSourceOptions;
 			if (traceSettings != null)
@@ -273,6 +299,7 @@ namespace PhxStudio.Modules.TraceList
 			};
 
 			Items.Add(item);
+			TotalNumberOfTraces = mItemNumber;
 		}
 
 		public void ClearAll()

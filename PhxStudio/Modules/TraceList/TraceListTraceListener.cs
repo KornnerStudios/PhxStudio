@@ -38,7 +38,7 @@ namespace PhxStudio.Modules.TraceList
 				failMessage.Append(detailMessage);
 			}
 
-			this.TraceEvent(null, kTraceAsTraceSource, TraceEventType.Error, 0, failMessage.ToString());
+			this.TraceEvent(null, kTraceAsTraceSource, TraceEventType.Error, TypeExtensions.kNone, failMessage.ToString());
 		}
 
 		public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string format, params object[] args)

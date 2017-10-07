@@ -6,6 +6,9 @@ namespace PhxStudio.Modules.TraceList
 	public interface ITraceList
 		: ITool
 	{
+		int TotalNumberOfTraces { get; set; }
+		bool PauseTracing { get; set; }
+
 		bool ShowCritical { get; set; }
 		bool ShowError { get; set; }
 		bool ShowWarning { get; set; }
