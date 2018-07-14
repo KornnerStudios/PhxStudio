@@ -123,6 +123,9 @@
     <Compile Include="Modules\Main\MainCommandHandlers.cs" />
     <Compile Include="Modules\Main\MainModule.cs" />
     <Compile Include="Modules\Main\MenuDefinitions.cs" />
+    <Compile Include="Modules\Main\ShellView.xaml.cs">
+      <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Main\ShellViewModel.cs" />
     <Compile Include="Modules\Main\ToolBarDefinitions.cs" />
     <Compile Include="Modules\PhxInspectors\Controls\PhxInspectorGrid.cs" />
@@ -275,6 +278,7 @@
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\FileIconsLoader.cs" />
     <Compile Include="Utils\PhxStudioUtils.cs" />
+    <Compile Include="Utils\Results\ResultBase.cs" />
     <Compile Include="Utils\TypeExtensionsPhxStudio.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +350,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Modules\Main\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\PhxInspectors\Inspectors\BitmapSourceEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

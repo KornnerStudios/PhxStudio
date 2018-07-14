@@ -1,4 +1,5 @@
-﻿using Gemini.Framework.Commands;
+﻿using System;
+using Gemini.Framework.Commands;
 
 namespace PhxStudio.Modules.Project.Commands
 {
@@ -34,6 +35,11 @@ namespace PhxStudio.Modules.Project.Commands
 		public override string ToolTip { get {
 			return "Open an existing project";
 		} }
+
+		public override Uri IconSource { get { return new Uri(
+				"pack://application:,,,/PhxStudio;component/UI/Images/2015_VSIcon/ProjectFolderOpen_32x.png"
+			);
+		} }
 	};
 
 	[CommandDefinition]
@@ -67,6 +73,28 @@ namespace PhxStudio.Modules.Project.Commands
 
 		public override string ToolTip { get {
 			return "Save current project to a new file";
+		} }
+	};
+
+	[CommandDefinition]
+	public sealed class ProjectLoadCommandDefinition
+		: CommandDefinition
+	{
+		public const string CommandName = "Project.Load";
+
+		public override string Name { get { return CommandName; } }
+
+		public override string Text { get {
+			return "Load";
+		} }
+
+		public override string ToolTip { get {
+			return "Preloads and then loads core ProtoData used by the engine";
+		} }
+
+		public override Uri IconSource { get { return new Uri(
+				"pack://application:,,,/PhxStudio;component/UI/Images/2015_VSIcon/Open_32x.png"
+			);
 		} }
 	};
 

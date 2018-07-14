@@ -4,16 +4,27 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using Caliburn.Micro;
 using Gemini.Framework.Services;
-using Gemini.Modules.Shell.Views;
 
 namespace PhxStudio.Modules.Main
 {
-	[Export(typeof(IShell))]
-	public class ShellViewModel : Gemini.Modules.Shell.ViewModels.ShellViewModel
+	public interface IPhxShell
+		: IShell
 	{
-		static ShellViewModel()
+		bool IsBusy { get; set; }
+	};
+
+	[Export(typeof(IShell))]
+	[Export(typeof(IPhxShell))]
+	[PartCreationPolicy(CreationPolicy.Shared)]
+	public class ShellViewModel
+		: Gemini.Modules.Shell.ViewModels.ShellViewModel
+		, IPhxShell
+	{
+		bool mIsBusy;
+		public bool IsBusy
 		{
-			ViewLocator.AddNamespaceMapping(typeof(ShellViewModel).Namespace, typeof(ShellView).Namespace);
+			get { return mIsBusy; }
+			set { this.SetFieldVal(ref mIsBusy, value); }
 		}
 
 		public override void CanClose(Action<bool> callback)
