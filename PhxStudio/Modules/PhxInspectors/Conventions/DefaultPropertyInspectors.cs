@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using Vector4f = SlimMath.Vector4;
+using Vector4f = System.Numerics.Vector4;
 
 namespace PhxStudio.Modules.PhxInspectors.Conventions
 {

@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-using Vector4f = SlimMath.Vector4;
+using Vector4f = System.Numerics.Vector4;
 
 namespace PhxStudio.Modules.PhxInspectors.Inspectors
 {
