@@ -1,5 +1,7 @@
 # README #
 
+Requires [KSoft Base Class Libraries](https://github.com/KornnerStudios/KSoft)
+
 This README would normally document whatever steps are necessary to get your application up and running.
 
 ### What is this repository for? ###
