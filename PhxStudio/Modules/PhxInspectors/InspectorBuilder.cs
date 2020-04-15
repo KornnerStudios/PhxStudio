@@ -20,7 +20,7 @@ namespace PhxStudio.Modules.PhxInspectors
 			get { return mInspectors; }
 		}
 
-		public bool HasInspectors { get { return mInspectors != null && mInspectors.Count > 0; } }
+		public bool HasInspectors => mInspectors != null && mInspectors.Count > 0;
 
 		private Dictionary<Type, PropertyDescriptorCollection> mCachedPropertyDescriptors;
 
@@ -70,47 +70,29 @@ namespace PhxStudio.Modules.PhxInspectors
 		}
 
 		public TBuilder WithCheckBoxEditor<T>(T instance, Expression<Func<T, bool>> propertyExpression)
-		{
-			return WithEditor<T, bool, CheckBoxEditorViewModel>(instance, propertyExpression);
-		}
+			=> WithEditor<T, bool, CheckBoxEditorViewModel>(instance, propertyExpression);
 
 		public TBuilder WithSignedEditor<T>(T instance, Expression<Func<T, sbyte>> propertyExpression)
-		{
-			return WithEditor<T, sbyte, TextBoxEditorViewModel<sbyte>>(instance, propertyExpression);
-		}
+			=> WithEditor<T, sbyte, TextBoxEditorViewModel<sbyte>>(instance, propertyExpression);
 		public TBuilder WithSignedEditor<T>(T instance, Expression<Func<T, short>> propertyExpression)
-		{
-			return WithEditor<T, short, TextBoxEditorViewModel<short>>(instance, propertyExpression);
-		}
+			=> WithEditor<T, short, TextBoxEditorViewModel<short>>(instance, propertyExpression);
 		public TBuilder WithSignedEditor<T>(T instance, Expression<Func<T, int>> propertyExpression)
-		{
-			return WithEditor<T, int, TextBoxEditorViewModel<int>>(instance, propertyExpression);
-		}
+			=> WithEditor<T, int, TextBoxEditorViewModel<int>>(instance, propertyExpression);
 
 		public TBuilder WithColorEditor<T>(T instance, Expression<Func<T, Color>> propertyExpression)
-		{
-			return WithEditor<T, Color, ColorEditorViewModel>(instance, propertyExpression);
-		}
+			=> WithEditor<T, Color, ColorEditorViewModel>(instance, propertyExpression);
 
 		public TBuilder WithEnumEditor<T, TProperty>(T instance, Expression<Func<T, TProperty>> propertyExpression)
-		{
-			return WithEditor<T, TProperty, EnumEditorViewModel<TProperty>>(instance, propertyExpression);
-		}
+			=> WithEditor<T, TProperty, EnumEditorViewModel<TProperty>>(instance, propertyExpression);
 
 		public TBuilder WithPoint3DEditor<T>(T instance, Expression<Func<T, Point3D>> propertyExpression)
-		{
-			return WithEditor<T, Point3D, Point3DEditorViewModel>(instance, propertyExpression);
-		}
+			=> WithEditor<T, Point3D, Point3DEditorViewModel>(instance, propertyExpression);
 
 		public TBuilder WithRangeEditor<T>(T instance, Expression<Func<T, float>> propertyExpression, float minimum, float maximum)
-		{
-			return WithEditor(instance, propertyExpression, new RangeEditorViewModel<float>(minimum, maximum));
-		}
+			=> WithEditor(instance, propertyExpression, new RangeEditorViewModel<float>(minimum, maximum));
 
 		public TBuilder WithRangeEditor<T>(T instance, Expression<Func<T, double>> propertyExpression, double minimum, double maximum)
-		{
-			return WithEditor(instance, propertyExpression, new RangeEditorViewModel<double>(minimum, maximum));
-		}
+			=> WithEditor(instance, propertyExpression, new RangeEditorViewModel<double>(minimum, maximum));
 
 		public TBuilder WithEditor<T, TProperty, TEditor>(T instance, Expression<Func<T, TProperty>> propertyExpression)
 			where TEditor : IEditor, new()
@@ -203,9 +185,6 @@ namespace PhxStudio.Modules.PhxInspectors
 	public class InspectablePhxObjectBuilder
 		: InspectorBuilder<InspectablePhxObjectBuilder>
 	{
-		public InspectableObject ToInspectableObject()
-		{
-			return new InspectableObject(Inspectors);
-		}
+		public InspectableObject ToInspectableObject() => new InspectableObject(Inspectors);
 	};
 }

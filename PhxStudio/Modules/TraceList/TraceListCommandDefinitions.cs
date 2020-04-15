@@ -9,21 +9,15 @@ namespace PhxStudio.Modules.TraceList.Commands
 	{
 		public const string CommandName = "View.TraceList";
 
-		public override string Name { get { return CommandName; } }
+		public override string Name => CommandName;
 
-		public override string Text { get {
-			return "Trace List";
-		} }
+		public override string Text => "Trace List";
 
-		public override string ToolTip { get {
-			return "View the app tracing list";
-		} }
+		public override string ToolTip => "View the app tracing list";
 
-		public override Uri IconSource { get { return new Uri(
-				"/Modules/TraceList/Images/Information.png",
-				UriKind.Relative
-			);
-		} }
+		public override Uri IconSource => new Uri(
+			"/Modules/TraceList/Images/Information.png",
+			UriKind.Relative);
 	};
 
 	[CommandDefinition]
@@ -32,21 +26,15 @@ namespace PhxStudio.Modules.TraceList.Commands
 	{
 		public const string CommandName = "TraceList.Clear";
 
-		public override string Name { get { return CommandName; } }
+		public override string Name => CommandName;
 
-		public override string Text { get {
-			return "Clear";
-		} }
+		public override string Text => "Clear";
 
-		public override string ToolTip { get {
-			return "Clears all items in the Trace List";
-		} }
+		public override string ToolTip => "Clears all items in the Trace List";
 
-		public override Uri IconSource { get { return new Uri(
-				"/Modules/TraceList/Images/Clear.png",
-				UriKind.Relative
-			);
-		} }
+		public override Uri IconSource => new Uri(
+			"/Modules/TraceList/Images/Clear.png",
+			UriKind.Relative);
 	};
 
 	[CommandDefinition]
@@ -55,21 +43,15 @@ namespace PhxStudio.Modules.TraceList.Commands
 	{
 		public const string CommandName = "TraceList.ToggleTail";
 
-		public override string Name { get { return CommandName; } }
+		public override string Name => CommandName;
 
-		public override string Text { get {
-			return "Tail";
-		} }
+		public override string Text => "Tail";
 
-		public override string ToolTip { get {
-			return "When enabled, UI will snap to new traces as they come in";
-		} }
+		public override string ToolTip => "When enabled, UI will snap to new traces as they come in";
 
-		public override Uri IconSource { get { return new Uri(
-				"/Modules/TraceList/Images/Tail.png",
-				UriKind.Relative
-			);
-		} }
+		public override Uri IconSource => new Uri(
+			"/Modules/TraceList/Images/Tail.png",
+			UriKind.Relative);
 	};
 
 	[CommandDefinition]
@@ -88,21 +70,13 @@ namespace PhxStudio.Modules.TraceList.Commands
 				UriKind.Relative);
 		}
 
-		public override string Name { get {
-			return mCommandName;
-		} }
+		public override string Name => mCommandName;
 
-		public override string Text { get {
-			return "[NotUsed]";
-		} }
+		public override string Text => "[NotUsed]";
 
-		public override string ToolTip { get {
-			return "[NotUsed]";
-		} }
+		public override string ToolTip => "[NotUsed]";
 
-		public override Uri IconSource { get {
-			return mImageSource;
-		} }
+		public override Uri IconSource => mImageSource;
 	};
 
 	[CommandDefinition]
@@ -232,14 +206,10 @@ namespace PhxStudio.Modules.TraceList.Commands
 	{
 		public const string CommandName = "Debug.TestTraceList";
 
-		public override string Name { get { return CommandName; } }
+		public override string Name => CommandName;
 
-		public override string Text { get {
-			return "Test Trace List";
-		} }
+		public override string Text => "Test Trace List";
 
-		public override string ToolTip { get {
-			return "Test Trace List";
-		} }
+		public override string ToolTip => "Test Trace List";
 	};
 }

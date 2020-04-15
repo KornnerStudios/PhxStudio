@@ -14,15 +14,9 @@ namespace PhxStudio.Modules.Project
 		[Import] IEventAggregator mEventAggregator;
 #pragma warning restore 649
 
-		public PhxStudioProjectViewModel CurrentProject
-		{
-			get { return App.CurrentProjectViewModel; }
-		}
+		public PhxStudioProjectViewModel CurrentProject => App.CurrentProjectViewModel;
 
-		public KSoft.Phoenix.Engine.PhxEngine Engine
-		{
-			get { return CurrentProject.Model.Engine; }
-		}
+		public KSoft.Phoenix.Engine.PhxEngine Engine => CurrentProject.Model.Engine;
 
 		string mCurrentProjectFilePath;
 		public string CurrentProjectFilePath

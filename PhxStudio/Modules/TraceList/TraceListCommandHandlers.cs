@@ -100,9 +100,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleCriticalGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Critical, mTraceList.ShowCritical);
-		}
+			=> UpdateCommand(command, TraceListItemType.Critical, mTraceList.ShowCritical);
 		#endregion
 
 		#region ToggleErrorsGroupCommandDefinition
@@ -113,9 +111,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleErrorsGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Error, mTraceList.ShowError);
-		}
+			=> UpdateCommand(command, TraceListItemType.Error, mTraceList.ShowError);
 		#endregion
 
 		#region ToggleWarningsGroupCommandDefinition
@@ -126,9 +122,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleWarningsGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Warning, mTraceList.ShowWarning);
-		}
+			=> UpdateCommand(command, TraceListItemType.Warning, mTraceList.ShowWarning);
 		#endregion
 
 		#region ToggleInformationGroupCommandDefinition
@@ -139,9 +133,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleInformationGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Information, mTraceList.ShowInformation);
-		}
+			=> UpdateCommand(command, TraceListItemType.Information, mTraceList.ShowInformation);
 		#endregion
 
 		#region ToggleVerboseGroupCommandDefinition
@@ -152,9 +144,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleVerboseGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Verbose, mTraceList.ShowVerbose);
-		}
+			=> UpdateCommand(command, TraceListItemType.Verbose, mTraceList.ShowVerbose);
 		#endregion
 
 		#region ToggleStartGroupCommandDefinition
@@ -165,9 +155,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleStartGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Start, mTraceList.ShowStart);
-		}
+			=> UpdateCommand(command, TraceListItemType.Start, mTraceList.ShowStart);
 		#endregion
 
 		#region ToggleStopGroupCommandDefinition
@@ -178,9 +166,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleStopGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Stop, mTraceList.ShowStop);
-		}
+			=> UpdateCommand(command, TraceListItemType.Stop, mTraceList.ShowStop);
 		#endregion
 
 		#region ToggleSuspendGroupCommandDefinition
@@ -191,9 +177,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleSuspendGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Suspend, mTraceList.ShowSuspend);
-		}
+			=> UpdateCommand(command, TraceListItemType.Suspend, mTraceList.ShowSuspend);
 		#endregion
 
 		#region ToggleResumeGroupCommandDefinition
@@ -204,9 +188,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleResumeGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Resume, mTraceList.ShowResume);
-		}
+			=> UpdateCommand(command, TraceListItemType.Resume, mTraceList.ShowResume);
 		#endregion
 
 		#region ToggleTransferGroupCommandDefinition
@@ -217,9 +199,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		}
 
 		void ICommandHandler<ToggleTransferGroupCommandDefinition>.Update(Command command)
-		{
-			UpdateCommand(command, TraceListItemType.Transfer, mTraceList.ShowTransfer);
-		}
+			=> UpdateCommand(command, TraceListItemType.Transfer, mTraceList.ShowTransfer);
 		#endregion
 
 		private void UpdateCommand(Command command, TraceListItemType type, bool showGroup)
@@ -294,9 +274,6 @@ namespace PhxStudio.Modules.TraceList.Commands
 			}
 		}
 
-		private static void InnerInnerTest()
-		{
-			throw new Exception("Inner Inner Test");
-		}
+		private static void InnerInnerTest() => throw new Exception("Inner Inner Test");
 	};
 }

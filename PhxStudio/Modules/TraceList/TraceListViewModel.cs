@@ -10,7 +10,7 @@ using KSoft;
 
 namespace PhxStudio.Modules.TraceList
 {
-	// #TODO Filtering should probably be done with a CollectionViewSoruce instead
+	// #TODO_PHXSTUDIO Filtering should probably be done with a CollectionViewSoruce instead
 
 	[Export(typeof(ITraceList))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
@@ -18,9 +18,7 @@ namespace PhxStudio.Modules.TraceList
 		: Tool
 		, ITraceList
 	{
-		public override PaneLocation PreferredLocation { get {
-			return PaneLocation.Bottom;
-		} }
+		public override PaneLocation PreferredLocation => PaneLocation.Bottom;
 
 		#region Imports
 #pragma warning disable 649
@@ -33,24 +31,25 @@ namespace PhxStudio.Modules.TraceList
 		private int mItemNumber;
 
 		BindableCollection<TraceListItem> mItems;
-		public IObservableCollection<TraceListItem> Items { get { return mItems; } }
+		public IObservableCollection<TraceListItem> Items => mItems;
 
 		public IEnumerable<TraceListItem> FilteredItems { get {
 			if (ShowEverything)
 				return mItems;
 
-			var items = from item in mItems
-						where (ShowCritical		&& item.ItemType == TraceListItemType.Critical)
-							||(ShowError		&& item.ItemType == TraceListItemType.Error)
-							||(ShowWarning		&& item.ItemType == TraceListItemType.Warning)
-							||(ShowInformation	&& item.ItemType == TraceListItemType.Information)
-							||(ShowVerbose		&& item.ItemType == TraceListItemType.Verbose)
-							||(ShowStart		&& item.ItemType == TraceListItemType.Start)
-							||(ShowStop			&& item.ItemType == TraceListItemType.Stop)
-							||(ShowSuspend		&& item.ItemType == TraceListItemType.Suspend)
-							||(ShowResume		&& item.ItemType == TraceListItemType.Resume)
-							||(ShowTransfer		&& item.ItemType == TraceListItemType.Transfer)
-						select item;
+			var items =
+				from item in mItems
+				where (ShowCritical		&& item.ItemType == TraceListItemType.Critical)
+					||(ShowError		&& item.ItemType == TraceListItemType.Error)
+					||(ShowWarning		&& item.ItemType == TraceListItemType.Warning)
+					||(ShowInformation	&& item.ItemType == TraceListItemType.Information)
+					||(ShowVerbose		&& item.ItemType == TraceListItemType.Verbose)
+					||(ShowStart		&& item.ItemType == TraceListItemType.Start)
+					||(ShowStop			&& item.ItemType == TraceListItemType.Stop)
+					||(ShowSuspend		&& item.ItemType == TraceListItemType.Suspend)
+					||(ShowResume		&& item.ItemType == TraceListItemType.Resume)
+					||(ShowTransfer		&& item.ItemType == TraceListItemType.Transfer)
+				select item;
 			return items;
 		} }
 
@@ -72,18 +71,17 @@ namespace PhxStudio.Modules.TraceList
 		}
 		#endregion
 
-		private bool ShowEverything { get {
-			return ShowCritical
-				&& ShowError
-				&& ShowWarning
-				&& ShowInformation
-				&& ShowVerbose
-				&& ShowStart
-				&& ShowStop
-				&& ShowSuspend
-				&& ShowResume
-				&& ShowTransfer;
-		} }
+		private bool ShowEverything
+			=> ShowCritical
+			&& ShowError
+			&& ShowWarning
+			&& ShowInformation
+			&& ShowVerbose
+			&& ShowStart
+			&& ShowStop
+			&& ShowSuspend
+			&& ShowResume
+			&& ShowTransfer;
 
 		#region ShowCritical
 		bool mShowCritical = true;
@@ -265,7 +263,7 @@ namespace PhxStudio.Modules.TraceList
 		{
 			if (PauseTracing)
 			{
-				// #NOTE I think I still want to track the total number of would-be traces
+				// #NOTE_PHXSTUDIO I think I still want to track the total number of would-be traces
 				++mItemNumber;
 				TotalNumberOfTraces = mItemNumber;
 				return;
@@ -302,10 +300,7 @@ namespace PhxStudio.Modules.TraceList
 			TotalNumberOfTraces = mItemNumber;
 		}
 
-		public void ClearAll()
-		{
-			Items.Clear();
-		}
+		public void ClearAll() => Items.Clear();
 
 		public void OnSelectedItemChanged(TraceListItem selectedItem)
 		{

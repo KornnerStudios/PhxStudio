@@ -29,7 +29,7 @@ namespace PhxStudio.Modules.Main.Commands
 		{
 			base.Update(command);
 
-			// #TODO this does not work
+			// #TODO_PHXSTUDIO this does not work
 			// https://github.com/tgjones/gemini/issues/174
 			// https://github.com/tgjones/gemini/pull/134/commits/7fa412c75010748902d17a44d2a9f871b1840893
 			command.Visible = mEditorProviders.IsNotNullOrEmpty();
@@ -37,7 +37,7 @@ namespace PhxStudio.Modules.Main.Commands
 
 		public override async Task Run(Command command)
 		{
-			// #HACK due to issue 174
+			// #HACK_PHXSTUDIO due to issue 174
 			if (!command.Visible)
 				return;
 

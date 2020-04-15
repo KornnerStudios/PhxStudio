@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Caliburn.Micro;
 using Gemini.Framework;
 using Gemini.Framework.Commands;
@@ -94,12 +90,9 @@ namespace PhxStudio.Modules.ProtoData
 			}
 		}
 
-		public bool HasSourceObjectDatabaseUndefinedMembers
-		{
-			get { return SourceObjectDatabaseUndefinedMembers != null && SourceObjectDatabaseUndefinedMembers.Count > 0; }
-		}
+		public bool HasSourceObjectDatabaseUndefinedMembers => SourceObjectDatabaseUndefinedMembers != null && SourceObjectDatabaseUndefinedMembers.Count > 0;
 
-		// #HACK Civs and Leaders are not currently preloaded and need this set
+		// #HACK_PHXSTUDIO Civs and Leaders are not currently preloaded and need this set
 		protected bool mObjectsArePreloaded = false;//true;
 
 		protected ProtoDataObjectLookupViewModel(int sourceObjectDatabaseKindId)
@@ -170,26 +163,18 @@ namespace PhxStudio.Modules.ProtoData
 		}
 
 		#region ProjectEngineUnloadedEventArgs
-		void IHandle<Project.ProjectEngineUnloadedEventArgs>.Handle(Project.ProjectEngineUnloadedEventArgs message)
-		{
-			OnProjectEngineUnloaded(message);
-		}
-		protected virtual void OnProjectEngineUnloaded(Project.ProjectEngineUnloadedEventArgs message)
-		{
-			SourceObjectDatabase = null;
-		}
+		void IHandle<Project.ProjectEngineUnloadedEventArgs>.Handle(Project.ProjectEngineUnloadedEventArgs message) => OnProjectEngineUnloaded(message);
+
+		protected virtual void OnProjectEngineUnloaded(Project.ProjectEngineUnloadedEventArgs message) => SourceObjectDatabase = null;
 		#endregion
 
 		#region ProjectEnginePreloadedEventArgs
-		void IHandle<Project.ProjectEnginePreloadedEventArgs>.Handle(Project.ProjectEnginePreloadedEventArgs message)
-		{
-			OnProjectEnginePreloaded(message);
-		}
+		void IHandle<Project.ProjectEnginePreloadedEventArgs>.Handle(Project.ProjectEnginePreloadedEventArgs message) => OnProjectEnginePreloaded(message);
+
 		protected virtual void OnProjectEnginePreloaded(Project.ProjectEnginePreloadedEventArgs message)
 		{
 			if (mObjectsArePreloaded)
 			{
-
 				var engine = message.Engine;
 
 				SourceObjectDatabase = ObjectSource.GetObjectDatabase(engine);
@@ -198,10 +183,8 @@ namespace PhxStudio.Modules.ProtoData
 		#endregion
 
 		#region ProjectEngineLoadedEventArgs
-		void IHandle<Project.ProjectEngineLoadedEventArgs>.Handle(Project.ProjectEngineLoadedEventArgs message)
-		{
-			OnProjectEngineLoaded(message);
-		}
+		void IHandle<Project.ProjectEngineLoadedEventArgs>.Handle(Project.ProjectEngineLoadedEventArgs message) => OnProjectEngineLoaded(message);
+
 		protected virtual void OnProjectEngineLoaded(Project.ProjectEngineLoadedEventArgs message)
 		{
 			if (mObjectsArePreloaded == false)

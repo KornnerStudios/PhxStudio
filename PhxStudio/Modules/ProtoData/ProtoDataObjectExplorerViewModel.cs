@@ -29,9 +29,9 @@ namespace PhxStudio.Modules.ProtoData
 		protected IShell Shell { get { return mShell; } }
 		#endregion
 
-		public override PaneLocation PreferredLocation { get { return PaneLocation.Right; } }
+		public override PaneLocation PreferredLocation => PaneLocation.Right;
 
-		public override double PreferredWidth { get { return 150; } }
+		public override double PreferredWidth => 150;
 
 		public ProtoDataObjectLookupViewModel LookupViewModel { get; protected set; }
 
@@ -57,7 +57,7 @@ namespace PhxStudio.Modules.ProtoData
 		[Import] Project.IProjectService mProjectService;
 #pragma warning restore 649
 
-		protected IShell Shell { get { return mShell; } }
+		protected IShell Shell => mShell;
 
 		public override void Update(Command command)
 		{

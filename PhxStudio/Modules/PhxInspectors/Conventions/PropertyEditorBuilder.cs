@@ -16,28 +16,20 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 		where TEditor : IEditor, new()
 	{
 		public override bool IsApplicable(PropertyDescriptor propertyDescriptor)
-		{
-			return propertyDescriptor.PropertyType == typeof(T);
-		}
+			=> propertyDescriptor.PropertyType == typeof(T);
 
 		public override IEditor BuildEditor(PropertyDescriptor propertyDescriptor)
-		{
-			return new TEditor();
-		}
+			=> new TEditor();
 	};
 
 	public sealed class EnumPropertyEditorBuilder
 		: PropertyEditorBuilder
 	{
 		public override bool IsApplicable(PropertyDescriptor propertyDescriptor)
-		{
-			return typeof(Enum).IsAssignableFrom(propertyDescriptor.PropertyType);
-		}
+			=> typeof(Enum).IsAssignableFrom(propertyDescriptor.PropertyType);
 
 		public override IEditor BuildEditor(PropertyDescriptor propertyDescriptor)
-		{
-			return new EnumEditorViewModel(propertyDescriptor.PropertyType);
-		}
+			=> new EnumEditorViewModel(propertyDescriptor.PropertyType);
 	};
 
 	public sealed class ProtoReferenceEditorBuilder

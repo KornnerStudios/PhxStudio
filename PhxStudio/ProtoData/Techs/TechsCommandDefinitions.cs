@@ -9,19 +9,13 @@ namespace PhxStudio.ProtoData.Techs.Commands
 	{
 		public const string CommandName = "View.TechsExplorer";
 
-		public override string Name { get { return CommandName; } }
+		public override string Name => CommandName;
 
-		public override string Text { get {
-			return "Techs Explorer";
-		} }
+		public override string Text => "Techs Explorer";
 
-		public override string ToolTip { get {
-			return "Open Techs Explorer";
-		} }
+		public override string ToolTip => "Open Techs Explorer";
 
-		public override Uri IconSource { get { return new Uri(
-				"pack://application:,,,/Gemini;component/Resources/Icons/Open.png"
-			);
-		} }
+		public override Uri IconSource => new Uri(
+			"pack://application:,,,/Gemini;component/Resources/Icons/Open.png");
 	};
 }

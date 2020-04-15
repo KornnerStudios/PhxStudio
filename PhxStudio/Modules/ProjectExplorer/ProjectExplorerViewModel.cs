@@ -63,9 +63,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 			//this.ToolBarDefinition = ProjectExplorer.ToolBarDefenitions.ProjectExplorerToolBar;
 		}
 
-		public override PaneLocation PreferredLocation { get {
-			return PaneLocation.Left;
-		} }
+		public override PaneLocation PreferredLocation => PaneLocation.Left;
 
 #if false // Activate and Deactivate aren't called on Tool :|
 		protected override void OnActivate()
@@ -121,7 +119,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 
 		private async void Open(FileItemViewModel file)
 		{
-			// #TODO need to figure out how to support files that require an external viewer or such tool (eg, ddx until we support in-editor viewing)
+			// #TODO_PHXSTUDIO need to figure out how to support files that require an external viewer or such tool (eg, ddx until we support in-editor viewing)
 
 			if (!file.IsEditorAvailable)
 			{
@@ -148,19 +146,10 @@ namespace PhxStudio.Modules.ProjectExplorer
 			Open(work_dir);
 		}
 
-		void IHandle<ProjectOpeningEventArgs>.Handle(ProjectOpeningEventArgs message)
-		{
-			OpenCurrentProjectWorkDir();
-		}
+		void IHandle<ProjectOpeningEventArgs>.Handle(ProjectOpeningEventArgs message) => OpenCurrentProjectWorkDir();
 
-		void IHandle<ProjectClosingEventArgs>.Handle(ProjectClosingEventArgs message)
-		{
-			Close();
-		}
+		void IHandle<ProjectClosingEventArgs>.Handle(ProjectClosingEventArgs message) => Close();
 
-		void IHandle<ProjectWorkDirectoryChangedEventArgs>.Handle(ProjectWorkDirectoryChangedEventArgs message)
-		{
-			OpenCurrentProjectWorkDir();
-		}
+		void IHandle<ProjectWorkDirectoryChangedEventArgs>.Handle(ProjectWorkDirectoryChangedEventArgs message) => OpenCurrentProjectWorkDir();
 	};
 }

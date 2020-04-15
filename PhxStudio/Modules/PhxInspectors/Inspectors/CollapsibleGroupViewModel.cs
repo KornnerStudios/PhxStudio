@@ -10,11 +10,11 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 		private readonly string mName;
 		private readonly IEnumerable<IInspector> mChildren;
 
-		public override string Name { get { return mName; } }
+		public override string Name => mName;
 
-		public override bool IsReadOnly { get { return false; } }
+		public override bool IsReadOnly => false;
 
-		public IEnumerable<IInspector> Children { get { return mChildren; } }
+		public IEnumerable<IInspector> Children => mChildren;
 
 		private bool mIsExpanded;
 		public bool IsExpanded

@@ -24,10 +24,16 @@ namespace PhxStudio.Modules.Project
 		public string ProjectName
 		{
 			get { return mProjectName; }
-			set { this.SetFieldObj(ref mProjectName, value); }
+			set
+			{
+				if (this.SetFieldObj(ref mProjectName, value))
+				{
+					this.NotifyOfPropertyChange(nameof(ProjectNameIsValid));
+				}
+			}
 		}
 
-		public bool ProjectNameIsValid { get { return ProjectName.IsNotNullOrEmpty(); } }
+		public bool ProjectNameIsValid => ProjectName.IsNotNullOrEmpty();
 		#endregion
 
 		#region GameVersion
@@ -111,12 +117,8 @@ namespace PhxStudio.Modules.Project
 		}
 
 		#region ISettingsEditor
-		public string SettingsPagePath { get {
-			return Constants.SettingsPaths.Project;
-		} }
-		public string SettingsPageName { get {
-			return Constants.SettingsPages.Project_Info;
-		} }
+		public string SettingsPagePath => Constants.SettingsPaths.Project;
+		public string SettingsPageName => Constants.SettingsPages.Project_Info;
 
 		public void ApplyChanges()
 		{

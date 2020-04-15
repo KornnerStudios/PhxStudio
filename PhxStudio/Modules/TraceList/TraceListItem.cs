@@ -48,7 +48,7 @@ namespace PhxStudio.Modules.TraceList
 			set { this.SetFieldObj(ref mMessage, value); }
 		}
 
-		// #HACK using EmptyArray here because Gemini's Inspector won't update
+		// #HACK_PHXSTUDIO using EmptyArray here because Gemini's Inspector won't update
 		// the TraceDataEditorView when using null and the previous item selected
 		// actually had data.
 		// Also not using ReadOnly because it disables the View's DataGrid completely.
@@ -69,7 +69,7 @@ namespace PhxStudio.Modules.TraceList
 			}
 		}
 		[Browsable(false)]
-		public bool HasData { get { return !mData.IsNullOrEmpty() && mData != KSoft.Util.EmptyArray; } }
+		public bool HasData => !mData.IsNullOrEmpty() && mData != KSoft.Util.EmptyArray;
 
 		[Browsable(false)]
 		public System.Action OnClick { get; set; }

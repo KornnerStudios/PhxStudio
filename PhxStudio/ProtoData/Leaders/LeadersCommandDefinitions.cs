@@ -9,19 +9,13 @@ namespace PhxStudio.ProtoData.Leaders.Commands
 	{
 		public const string CommandName = "View.LeadersExplorer";
 
-		public override string Name { get { return CommandName; } }
+		public override string Name => CommandName;
 
-		public override string Text { get {
-			return "Leaders Explorer";
-		} }
+		public override string Text => "Leaders Explorer";
 
-		public override string ToolTip { get {
-			return "Open Leaders Explorer";
-		} }
+		public override string ToolTip => "Open Leaders Explorer";
 
-		public override Uri IconSource { get { return new Uri(
-				"pack://application:,,,/Gemini;component/Resources/Icons/Open.png"
-			);
-		} }
+		public override Uri IconSource => new Uri(
+			"pack://application:,,,/Gemini;component/Resources/Icons/Open.png");
 	};
 }

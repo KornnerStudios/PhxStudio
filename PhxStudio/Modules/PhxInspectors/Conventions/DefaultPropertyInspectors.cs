@@ -25,7 +25,7 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 				new RangePropertyEditorBuilder(),
 				new EnumPropertyEditorBuilder(),
 
-				// #NOTE needs to come before int editors! else they will take priority
+				// #NOTE_PHXSTUDIO needs to come before int editors! else they will take priority
 				new ProtoReferenceEditorBuilder(),
 
 				new StandardPropertyEditorBuilder<bool, CheckBoxEditorViewModel>(),

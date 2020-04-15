@@ -6,7 +6,7 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 {
 	using IEditorProviderSelector = Modules.Main.IEditorProviderSelector;
 
-	// #TODO need a service that allows configuring how children are gathered for a given path
+	// #TODO_PHXSTUDIO need a service that allows configuring how children are gathered for a given path
 	// * Which file types to search for
 
 	public sealed class FolderItemViewModel

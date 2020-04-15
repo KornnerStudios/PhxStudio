@@ -12,7 +12,7 @@ namespace PhxStudio.Modules.Project
 		public const string XmlRootName = "Project";
 
 		#region FileType
-		public static string FileExtension { get { return ".phxproj"; } }
+		public static string FileExtension => ".phxproj";
 		private static EditorFileType gFileType;
 		public static EditorFileType FileType { get {
 			if (gFileType == null)
@@ -54,10 +54,16 @@ namespace PhxStudio.Modules.Project
 		public string ProjectName
 		{
 			get { return mProjectName; }
-			set { this.SetFieldObj(ref mProjectName, value); }
+			set
+			{
+				if (this.SetFieldObj(ref mProjectName, value))
+				{
+					this.OnPropertyChanged(nameof(ProjectNameIsValid));
+				}
+			}
 		}
 
-		public bool ProjectNameIsValid { get { return ProjectName.IsNotNullOrEmpty(); } }
+		public bool ProjectNameIsValid => ProjectName.IsNotNullOrEmpty();
 		#endregion
 
 		#region GameVersion

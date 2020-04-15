@@ -86,7 +86,7 @@ namespace PhxStudio.Modules.ProtoData
 				if (data.HasEnemyRolloverTextID)
 					group.WithObjectProperty(data, o => o.EnemyRolloverTextID);
 
-				// #TODO GaiaRolloverText
+				// #TODO_PHXSTUDIO GaiaRolloverText
 
 				if (data.HasChooseTextID)
 					group.WithObjectProperty(data, o => o.ChooseTextID);
@@ -100,7 +100,6 @@ namespace PhxStudio.Modules.ProtoData
 
 		protected virtual void BuildInspectorForUserInterfaceText(PhxInspectors.Inspectors.CollapsibleGroupBuilder group)
 		{
-
 		}
 	};
 }

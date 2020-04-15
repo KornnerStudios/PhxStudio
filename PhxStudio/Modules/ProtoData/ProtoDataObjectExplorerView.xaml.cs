@@ -10,21 +10,14 @@ namespace PhxStudio.Modules.ProtoData
 	/// </summary>
 	public partial class ProtoDataObjectExplorerView : UserControl
 	{
-		private ProtoDataObjectExplorerViewModel ViewModel
-		{
-			get { return DataContext as ProtoDataObjectExplorerViewModel; }
-		}
+		private ProtoDataObjectExplorerViewModel ViewModel => DataContext as ProtoDataObjectExplorerViewModel;
 
-		private ICollectionView SourceObjectDatabaseCollectionView
-		{
-			get
-			{
-				if (SourceObjectDatabaseCollectionListView.ItemsSource == null)
-					return null;
+		private ICollectionView SourceObjectDatabaseCollectionView { get {
+			if (SourceObjectDatabaseCollectionListView.ItemsSource == null)
+				return null;
 
-				return CollectionViewSource.GetDefaultView(SourceObjectDatabaseCollectionListView.ItemsSource);
-			}
-		}
+			return CollectionViewSource.GetDefaultView(SourceObjectDatabaseCollectionListView.ItemsSource);
+		} }
 
 		public ProtoDataObjectExplorerView()
 		{
@@ -74,7 +67,6 @@ namespace PhxStudio.Modules.ProtoData
 
 		private void UserControl_Unloaded(object sender, RoutedEventArgs e)
 		{
-
 		}
 	};
 
@@ -92,7 +84,7 @@ namespace PhxStudio.Modules.ProtoData
 			var element = container as FrameworkElement;
 
 			if (item is KSoft.Phoenix.Phx.IDatabaseIdObject
-				// #NOTE the DBID in techs is not used by the engine
+				// #NOTE_PHXSTUDIO the DBID in techs is not used by the engine
 				&& !(item is KSoft.Phoenix.Phx.BProtoTech)
 				)
 			{

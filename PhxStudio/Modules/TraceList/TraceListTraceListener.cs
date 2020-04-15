@@ -19,15 +19,9 @@ namespace PhxStudio.Modules.TraceList
 			mTraceList = IoC.Get<ITraceList>();
 		}
 
-		public override void Write(string message)
-		{
-			this.WriteLine(message);
-		}
+		public override void Write(string message) => this.WriteLine(message);
 
-		public override void WriteLine(string message)
-		{
-			this.TraceEvent(null, kTraceAsTraceSource, TraceEventType.Information, 0, message);
-		}
+		public override void WriteLine(string message) => this.TraceEvent(null, kTraceAsTraceSource, TraceEventType.Information, 0, message);
 
 		public override void Fail(string message, string detailMessage)
 		{

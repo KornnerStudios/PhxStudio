@@ -34,13 +34,9 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 			IsUndoEnabled = true;
 		}
 
-		public override string Name { get {
-			return BoundPropertyDescriptor.PropertyDescriptor.DisplayName;
-		} }
+		public override string Name => BoundPropertyDescriptor.PropertyDescriptor.DisplayName;
 
-		public override bool IsReadOnly { get {
-			return BoundPropertyDescriptor.PropertyDescriptor.IsReadOnly;
-		} }
+		public override bool IsReadOnly => BoundPropertyDescriptor.PropertyDescriptor.IsReadOnly;
 
 		public bool IsUndoEnabled { get; set; }
 

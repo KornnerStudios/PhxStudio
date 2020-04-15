@@ -9,19 +9,13 @@ namespace PhxStudio.ProtoData.Squads.Commands
 	{
 		public const string CommandName = "View.SquadsExplorer";
 
-		public override string Name { get { return CommandName; } }
+		public override string Name => CommandName;
 
-		public override string Text { get {
-			return "Squads Explorer";
-		} }
+		public override string Text => "Squads Explorer";
 
-		public override string ToolTip { get {
-			return "Open Squads Explorer";
-		} }
+		public override string ToolTip => "Open Squads Explorer";
 
-		public override Uri IconSource { get { return new Uri(
-				"pack://application:,,,/Gemini;component/Resources/Icons/Open.png"
-			);
-		} }
+		public override Uri IconSource => new Uri(
+			"pack://application:,,,/Gemini;component/Resources/Icons/Open.png");
 	};
 }
