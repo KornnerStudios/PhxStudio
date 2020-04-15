@@ -20,7 +20,8 @@ namespace PhxStudio.Modules.TraceList.Commands
 		} }
 
 		public override Uri IconSource { get { return new Uri(
-				"pack://application:,,,/PhxStudio;component/Modules/TraceList/Images/Information.png"
+				"/Modules/TraceList/Images/Information.png",
+				UriKind.Relative
 			);
 		} }
 	};
@@ -42,7 +43,8 @@ namespace PhxStudio.Modules.TraceList.Commands
 		} }
 
 		public override Uri IconSource { get { return new Uri(
-				"pack://application:,,,/PhxStudio;component/Modules/TraceList/Images/Clear.png"
+				"/Modules/TraceList/Images/Clear.png",
+				UriKind.Relative
 			);
 		} }
 	};
@@ -64,7 +66,8 @@ namespace PhxStudio.Modules.TraceList.Commands
 		} }
 
 		public override Uri IconSource { get { return new Uri(
-				"pack://application:,,,/PhxStudio;component/Modules/TraceList/Images/Tail.png"
+				"/Modules/TraceList/Images/Tail.png",
+				UriKind.Relative
 			);
 		} }
 	};
@@ -75,14 +78,14 @@ namespace PhxStudio.Modules.TraceList.Commands
 	{
 		private string mCommandName;
 		private Uri mImageSource;
-		private string mTypeName;
 
 		protected ToggleGroupCommandDefinitionBase(string commandName, TraceListItemType groupType)
 		{
 			mCommandName = commandName;
 
-			mImageSource = new Uri(string.Format("pack://application:,,,/PhxStudio;component/Modules/TraceList/Images/{0}.png",
-				groupType.ToString()));
+			mImageSource = new Uri(string.Format("/Modules/TraceList/Images/{0}.png",
+				groupType.ToString()),
+				UriKind.Relative);
 		}
 
 		public override string Name { get {

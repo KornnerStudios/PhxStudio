@@ -37,7 +37,8 @@ namespace PhxStudio.Modules.Project.Commands
 		} }
 
 		public override Uri IconSource { get { return new Uri(
-				"pack://application:,,,/PhxStudio;component/UI/Images/2015_VSIcon/ProjectFolderOpen_32x.png"
+				"/UI/Images/2015_VSIcon/ProjectFolderOpen_32x.png",
+				UriKind.Relative
 			);
 		} }
 	};
@@ -93,7 +94,8 @@ namespace PhxStudio.Modules.Project.Commands
 		} }
 
 		public override Uri IconSource { get { return new Uri(
-				"pack://application:,,,/PhxStudio;component/UI/Images/2015_VSIcon/Open_32x.png"
+				"/UI/Images/2015_VSIcon/Open_32x.png",
+				UriKind.Relative
 			);
 		} }
 	};
