@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Gemini.Framework;
@@ -39,11 +40,11 @@ namespace PhxStudio.Modules.ProtoData
 		{
 			if (args.LeftButton == MouseButtonState.Pressed && args.ClickCount == 2)
 			{
-				OnOpenObject(obj);
+				OnOpenObjectAsync(obj);
 			}
 		}
 
-		protected virtual void OnOpenObject(object obj)
+		protected virtual void OnOpenObjectAsync(object obj)
 		{
 		}
 	};

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Threading;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using Gemini.Framework;
 using Gemini.Framework.Commands;
@@ -98,7 +100,7 @@ namespace PhxStudio.Modules.ProtoData
 		protected ProtoDataObjectLookupViewModel(int sourceObjectDatabaseKindId)
 		{
 			mEventAggregator = IoC.Get<IEventAggregator>();
-			mEventAggregator.Subscribe(this);
+			mEventAggregator.SubscribeOnPublishedThread(this);
 
 			SourceObjectDatabaseKindId = sourceObjectDatabaseKindId;
 		}
@@ -163,13 +165,15 @@ namespace PhxStudio.Modules.ProtoData
 		}
 
 		#region ProjectEngineUnloadedEventArgs
-		void IHandle<Project.ProjectEngineUnloadedEventArgs>.Handle(Project.ProjectEngineUnloadedEventArgs message) => OnProjectEngineUnloaded(message);
+		Task IHandle<Project.ProjectEngineUnloadedEventArgs>.HandleAsync(Project.ProjectEngineUnloadedEventArgs message, CancellationToken cancellationToken)
+			=> Task.Run(() => OnProjectEngineUnloaded(message), cancellationToken);
 
 		protected virtual void OnProjectEngineUnloaded(Project.ProjectEngineUnloadedEventArgs message) => SourceObjectDatabase = null;
 		#endregion
 
 		#region ProjectEnginePreloadedEventArgs
-		void IHandle<Project.ProjectEnginePreloadedEventArgs>.Handle(Project.ProjectEnginePreloadedEventArgs message) => OnProjectEnginePreloaded(message);
+		Task IHandle<Project.ProjectEnginePreloadedEventArgs>.HandleAsync(Project.ProjectEnginePreloadedEventArgs message, CancellationToken cancellationToken)
+			=> Task.Run(() => OnProjectEnginePreloaded(message), cancellationToken);
 
 		protected virtual void OnProjectEnginePreloaded(Project.ProjectEnginePreloadedEventArgs message)
 		{
@@ -183,7 +187,8 @@ namespace PhxStudio.Modules.ProtoData
 		#endregion
 
 		#region ProjectEngineLoadedEventArgs
-		void IHandle<Project.ProjectEngineLoadedEventArgs>.Handle(Project.ProjectEngineLoadedEventArgs message) => OnProjectEngineLoaded(message);
+		Task IHandle<Project.ProjectEngineLoadedEventArgs>.HandleAsync(Project.ProjectEngineLoadedEventArgs message, CancellationToken cancellationToken)
+			=> Task.Run(() => OnProjectEngineLoaded(message), cancellationToken);
 
 		protected virtual void OnProjectEngineLoaded(Project.ProjectEngineLoadedEventArgs message)
 		{

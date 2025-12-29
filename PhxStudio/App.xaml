@@ -2,7 +2,7 @@
     x:Class="PhxStudio.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:gemini="http://schemas.timjones.tw/gemini"
+    xmlns:gemini="http://schemas.timjones.io/gemini"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:HaloWarsAlias="clr-namespace:KSoft.Phoenix.HaloWars;assembly=KSoft.Phoenix"
     xmlns:local="clr-namespace:PhxStudio"

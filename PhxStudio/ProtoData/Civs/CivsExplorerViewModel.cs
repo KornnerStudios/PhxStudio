@@ -16,12 +16,12 @@ namespace PhxStudio.ProtoData.Civs
 			LookupViewModel = IoC.Get<CivsLookupViewModel>();
 		}
 
-		protected override void OnOpenObject(object obj)
+		protected override async void OnOpenObjectAsync(object obj)
 		{
 			var vm = new CivEditorViewModel();
 			vm.Proto = (KSoft.Phoenix.Phx.BCiv)obj;
 
-			Shell.OpenDocument(vm);
+			await Shell.OpenDocumentAsync(vm);
 		}
 	};
 

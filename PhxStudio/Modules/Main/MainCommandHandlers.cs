@@ -59,7 +59,9 @@ namespace PhxStudio.Modules.Main.Commands
 			dialog.Filter = filter;
 
 			if (dialog.ShowDialog() == true)
-				mShell.OpenDocument(await GetEditor(dialog.FileName));
+			{
+				await mShell.OpenDocumentAsync(await GetEditor(dialog.FileName));
+			}
 		}
 
 		internal static Task<IDocument> GetEditor(string path)

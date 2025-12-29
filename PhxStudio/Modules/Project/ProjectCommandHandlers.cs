@@ -29,10 +29,10 @@ namespace PhxStudio.Modules.Project.Commands
 		{
 			if (mProjectService.Engine != null)
 			{
-				mEventAggregator.PublishOnUIThread(new ProjectEngineUnloadedEventArgs());
+				await mEventAggregator.PublishOnUIThreadAsync(new ProjectEngineUnloadedEventArgs());
 			}
 
-			mEventAggregator.PublishOnUIThread(new ProjectClosingEventArgs());
+			await mEventAggregator.PublishOnUIThreadAsync(new ProjectClosingEventArgs());
 
 			var project_task = Task.Factory.StartNew(mProjectService.CreateNew,
 				CancellationToken.None,
@@ -42,7 +42,7 @@ namespace PhxStudio.Modules.Project.Commands
 			if (project_task_result != null)
 				return;
 
-			mEventAggregator.PublishOnUIThread(new ProjectOpeningEventArgs());
+			await mEventAggregator.PublishOnUIThreadAsync(new ProjectOpeningEventArgs());
 		}
 	};
 
@@ -68,10 +68,10 @@ namespace PhxStudio.Modules.Project.Commands
 
 			if (mProjectService.Engine != null)
 			{
-				mEventAggregator.PublishOnUIThread(new ProjectEngineUnloadedEventArgs());
+				await mEventAggregator.PublishOnUIThreadAsync(new ProjectEngineUnloadedEventArgs());
 			}
 
-			mEventAggregator.PublishOnUIThread(new ProjectClosingEventArgs());
+			await mEventAggregator.PublishOnUIThreadAsync(new ProjectClosingEventArgs());
 
 			var project_task = Task.Factory.StartNew(OpenProjectCallback, dialog.FileName,
 				CancellationToken.None,
@@ -81,7 +81,7 @@ namespace PhxStudio.Modules.Project.Commands
 			if (project_task_result != null)
 				return;
 
-			mEventAggregator.PublishOnUIThread(new ProjectOpeningEventArgs());
+			await mEventAggregator.PublishOnUIThreadAsync(new ProjectOpeningEventArgs());
 		}
 
 		private Exception OpenProjectCallback(object state)

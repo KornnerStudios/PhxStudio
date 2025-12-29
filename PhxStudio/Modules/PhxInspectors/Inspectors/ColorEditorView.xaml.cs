@@ -5,6 +5,7 @@ using ColorEventArgs = Gemini.Modules.Inspector.Controls.ColorEventArgs;
 
 namespace PhxStudio.Modules.PhxInspectors.Inspectors
 {
+	// #TODO Gemini.Modules.Inspector.Inspectors.ColorEditorView exists in 2025, did it not when I first wrote this code?
 	public partial class ColorEditorView : UserControl
 	{
 		private Color mOriginalColor;

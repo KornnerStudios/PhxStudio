@@ -73,7 +73,7 @@ namespace PhxStudio.Modules.Project
 
 			if (operation_exception == null)
 			{
-				mEventAggregator.PublishOnUIThread(new ProjectEnginePreloadedEventArgs(this.Engine));
+				mEventAggregator.PublishOnUIThreadAsync(new ProjectEnginePreloadedEventArgs(this.Engine));
 			}
 
 			return operation_exception;
@@ -85,7 +85,7 @@ namespace PhxStudio.Modules.Project
 
 			if (operation_exception == null)
 			{
-				mEventAggregator.PublishOnUIThread(new ProjectEngineLoadedEventArgs(this.Engine));
+				mEventAggregator.PublishOnUIThreadAsync(new ProjectEngineLoadedEventArgs(this.Engine));
 			}
 
 			return operation_exception;

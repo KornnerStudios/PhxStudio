@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using Gemini.Framework;
 
-using Xceed.Wpf.AvalonDock;
-using Xceed.Wpf.AvalonDock.Layout;
-using Xceed.Wpf.AvalonDock.Layout.Serialization;
+using /*Xceed.Wpf.*/AvalonDock;
+using /*Xceed.Wpf.*/AvalonDock.Layout;
+using /*Xceed.Wpf.*/AvalonDock.Layout.Serialization;
 
 namespace PhxStudio.Modules.Main
 {
@@ -81,8 +82,10 @@ namespace PhxStudio.Modules.Main
 						addToolCallback(tool);
 						tool.IsVisible = anchorable.IsVisible;
 
-						if (anchorable.IsActive)
-							tool.Activate();
+						//if (anchorable.IsActive)
+						//	tool.Activate();
+						if (anchorable.IsVisible)
+							tool.ActivateAsync(CancellationToken.None).Wait();
 
 						tool.IsSelected = e.Model.IsSelected;
 

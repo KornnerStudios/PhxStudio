@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:PhxStudio.Modules.PhxInspectors.Inspectors"
     xmlns:GeminiInspectorControls="clr-namespace:Gemini.Modules.Inspector.Controls;assembly=Gemini.Modules.Inspector"
-    xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:cal="http://www.caliburnproject.org"
     mc:Ignorable="d"
     >
@@ -16,10 +16,10 @@
             HorizontalAlignment="Left"
             Height="23" Width="70"
             StandardColorsHeader="Standard Colors"
-            StandardButtonHeader="Standard"
+
             RecentColorsHeader="Recent Colors"
             AvailableColorsHeader="Available Colors"
-            AdvancedButtonHeader="Advanced"
+
             cal:Message.Attach="[Event Closed] = [Action Closed]; [Event Opened] = [Action Opened]"
             />
         <GeminiInspectorControls:ScreenColorPicker x:Name="ScreenColorPicker"

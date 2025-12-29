@@ -127,7 +127,7 @@ namespace PhxStudio.Modules.Project
 			if (unload)
 			{
 				Engine = null;
-				eventAggregator.PublishOnUIThread(new ProjectEngineUnloadedEventArgs());
+				eventAggregator.PublishOnUIThreadAsync(new ProjectEngineUnloadedEventArgs());
 			}
 
 			if (reload || load)
@@ -137,7 +137,7 @@ namespace PhxStudio.Modules.Project
 					GameVersion == GameVersionType.Xbox360);
 
 				Engine = engine;
-				eventAggregator.PublishOnUIThread(new ProjectEngineCreatedEventArgs(Engine));
+				eventAggregator.PublishOnUIThreadAsync(new ProjectEngineCreatedEventArgs(Engine));
 			}
 		}
 

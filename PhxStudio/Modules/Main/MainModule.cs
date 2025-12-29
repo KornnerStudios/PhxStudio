@@ -53,11 +53,6 @@ namespace PhxStudio.Modules.Main
 			RestoreWindowLocation();
 		}
 
-		public override void PostInitialize()
-		{
-			base.PostInitialize();
-		}
-
 		private void StoreWindowLocation()
 		{
 			var settings = Properties.Settings.Default;

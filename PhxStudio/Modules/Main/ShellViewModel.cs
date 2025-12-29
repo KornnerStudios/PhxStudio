@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Windows;
+using System.Threading;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using Gemini.Framework.Services;
 
@@ -27,9 +28,13 @@ namespace PhxStudio.Modules.Main
 			set { this.SetFieldVal(ref mIsBusy, value); }
 		}
 
-		public override void CanClose(Action<bool> callback)
+		public override Task<bool> CanCloseAsync(CancellationToken cancellationToken)
 		{
-			Coroutine.BeginExecute(CanClose().GetEnumerator(), null, (s, e) => callback(!e.WasCancelled));
+			var tcs = new TaskCompletionSource<bool>();
+
+			Coroutine.BeginExecute(CanClose().GetEnumerator(), null, (s, e) => tcs.SetResult(!e.WasCancelled));
+
+			return tcs.Task;
 		}
 
 		private IEnumerable<IResult> CanClose()

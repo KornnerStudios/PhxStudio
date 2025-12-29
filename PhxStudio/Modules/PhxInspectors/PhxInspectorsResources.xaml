@@ -4,7 +4,7 @@
     xmlns:local="clr-namespace:PhxStudio.Modules.PhxInspectors"
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+    xmlns:xcad="clr-namespace:AvalonDock.Converters;assembly=AvalonDock"
     xmlns:GeminiInspectorControls="clr-namespace:Gemini.Modules.Inspector.Controls;assembly=Gemini.Modules.Inspector"
     xmlns:PhxInspectorControls="clr-namespace:PhxStudio.Modules.PhxInspectors.Controls"
     >

@@ -2,6 +2,7 @@
 
 namespace PhxStudio.Modules.PhxInspectors.Inspectors
 {
+	// #TODO Gemini.Modules.Inspector.Inspectors.ColorEditorView exists in 2025, did it not when I first wrote this code?
 	public sealed class ColorEditorViewModel
 		: SelectiveUndoEditorBase<Color>
 		, ILabelledInspector

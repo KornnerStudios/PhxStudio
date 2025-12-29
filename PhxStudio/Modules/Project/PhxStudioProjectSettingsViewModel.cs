@@ -111,9 +111,9 @@ namespace PhxStudio.Modules.Project
 			mProjectViewModel.Model.FinalDirectory = FinalDirectory;
 
 			if (workDirChanged)
-				mEventAggregator.PublishOnUIThread(new ProjectWorkDirectoryChangedEventArgs());
+				mEventAggregator.PublishOnUIThreadAsync(new ProjectWorkDirectoryChangedEventArgs());
 			if (finalDirChanged)
-				mEventAggregator.PublishOnUIThread(new ProjectFinalDirectoryChangedEventArgs());
+				mEventAggregator.PublishOnUIThreadAsync(new ProjectFinalDirectoryChangedEventArgs());
 		}
 
 		#region ISettingsEditor

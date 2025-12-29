@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Gemini.Framework;
@@ -56,7 +58,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 		public ProjectExplorerViewModel(IEventAggregator eventAggregator)
 		{
 			mEventAggregator = eventAggregator;
-			mEventAggregator.Subscribe(this);
+			mEventAggregator.SubscribeOnPublishedThread(this);
 
 			DisplayName = "Project Explorer";
 
@@ -70,7 +72,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 		{
 			base.OnActivate();
 
-			mEventAggregator.Subscribe(this);
+			mEventAggregator.SubscribeOnPublishedThread(this);
 		}
 
 		protected override void OnDeactivate(bool close)
@@ -113,11 +115,11 @@ namespace PhxStudio.Modules.ProjectExplorer
 		{
 			if (args.LeftButton == MouseButtonState.Pressed && args.ClickCount == 2)
 			{
-				Open(fileItem);
+				OpenAsync(fileItem);
 			}
 		}
 
-		private async void Open(FileItemViewModel file)
+		private async void OpenAsync(FileItemViewModel file)
 		{
 			// #TODO_PHXSTUDIO need to figure out how to support files that require an external viewer or such tool (eg, ddx until we support in-editor viewing)
 
@@ -136,7 +138,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 					editor, file.FilePath);
 
 				await editor.Open(vm, file.FilePath);
-				mShell.OpenDocument(vm);
+				await mShell.OpenDocumentAsync(vm);
 			}
 		}
 
@@ -146,10 +148,13 @@ namespace PhxStudio.Modules.ProjectExplorer
 			Open(work_dir);
 		}
 
-		void IHandle<ProjectOpeningEventArgs>.Handle(ProjectOpeningEventArgs message) => OpenCurrentProjectWorkDir();
+		Task IHandle<ProjectOpeningEventArgs>.HandleAsync(ProjectOpeningEventArgs message, CancellationToken cancellationToken)
+			=> Task.Run(OpenCurrentProjectWorkDir, cancellationToken);
 
-		void IHandle<ProjectClosingEventArgs>.Handle(ProjectClosingEventArgs message) => Close();
+		Task IHandle<ProjectClosingEventArgs>.HandleAsync(ProjectClosingEventArgs message, CancellationToken cancellationToken)
+			=> /*Close()*/TryCloseAsync();
 
-		void IHandle<ProjectWorkDirectoryChangedEventArgs>.Handle(ProjectWorkDirectoryChangedEventArgs message) => OpenCurrentProjectWorkDir();
+		Task IHandle<ProjectWorkDirectoryChangedEventArgs>.HandleAsync(ProjectWorkDirectoryChangedEventArgs message, CancellationToken cancellationToken)
+			=> Task.Run(OpenCurrentProjectWorkDir, cancellationToken);
 	};
 }
