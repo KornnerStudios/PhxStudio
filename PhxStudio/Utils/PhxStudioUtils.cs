@@ -40,7 +40,7 @@ namespace PhxStudio
 			, ref TEnum field, TEnum value
 			, bool overrideChecks = false
 			, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = "")
-			where TEnum : struct, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum, IComparable, IFormattable, IConvertible
 		{
 			if (obj == null)
 				return false;
