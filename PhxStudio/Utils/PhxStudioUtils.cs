@@ -40,13 +40,13 @@ namespace PhxStudio
 			, ref TEnum field, TEnum value
 			, bool overrideChecks = false
 			, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = "")
-			where TEnum : struct, Enum, IComparable, IFormattable, IConvertible
+			where TEnum : struct, Enum
 		{
 			if (obj == null)
 				return false;
 
 			if (!overrideChecks)
-				if (field.ToInt64(null) == value.ToInt64(null))
+				if (EqualityComparer<TEnum>.Default.Equals(field, value))
 					return false;
 
 			field = value;
