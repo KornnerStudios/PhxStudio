@@ -30,7 +30,7 @@ namespace PhxStudio.Modules.TraceList
 			var failMessage = new StringBuilder(message);
 			if (detailMessage != null)
 			{
-				failMessage.Append(" ");
+				failMessage.Append(' ');
 				failMessage.Append(detailMessage);
 			}
 

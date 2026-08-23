@@ -78,7 +78,7 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 				for (int x = 0; x < trace.FrameCount; x++)
 				{
 					if (x > 0)
-						sb.Append("\n");
+						sb.Append('\n');
 
 					if (trace.GetFrame(x) is not { } frame)
 						continue;
@@ -96,13 +96,13 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 					if (!string.IsNullOrEmpty(ns))
 					{
 						sb.Append(ns);
-						sb.Append(".");
+						sb.Append('.');
 					}
 
 					sb.Append(classType.Name);
-					sb.Append(":");
+					sb.Append(':');
 					sb.Append(mb.Name);
-					sb.Append("(");
+					sb.Append('(');
 
 					bool firstParam = true;
 					foreach (var param in mb.GetParameters())
@@ -115,7 +115,7 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 						sb.Append(param.ParameterType.Name);
 					}
 
-					sb.Append(")");
+					sb.Append(')');
 
 					string? path = frame.GetFileName();
 					if (path.IsNotNullOrEmpty())
@@ -136,10 +136,10 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 						int lineNum = frame.GetFileLineNumber();
 						if (lineNum > 0)
 						{
-							sb.Append(":");
+							sb.Append(':');
 							sb.Append(lineNum);
 						}
-						sb.Append(")");
+						sb.Append(')');
 					}
 				}
 
