@@ -19,14 +19,14 @@ namespace PhxStudio.Modules.Main
 		#region Imports
 #pragma warning disable 649
 
-		[Import] IStatusBar mStatusBar;
+		[Import] IStatusBar mStatusBar = null!;
 
 #pragma warning restore 649
 		#endregion
 
 		private IEventAggregator mEventAggregator;
 
-		public StatusBarItemViewModel AppStateStatusBarItem { get; private set; }
+		public StatusBarItemViewModel AppStateStatusBarItem { get; private set; } = null!;
 
 		[ImportingConstructor]
 		public MainModule(IEventAggregator eventAggregator)

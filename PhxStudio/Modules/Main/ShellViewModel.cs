@@ -45,7 +45,7 @@ namespace PhxStudio.Modules.Main
 		private class ConfirmQuitMessageBoxResult
 			: IResult
 		{
-			public event EventHandler<ResultCompletionEventArgs> Completed;
+			public event EventHandler<ResultCompletionEventArgs>? Completed;
 
 			public /*async*/ void Execute(CoroutineExecutionContext context)
 			{

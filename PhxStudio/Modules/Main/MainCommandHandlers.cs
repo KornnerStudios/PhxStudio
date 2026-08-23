@@ -43,9 +43,7 @@ namespace PhxStudio.Modules.Main.Commands
 
 			var dialog = new OpenFileDialog();
 
-			string filter = null;
-
-			filter = "All Supported Files|" + string.Join(";",
+			var filter = "All Supported Files|" + string.Join(";",
 				mEditorProviders
 					.SelectMany(x => x.FileTypes)
 					.Select(x => "*" + x.FileExtension)
@@ -60,35 +58,37 @@ namespace PhxStudio.Modules.Main.Commands
 
 			if (dialog.ShowDialog() == true)
 			{
-				await mShell.OpenDocumentAsync(await GetEditor(dialog.FileName));
+				var editor = await GetEditor(dialog.FileName);
+				if (editor is not null)
+					await mShell.OpenDocumentAsync(editor);
 			}
 		}
 
-		internal static Task<IDocument> GetEditor(string path)
+		internal static Task<IDocument?> GetEditor(string path)
 		{
 			var provider = IoC.GetAllInstances(typeof(IEditorProvider))
 				.Cast<IEditorProvider>()
 				.FirstOrDefault(p => p.Handles(path));
 			if (provider == null)
-				return null;
+				return Task.FromResult<IDocument?>(null);
 
 			var editor = provider.Create();
 
 			var viewAware = (IViewAware)editor;
 			viewAware.ViewAttached += (sender, e) =>
 			{
-				var frameworkElement = (FrameworkElement)e.View;
+				if (e.View is not FrameworkElement frameworkElement)
+					return;
 
-				RoutedEventHandler loadedHandler = null;
-				loadedHandler = async (sender2, e2) =>
+				async void LoadedHandler(object? sender2, RoutedEventArgs e2)
 				{
-					frameworkElement.Loaded -= loadedHandler;
+					frameworkElement.Loaded -= LoadedHandler;
 					await provider.Open(editor, path);
-				};
-				frameworkElement.Loaded += loadedHandler;
+				}
+				frameworkElement.Loaded += LoadedHandler;
 			};
 
-			return Task.FromResult(editor);
+			return Task.FromResult<IDocument?>(editor);
 		}
 	};
 }

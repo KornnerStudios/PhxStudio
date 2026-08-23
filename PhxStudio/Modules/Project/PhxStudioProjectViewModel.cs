@@ -15,9 +15,9 @@ namespace PhxStudio.Modules.Project
 			private set { this.SetField(ref mModel, value); }
 		}
 
-		internal Exception CreateNewInternal()
+		internal Exception? CreateNewInternal()
 		{
-			Exception caught_exception = null;
+			Exception? caught_exception = null;
 
 			var new_project_model = new PhxStudioProject();
 			this.Model = new_project_model;
@@ -25,9 +25,9 @@ namespace PhxStudio.Modules.Project
 			return caught_exception;
 		}
 
-		internal Exception OpenInternal(string path)
+		internal Exception? OpenInternal(string path)
 		{
-			Exception caught_exception = null;
+			Exception? caught_exception = null;
 			try
 			{
 				var opened_project_model = new PhxStudioProject();
@@ -46,9 +46,9 @@ namespace PhxStudio.Modules.Project
 			return caught_exception;
 		}
 
-		internal Exception SaveInternal(string path = null)
+		internal Exception? SaveInternal(string? path = null)
 		{
-			Exception caught_exception = null;
+			Exception? caught_exception = null;
 			try
 			{
 				if (path == null)
@@ -73,7 +73,7 @@ namespace PhxStudio.Modules.Project
 			return caught_exception;
 		}
 
-		internal Exception PreloadEngineInternal()
+		internal Exception? PreloadEngineInternal()
 		{
 			if (Model == null)
 			{
@@ -84,7 +84,7 @@ namespace PhxStudio.Modules.Project
 				return new InvalidOperationException("No Model.Engine is loaded");
 			}
 
-			Exception caught_exception = null;
+			Exception? caught_exception = null;
 			try
 			{
 				var engine = Model.Engine;
@@ -102,7 +102,7 @@ namespace PhxStudio.Modules.Project
 			return caught_exception;
 		}
 
-		internal Exception LoadEngineInternal()
+		internal Exception? LoadEngineInternal()
 		{
 			if (Model == null)
 			{
@@ -113,7 +113,7 @@ namespace PhxStudio.Modules.Project
 				return new InvalidOperationException("No Model.Engine is loaded");
 			}
 
-			Exception caught_exception = null;
+			Exception? caught_exception = null;
 			try
 			{
 				var engine = Model.Engine;

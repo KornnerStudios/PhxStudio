@@ -23,7 +23,7 @@ namespace PhxStudio.Modules.TraceList
 		#region Imports
 #pragma warning disable 649
 
-		[Import] IInspectorTool mInspectorTool;
+		[Import] IInspectorTool? mInspectorTool;
 
 #pragma warning restore 649
 		#endregion
@@ -253,13 +253,13 @@ namespace PhxStudio.Modules.TraceList
 			mItems.CollectionChanged += OnItemsCollectionChanged;
 		}
 
-		private void OnItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		private void OnItemsCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 			NotifyOfPropertyChange(nameof(FilteredItems));
 		}
 
-		public void AddItem(TraceListItemType type, long timeStamp, string sourceName, string message
-			, object[] data = null, System.Action onClick = null)
+		public void AddItem(TraceListItemType type, long timeStamp, string? sourceName, string? message
+			, object?[]? data = null, System.Action? onClick = null)
 		{
 			if (PauseTracing)
 			{
@@ -292,7 +292,7 @@ namespace PhxStudio.Modules.TraceList
 				TimeStamp = timeStamp,
 				SourceName = sourceName,
 				Message = message,
-				Data = data,
+				Data = data ?? KSoft.Util.EmptyArray,
 				OnClick = onClick,
 			};
 
@@ -302,7 +302,7 @@ namespace PhxStudio.Modules.TraceList
 
 		public void ClearAll() => Items.Clear();
 
-		public void OnSelectedItemChanged(TraceListItem selectedItem)
+		public void OnSelectedItemChanged(TraceListItem? selectedItem)
 		{
 			if (mInspectorTool == null)
 				return;

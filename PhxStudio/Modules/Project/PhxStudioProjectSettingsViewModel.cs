@@ -20,7 +20,7 @@ namespace PhxStudio.Modules.Project
 		private PhxStudioProjectViewModel mProjectViewModel;
 
 		#region ProjectName
-		string mProjectName;
+		string mProjectName = string.Empty;
 		public string ProjectName
 		{
 			get { return mProjectName; }
@@ -46,39 +46,31 @@ namespace PhxStudio.Modules.Project
 		#endregion
 
 		#region WorkDirectory
-		string mWorkDirectory;
-		public string WorkDirectory
+		string? mWorkDirectory;
+		public string? WorkDirectory
 		{
 			get { return mWorkDirectory; }
-			set { this.SetFieldObj(ref mWorkDirectory, value); }
+			set { this.SetField(ref mWorkDirectory, value); }
 		}
 		#endregion
 
 		#region FinalDirectory
-		string mFinalDirectory;
-		public string FinalDirectory
+		string? mFinalDirectory;
+		public string? FinalDirectory
 		{
 			get { return mFinalDirectory; }
-			set { this.SetFieldObj(ref mFinalDirectory, value); }
+			set { this.SetField(ref mFinalDirectory, value); }
 		}
 		#endregion
 
 		#region RevertSettingsCommand
-		ICommand mRevertSettingsCommand;
-		public ICommand RevertSettingsCommand { get {
-			if (mRevertSettingsCommand == null)
-				mRevertSettingsCommand = new RelayCommand(_ => RevertSettings());
-			return mRevertSettingsCommand;
-		} }
+		ICommand? mRevertSettingsCommand;
+		public ICommand RevertSettingsCommand => mRevertSettingsCommand ??= new RelayCommand(_ => RevertSettings());
 		#endregion
 
 		#region SaveSettingsCommand
-		ICommand mSaveSettingsCommand;
-		public ICommand SaveSettingsCommand { get {
-			if (mSaveSettingsCommand == null)
-				mSaveSettingsCommand = new RelayCommand(_ => SaveSettings());
-			return mSaveSettingsCommand;
-		} }
+		ICommand? mSaveSettingsCommand;
+		public ICommand SaveSettingsCommand => mSaveSettingsCommand ??= new RelayCommand(_ => SaveSettings());
 		#endregion
 
 		[ImportingConstructor]

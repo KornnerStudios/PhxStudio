@@ -25,7 +25,7 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 		, IEditor
 		, IDisposable
 	{
-		private BoundPropertyDescriptor mBoundPropertyDescriptor;
+		private BoundPropertyDescriptor mBoundPropertyDescriptor = null!;
 		protected IShell mShell;
 
 		public EditorBase()
@@ -40,9 +40,9 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 
 		public bool IsUndoEnabled { get; set; }
 
-		public IValueConverter Converter { get; set; }
+		public IValueConverter? Converter { get; set; }
 
-		public IValueConverter StringConverter { get; set; }
+		public IValueConverter? StringConverter { get; set; }
 
 		public bool CanReset { get {
 			if (IsReadOnly)
@@ -128,14 +128,14 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 			NotifyOfPropertyChange(nameof(IsDirty));
 		}
 
-		private void OnValueChanged(object sender, EventArgs e)
+		private void OnValueChanged(object? sender, EventArgs e)
 		{
 			OnValueChanged();
 		}
 
-		private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName.Equals(BoundPropertyDescriptor.PropertyDescriptor.Name))
+			if (string.Equals(e.PropertyName, BoundPropertyDescriptor.PropertyDescriptor.Name, StringComparison.Ordinal))
 				OnValueChanged();
 		}
 
@@ -151,7 +151,7 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 					return (TValue)Converter.Convert(RawValue, typeof(TValue), null, CultureInfo.CurrentCulture);
 				}
 
-				return (TValue)RawValue;
+				return (TValue)RawValue!;
 			}
 
 			set
@@ -159,7 +159,7 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 				if (Equals(Value, value))
 					return;
 
-				object newValue = value;
+				object? newValue = value;
 				if (!typeof(TValue).IsAssignableFrom(BoundPropertyDescriptor.PropertyDescriptor.PropertyType))
 				{
 					if (Converter == null)
@@ -193,7 +193,7 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 			}
 		}
 
-		protected object RawValue
+		protected object? RawValue
 		{
 			get { return BoundPropertyDescriptor.Value; }
 			set { BoundPropertyDescriptor.Value = value; }
@@ -216,7 +216,7 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 		: EditorBase<TValue>
 		, IDisposable
 	{
-		private object mOriginalValue = null;
+		private object? mOriginalValue = null;
 
 		protected void OnBeginEdit()
 		{

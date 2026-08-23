@@ -10,26 +10,26 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 		: IUndoableAction
 	{
 		private readonly BoundPropertyDescriptor mBoundPropertyDescriptor;
-		private readonly object mOriginalValue;
-		private readonly object mNewValue;
-		private readonly IValueConverter mStringConverter;
+		private readonly object? mOriginalValue;
+		private readonly object? mNewValue;
+		private readonly IValueConverter? mStringConverter;
 
 		public string Name
 		{
 			get
 			{
-				string origText;
-				string newText;
+				string? origText;
+				string? newText;
 
 				if (mStringConverter != null)
 				{
-					origText = (string)mStringConverter.Convert(mOriginalValue, typeof(string), null, CultureInfo.CurrentUICulture);
-					newText = (string)mStringConverter.Convert(mNewValue, typeof(string), null, CultureInfo.CurrentUICulture);
+					origText = (string?)mStringConverter.Convert(mOriginalValue, typeof(string), null, CultureInfo.CurrentUICulture);
+					newText = (string?)mStringConverter.Convert(mNewValue, typeof(string), null, CultureInfo.CurrentUICulture);
 				}
 				else
 				{
-					origText = mOriginalValue.ToString();
-					newText = mNewValue.ToString();
+					origText = mOriginalValue?.ToString();
+					newText = mNewValue?.ToString();
 				}
 
 				return string.Format("Change {0} from {1} to {2}",
@@ -39,11 +39,11 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 			}
 		}
 
-		public ChangeObjectValueAction(BoundPropertyDescriptor boundPropertyDescriptor, object newValue, IValueConverter stringConverter) :
+		public ChangeObjectValueAction(BoundPropertyDescriptor boundPropertyDescriptor, object? newValue, IValueConverter? stringConverter) :
 			this(boundPropertyDescriptor, boundPropertyDescriptor.Value, newValue, stringConverter)
 		{ }
 
-		public ChangeObjectValueAction(BoundPropertyDescriptor boundPropertyDescriptor, object originalValue, object newValue, IValueConverter stringConverter)
+		public ChangeObjectValueAction(BoundPropertyDescriptor boundPropertyDescriptor, object? originalValue, object? newValue, IValueConverter? stringConverter)
 		{
 			mBoundPropertyDescriptor = boundPropertyDescriptor;
 			mOriginalValue = originalValue;

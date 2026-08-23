@@ -7,13 +7,13 @@ namespace PhxStudio.Modules.Project
 		: INotifyPropertyChangedEx
 	{
 		PhxStudioProjectViewModel CurrentProject { get; }
-		string CurrentProjectFilePath { get; }
-		KSoft.Phoenix.Engine.PhxEngine Engine { get; }
+		string? CurrentProjectFilePath { get; }
+		KSoft.Phoenix.Engine.PhxEngine? Engine { get; }
 
-		Exception CreateNew();
-		Exception Open(string path);
-		Exception Save(string path = null);
-		Exception PreloadEngine();
-		Exception LoadEngine();
+		Exception? CreateNew();
+		Exception? Open(string path);
+		Exception? Save(string? path = null);
+		Exception? PreloadEngine();
+		Exception? LoadEngine();
 	};
 }

@@ -8,31 +8,31 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 		: PropertyChangedBase
 		, ITreeViewItem
 	{
-		string mFilePath;
+		string mFilePath = string.Empty;
 		public string FilePath
 		{
 			get { return mFilePath; }
 			private set { this.SetFieldObj(ref mFilePath, value, overrideChecks: true); }
 		}
 
-		string mFileName;
+		string mFileName = string.Empty;
 		public string FileName
 		{
 			get { return mFileName; }
 			private set { this.SetFieldObj(ref mFileName, value, overrideChecks: true); }
 		}
 
-		string mFileExtension;
-		public string FileExtension
+		string? mFileExtension;
+		public string? FileExtension
 		{
 			get { return mFileExtension; }
-			private set { this.SetFieldObj(ref mFileExtension, value, overrideChecks: true); }
+			private set { this.SetField(ref mFileExtension, value, overrideChecks: true); }
 		}
 
-		public string FileNameAndExtension { get; private set; }
+		public string FileNameAndExtension { get; private set; } = string.Empty;
 
-		object mUserData;
-		public object UserData
+		object? mUserData;
+		public object? UserData
 		{
 			get { return mUserData; }
 			set { this.SetField(ref mUserData, value); }

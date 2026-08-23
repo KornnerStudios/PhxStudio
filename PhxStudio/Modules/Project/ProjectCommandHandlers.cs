@@ -17,8 +17,8 @@ namespace PhxStudio.Modules.Project.Commands
 		: CommandHandlerBase<FileNewProjectCommandDefinition>
 	{
 #pragma warning disable 649
-		[Import] IEventAggregator mEventAggregator;
-		[Import] IProjectService mProjectService;
+		[Import] IEventAggregator mEventAggregator = null!;
+		[Import] IProjectService mProjectService = null!;
 #pragma warning restore 649
 
 		[Export]
@@ -51,8 +51,8 @@ namespace PhxStudio.Modules.Project.Commands
 		: CommandHandlerBase<FileOpenProjectCommandDefinition>
 	{
 #pragma warning disable 649
-		[Import] IEventAggregator mEventAggregator;
-		[Import] IProjectService mProjectService;
+		[Import] IEventAggregator mEventAggregator = null!;
+		[Import] IProjectService mProjectService = null!;
 #pragma warning restore 649
 
 		[Export]
@@ -84,9 +84,9 @@ namespace PhxStudio.Modules.Project.Commands
 			await mEventAggregator.PublishOnUIThreadAsync(new ProjectOpeningEventArgs());
 		}
 
-		private Exception OpenProjectCallback(object state)
+		private Exception? OpenProjectCallback(object? state)
 		{
-			var file_name = (string)state;
+			var file_name = (string)state!;
 			return mProjectService.Open(file_name);
 		}
 	};
@@ -96,8 +96,8 @@ namespace PhxStudio.Modules.Project.Commands
 		: CommandHandlerBase<FileSaveProjectCommandDefinition>
 	{
 #pragma warning disable 649
-		[Import] IEventAggregator mEventAggregator;
-		[Import] IProjectService mProjectService;
+		[Import] IEventAggregator mEventAggregator = null!;
+		[Import] IProjectService mProjectService = null!;
 #pragma warning restore 649
 
 		[ImportingConstructor]
@@ -119,9 +119,9 @@ namespace PhxStudio.Modules.Project.Commands
 				return;
 		}
 
-		private static Exception SaveProjectCallback(object state)
+		private static Exception? SaveProjectCallback(object? state)
 		{
-			var service = (IProjectService)state;
+			var service = (IProjectService)state!;
 			return service.Save();
 		}
 
@@ -138,8 +138,8 @@ namespace PhxStudio.Modules.Project.Commands
 		: CommandHandlerBase<FileSaveProjectAsCommandDefinition>
 	{
 #pragma warning disable 649
-		[Import] IEventAggregator mEventAggregator;
-		[Import] IProjectService mProjectService;
+		[Import] IEventAggregator mEventAggregator = null!;
+		[Import] IProjectService mProjectService = null!;
 #pragma warning restore 649
 
 		[ImportingConstructor]
@@ -167,9 +167,9 @@ namespace PhxStudio.Modules.Project.Commands
 				return;
 		}
 
-		private Exception SaveProjectAsCallback(object state)
+		private Exception? SaveProjectAsCallback(object? state)
 		{
-			var file_name = (string)state;
+			var file_name = (string)state!;
 			return mProjectService.Save(file_name);
 		}
 	};
@@ -179,8 +179,8 @@ namespace PhxStudio.Modules.Project.Commands
 		: CommandHandlerBase<ProjectLoadCommandDefinition>
 	{
 #pragma warning disable 649
-		[Import] IProjectService mProjectService;
-		[Import] TraceList.ITraceList mTraceList;
+		[Import] IProjectService mProjectService = null!;
+		[Import] TraceList.ITraceList mTraceList = null!;
 #pragma warning restore 649
 
 		public override async Task Run(Command command)
@@ -188,8 +188,8 @@ namespace PhxStudio.Modules.Project.Commands
 			int trace_count_for_preload = KSoft.TypeExtensions.kNone;
 			int trace_count_for_load = KSoft.TypeExtensions.kNone;
 
-			Exception preload_task_result = null;
-			Exception load_task_result = null;
+			Exception? preload_task_result = null;
+			Exception? load_task_result = null;
 
 			var shell = IoC.Get<Main.IPhxShell>();
 			shell.IsBusy = true;
@@ -316,7 +316,7 @@ namespace PhxStudio.Modules.Project.Commands
 		: CommandHandlerBase<ProjectEnginePreloadCommandDefinition>
 	{
 #pragma warning disable 649
-		[Import] IProjectService mProjectService;
+		[Import] IProjectService mProjectService = null!;
 #pragma warning restore 649
 
 		public override async Task Run(Command command)
@@ -330,9 +330,9 @@ namespace PhxStudio.Modules.Project.Commands
 				return;
 		}
 
-		public static Exception PreloadEngineCallback(object state)
+		public static Exception? PreloadEngineCallback(object? state)
 		{
-			var service = (IProjectService)state;
+			var service = (IProjectService)state!;
 			return service.PreloadEngine();
 		}
 
@@ -351,7 +351,7 @@ namespace PhxStudio.Modules.Project.Commands
 		: CommandHandlerBase<ProjectEngineLoadCommandDefinition>
 	{
 #pragma warning disable 649
-		[Import] IProjectService mProjectService;
+		[Import] IProjectService mProjectService = null!;
 #pragma warning restore 649
 
 		public override async Task Run(Command command)
@@ -365,9 +365,9 @@ namespace PhxStudio.Modules.Project.Commands
 				return;
 		}
 
-		public static Exception LoadEngineCallback(object state)
+		public static Exception? LoadEngineCallback(object? state)
 		{
-			var service = (IProjectService)state;
+			var service = (IProjectService)state!;
 			return service.LoadEngine();
 		}
 

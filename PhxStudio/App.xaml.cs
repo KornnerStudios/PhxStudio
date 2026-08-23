@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace PhxStudio
 		}
 
 		internal static Modules.Project.PhxStudioProjectViewModel CurrentProjectViewModel { get {
-			return (Modules.Project.PhxStudioProjectViewModel)Application.Current.FindResource("CurrentProjectViewModel");
+			return (Modules.Project.PhxStudioProjectViewModel)Application.Current.FindResource("CurrentProjectViewModel")!;
 		} }
 
 		protected override void OnStartup(StartupEventArgs e)
@@ -67,7 +68,7 @@ namespace PhxStudio
 		}
 
 		#region AppIconBitmap
-		static RenderTargetBitmap gAppIconBitmap;
+		static RenderTargetBitmap gAppIconBitmap = null!;
 		public static RenderTargetBitmap AppIconBitmap { get {
 			// I used to have this setup in OnActivated, but that is called every time the app is put in the foreground.
 			// Initializing it in OnStartup or OnLoaded is too late.
@@ -78,6 +79,7 @@ namespace PhxStudio
 			return gAppIconBitmap;
 		} }
 
+		[MemberNotNull(nameof(gAppIconBitmap))]
 		private static void RenderAppIconBitmap()
 		{
 			var grid = (Grid)Application.Current.FindResource("PhxLogoGrid");
@@ -92,10 +94,10 @@ namespace PhxStudio
 
 			var viewbox_ps = PresentationSource.FromVisual(viewbox);
 			double dpiX = 96.0, dpiY = 96.0;
-			if (viewbox_ps != null)
+			if (viewbox_ps?.CompositionTarget is { } compositionTarget)
 			{
-				dpiX *= viewbox_ps.CompositionTarget.TransformToDevice.M11;
-				dpiY *= viewbox_ps.CompositionTarget.TransformToDevice.M22;
+				dpiX *= compositionTarget.TransformToDevice.M11;
+				dpiY *= compositionTarget.TransformToDevice.M22;
 			}
 
 			gAppIconBitmap = new RenderTargetBitmap((int)viewbox.ActualWidth, (int)viewbox.ActualHeight, dpiX, dpiY, PixelFormats.Pbgra32);

@@ -4,7 +4,7 @@ namespace PhxStudio.Modules.PhxInspectors
 {
 	public partial class PhxInspectorView : UserControl
 	{
-		public PhxInspectorViewModel ViewModel
+		public PhxInspectorViewModel? ViewModel
 		{
 			get { return DataContext as PhxInspectorViewModel; }
 		}

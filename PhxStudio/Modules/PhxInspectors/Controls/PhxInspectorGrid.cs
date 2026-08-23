@@ -5,8 +5,8 @@ namespace PhxStudio.Modules.PhxInspectors.Controls
 {
 	public static class PhxInspectorGrid
 	{
-		public static event EventHandler PropertyNameColumnWidthChanged;
-		public static event EventHandler PropertyValueColumnWidthChanged;
+		public static event EventHandler? PropertyNameColumnWidthChanged;
+		public static event EventHandler? PropertyValueColumnWidthChanged;
 
 		private static GridLength gPropertyNameColumnWidth = new GridLength(1, GridUnitType.Star);
 		public static GridLength PropertyNameColumnWidth

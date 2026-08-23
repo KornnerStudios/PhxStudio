@@ -11,20 +11,20 @@ namespace PhxStudio.Modules.Project
 		, IProjectService
 	{
 #pragma warning disable 649
-		[Import] IEventAggregator mEventAggregator;
+		[Import] IEventAggregator mEventAggregator = null!;
 #pragma warning restore 649
 
 		public PhxStudioProjectViewModel CurrentProject => App.CurrentProjectViewModel;
 
-		public KSoft.Phoenix.Engine.PhxEngine Engine => CurrentProject.Model.Engine;
+		public KSoft.Phoenix.Engine.PhxEngine? Engine => CurrentProject.Model.Engine;
 
-		string mCurrentProjectFilePath;
-		public string CurrentProjectFilePath
+		string? mCurrentProjectFilePath;
+		public string? CurrentProjectFilePath
 		{
 			get { return mCurrentProjectFilePath; }
 			set
 			{
-				if (this.SetFieldObj(ref mCurrentProjectFilePath, value))
+				if (this.SetField(ref mCurrentProjectFilePath, value))
 				{
 					if (mCurrentProjectFilePath != null && CurrentProject != null)
 					{
@@ -34,7 +34,7 @@ namespace PhxStudio.Modules.Project
 			}
 		}
 
-		public Exception CreateNew()
+		public Exception? CreateNew()
 		{
 			var operation_exception = CurrentProject.CreateNewInternal();
 			if (operation_exception != null)
@@ -45,7 +45,7 @@ namespace PhxStudio.Modules.Project
 			return operation_exception;
 		}
 
-		public Exception Open(string path)
+		public Exception? Open(string path)
 		{
 			var operation_exception = CurrentProject.OpenInternal(path);
 			if (operation_exception != null)
@@ -56,7 +56,7 @@ namespace PhxStudio.Modules.Project
 			return operation_exception;
 		}
 
-		public Exception Save(string path)
+		public Exception? Save(string? path)
 		{
 			var operation_exception = CurrentProject.SaveInternal(path);
 			if (operation_exception != null)
@@ -67,25 +67,25 @@ namespace PhxStudio.Modules.Project
 			return operation_exception;
 		}
 
-		public Exception PreloadEngine()
+		public Exception? PreloadEngine()
 		{
 			var operation_exception = CurrentProject.PreloadEngineInternal();
 
 			if (operation_exception == null)
 			{
-				mEventAggregator.PublishOnUIThreadAsync(new ProjectEnginePreloadedEventArgs(this.Engine));
+				mEventAggregator.PublishOnUIThreadAsync(new ProjectEnginePreloadedEventArgs(this.Engine!));
 			}
 
 			return operation_exception;
 		}
 
-		public Exception LoadEngine()
+		public Exception? LoadEngine()
 		{
 			var operation_exception = CurrentProject.LoadEngineInternal();
 
 			if (operation_exception == null)
 			{
-				mEventAggregator.PublishOnUIThreadAsync(new ProjectEngineLoadedEventArgs(this.Engine));
+				mEventAggregator.PublishOnUIThreadAsync(new ProjectEngineLoadedEventArgs(this.Engine!));
 			}
 
 			return operation_exception;

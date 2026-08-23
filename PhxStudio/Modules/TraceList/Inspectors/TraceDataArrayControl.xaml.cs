@@ -14,9 +14,9 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 	{
 		public sealed class DataElementModel
 		{
-			public DataElementModel Parent { get; set; }
-			public string Level { get; set; }
-			public string Value { get; set; }
+			public DataElementModel? Parent { get; set; }
+			public string Level { get; set; } = string.Empty;
+			public string? Value { get; set; }
 
 			public static void Populate(ObservableCollection<DataElementModel> collection, object[] source)
 			{
@@ -80,18 +80,19 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 					if (x > 0)
 						sb.Append("\n");
 
-					var frame = trace.GetFrame(x);
+					if (trace.GetFrame(x) is not { } frame)
+						continue;
 
 					var mb = frame.GetMethod();
 					if (mb == null)
 						continue;
 
-					Type classType = mb.DeclaringType;
+					Type? classType = mb.DeclaringType;
 					if (classType == null)
 						continue;
 
 					// Add namespace.classname:MethodName
-					string ns = classType.Namespace;
+					string? ns = classType.Namespace;
 					if (!string.IsNullOrEmpty(ns))
 					{
 						sb.Append(ns);
@@ -116,7 +117,7 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 
 					sb.Append(")");
 
-					string path = frame.GetFileName();
+					string? path = frame.GetFileName();
 					if (path.IsNotNullOrEmpty())
 					{
 						// Unify path names to unix style
@@ -158,9 +159,9 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 		#endregion
 
 		#region DataArray
-		public object[] DataArray
+		public object[]? DataArray
 		{
-			get { return (object[])GetValue(DataArrayProperty); }
+			get { return (object[]?)GetValue(DataArrayProperty); }
 			set { SetValue(DataArrayProperty, value); }
 		}
 		public static readonly DependencyProperty DataArrayProperty = DependencyProperty.Register(
@@ -176,10 +177,10 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 		private static void OnDataArrayPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var ctrl = (TraceDataArrayControl)d;
-			var source = (object[])e.NewValue;
+			var source = (object[]?)e.NewValue;
 
 			ctrl.DataElements.Clear();
-			if (!source.IsNullOrEmpty())
+			if (source is { Length: > 0 })
 			{
 				DataElementModel.Populate(ctrl.DataElements, source);
 			}

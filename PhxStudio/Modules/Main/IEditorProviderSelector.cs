@@ -6,7 +6,7 @@ namespace PhxStudio.Modules.Main
 {
 	public interface IEditorProviderSelector
 	{
-		IEditorProvider GetEditor(string path, string pathName = null, string pathExtension = null);
+		IEditorProvider? GetEditor(string path, string? pathName = null, string? pathExtension = null);
 	};
 
 	[Export(typeof(IEditorProviderSelector))]
@@ -22,7 +22,7 @@ namespace PhxStudio.Modules.Main
 			_editors = editors;
 		}
 
-		public IEditorProvider GetEditor(string path, string pathName = null, string pathExtension = null)
+		public IEditorProvider? GetEditor(string path, string? pathName = null, string? pathExtension = null)
 		{
 			return _editors.FirstOrDefault(e => e.Handles(path));
 		}

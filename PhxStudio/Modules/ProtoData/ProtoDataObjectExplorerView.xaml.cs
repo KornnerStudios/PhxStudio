@@ -10,9 +10,9 @@ namespace PhxStudio.Modules.ProtoData
 	/// </summary>
 	public partial class ProtoDataObjectExplorerView : UserControl
 	{
-		private ProtoDataObjectExplorerViewModel ViewModel => DataContext as ProtoDataObjectExplorerViewModel;
+		private ProtoDataObjectExplorerViewModel? ViewModel => DataContext as ProtoDataObjectExplorerViewModel;
 
-		private ICollectionView SourceObjectDatabaseCollectionView { get {
+		private ICollectionView? SourceObjectDatabaseCollectionView { get {
 			if (SourceObjectDatabaseCollectionListView.ItemsSource == null)
 				return null;
 
@@ -42,15 +42,15 @@ namespace PhxStudio.Modules.ProtoData
 			}
 		}
 
-		private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+		private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == nameof(ProtoDataObjectLookupViewModel.SourceObjectDatabaseCollection))
 			{
 				var vm = ViewModel;
-				if (vm.LookupViewModel.SourceObjectDatabaseCollection != null)
+				if (vm?.LookupViewModel.SourceObjectDatabaseCollection is not null)
 				{
 					var view = SourceObjectDatabaseCollectionView;
-					if (view != null)
+					if (view is not null)
 					{
 						view.Filter = vm.LookupViewModel.IsSourceObjectDatabaseCollectionItemFiltered;
 					}
@@ -73,7 +73,7 @@ namespace PhxStudio.Modules.ProtoData
 	class SourceObjectDatabaseCollectionListViewDataTemplateSelector
 		: DataTemplateSelector
 	{
-		private DataTemplate
+		private DataTemplate?
 			IDatabaseIdObjectDataTemplate,
 			IListAutoIdObjectDataTemplate,
 			StringDataTemplate
@@ -81,7 +81,7 @@ namespace PhxStudio.Modules.ProtoData
 
 		public override DataTemplate SelectTemplate(object item, DependencyObject container)
 		{
-			var element = container as FrameworkElement;
+			var element = (FrameworkElement)container;
 
 			if (item is KSoft.Phoenix.Phx.IDatabaseIdObject
 				// #NOTE_PHXSTUDIO the DBID in techs is not used by the engine
@@ -91,24 +91,24 @@ namespace PhxStudio.Modules.ProtoData
 				if (IDatabaseIdObjectDataTemplate == null)
 					IDatabaseIdObjectDataTemplate = element.FindResource("IDatabaseIdObjectDataTemplate") as DataTemplate;
 
-				return IDatabaseIdObjectDataTemplate;
+				return IDatabaseIdObjectDataTemplate!;
 			}
 			else if (item is KSoft.Collections.IListAutoIdObject)
 			{
 				if (IListAutoIdObjectDataTemplate == null)
 					IListAutoIdObjectDataTemplate = element.FindResource("IListAutoIdObjectDataTemplate") as DataTemplate;
 
-				return IListAutoIdObjectDataTemplate;
+				return IListAutoIdObjectDataTemplate!;
 			}
 			else if (item is string)
 			{
 				if (StringDataTemplate == null)
 					StringDataTemplate = element.FindResource("StringDataTemplate") as DataTemplate;
 
-				return StringDataTemplate;
+				return StringDataTemplate!;
 			}
 
-			return null;
+			return null!;
 		}
 	};
 }

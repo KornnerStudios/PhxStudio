@@ -23,7 +23,7 @@ namespace PhxStudio.Modules.ProtoData
 		#region Imports
 #pragma warning disable 649
 
-		[Import] IShell mShell;
+		[Import] IShell mShell = null!;
 
 #pragma warning restore 649
 
@@ -34,7 +34,7 @@ namespace PhxStudio.Modules.ProtoData
 
 		public override double PreferredWidth => 150;
 
-		public ProtoDataObjectLookupViewModel LookupViewModel { get; protected set; }
+		public ProtoDataObjectLookupViewModel LookupViewModel { get; protected set; } = null!;
 
 		public void OnMouseDown(object source, KSoft.Collections.IListAutoIdObject obj, MouseButtonEventArgs args)
 		{
@@ -54,8 +54,8 @@ namespace PhxStudio.Modules.ProtoData
 		where TCommandDefinition : CommandDefinition
 	{
 #pragma warning disable 649
-		[Import] IShell mShell;
-		[Import] Project.IProjectService mProjectService;
+		[Import] IShell mShell = null!;
+		[Import] Project.IProjectService mProjectService = null!;
 #pragma warning restore 649
 
 		protected IShell Shell => mShell;

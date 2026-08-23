@@ -10,15 +10,15 @@ namespace PhxStudio.Modules.ProtoData
 		#region Imports
 #pragma warning disable 649
 
-		[Import] TExplorer mExplorer;
+		[Import] TExplorer mExplorer = null!;
 
 #pragma warning restore 649
 
 		protected TExplorer Explorer { get { return mExplorer; } }
 		#endregion
 
-		TProto mProto;
-		public TProto Proto
+		TProto? mProto;
+		public TProto? Proto
 		{
 			get { return mProto; }
 			set
@@ -31,16 +31,19 @@ namespace PhxStudio.Modules.ProtoData
 			}
 		}
 
+		protected TProto RequiredProto => Proto ?? throw new System.InvalidOperationException("A proto object must be selected before building its inspector.");
+
 		protected virtual void OnProtoChanged()
 		{
-			if (Proto == null)
+			var proto = Proto;
+			if (proto is null)
 			{
 				DisplayName = string.Format("Null.{0}",
 					typeof(TProto).Name);
 			}
 			else
 			{
-				DisplayName = Proto.Data;
+				DisplayName = proto.Data;
 
 				var builder = new PhxInspectors.InspectablePhxObjectBuilder();
 				BuildProtoInspector(builder);
@@ -56,7 +59,7 @@ namespace PhxStudio.Modules.ProtoData
 		}
 
 		protected void BuildInspector(PhxInspectors.InspectablePhxObjectBuilder builder
-			, KSoft.Phoenix.Phx.DatabaseObjectUserInterfaceTextData data)
+			, KSoft.Phoenix.Phx.DatabaseObjectUserInterfaceTextData? data)
 		{
 			if (data == null)
 				return;

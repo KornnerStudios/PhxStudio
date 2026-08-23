@@ -17,11 +17,11 @@ namespace PhxStudio.Modules.ProtoData
 
 		int SourceObjectDatabaseKindId { get; }
 
-		KSoft.Phoenix.Phx.ProtoDataObjectDatabase SourceObjectDatabase { get; }
+		KSoft.Phoenix.Phx.ProtoDataObjectDatabase? SourceObjectDatabase { get; }
 
-		object SourceObjectDatabaseCollection { get; }
-		string SourceObjectDatabaseCollectionFilter { get; }
-		ObservableCollection<string> SourceObjectDatabaseUndefinedMembers { get; }
+		object? SourceObjectDatabaseCollection { get; }
+		string? SourceObjectDatabaseCollectionFilter { get; }
+		ObservableCollection<string>? SourceObjectDatabaseUndefinedMembers { get; }
 		bool HasSourceObjectDatabaseUndefinedMembers { get; }
 	};
 
@@ -35,7 +35,7 @@ namespace PhxStudio.Modules.ProtoData
 		#region Imports
 #pragma warning disable 649
 
-		[Import] IShell mShell;
+		[Import] IShell mShell = null!;
 		IEventAggregator mEventAggregator;
 
 #pragma warning restore 649
@@ -43,7 +43,7 @@ namespace PhxStudio.Modules.ProtoData
 		protected IShell Shell { get { return mShell; } }
 		#endregion
 
-		KSoft.Phoenix.Phx.ProtoDataObjectSource mObjectSource;
+		KSoft.Phoenix.Phx.ProtoDataObjectSource mObjectSource = null!;
 		public KSoft.Phoenix.Phx.ProtoDataObjectSource ObjectSource
 		{
 			get { return mObjectSource; }
@@ -52,8 +52,8 @@ namespace PhxStudio.Modules.ProtoData
 
 		public int SourceObjectDatabaseKindId { get; private set; }
 
-		KSoft.Phoenix.Phx.ProtoDataObjectDatabase mSourceObjectDatabase;
-		public KSoft.Phoenix.Phx.ProtoDataObjectDatabase SourceObjectDatabase
+		KSoft.Phoenix.Phx.ProtoDataObjectDatabase? mSourceObjectDatabase;
+		public KSoft.Phoenix.Phx.ProtoDataObjectDatabase? SourceObjectDatabase
 		{
 			get { return mSourceObjectDatabase; }
 			protected set
@@ -65,22 +65,22 @@ namespace PhxStudio.Modules.ProtoData
 			}
 		}
 
-		object mSourceObjectDatabaseCollection;
-		public object SourceObjectDatabaseCollection
+		object? mSourceObjectDatabaseCollection;
+		public object? SourceObjectDatabaseCollection
 		{
 			get { return mSourceObjectDatabaseCollection; }
 			private set { this.SetField(ref mSourceObjectDatabaseCollection, value); }
 		}
 
-		string mSourceObjectDatabaseCollectionFilter;
-		public string SourceObjectDatabaseCollectionFilter
+		string? mSourceObjectDatabaseCollectionFilter;
+		public string? SourceObjectDatabaseCollectionFilter
 		{
 			get { return mSourceObjectDatabaseCollectionFilter; }
-			set { this.SetFieldObj(ref mSourceObjectDatabaseCollectionFilter, value); }
+			set { this.SetField(ref mSourceObjectDatabaseCollectionFilter, value); }
 		}
 
-		ObservableCollection<string> mSourceObjectDatabaseUndefinedMembers;
-		public ObservableCollection<string> SourceObjectDatabaseUndefinedMembers
+		ObservableCollection<string>? mSourceObjectDatabaseUndefinedMembers;
+		public ObservableCollection<string>? SourceObjectDatabaseUndefinedMembers
 		{
 			get { return mSourceObjectDatabaseUndefinedMembers; }
 			private set
@@ -131,9 +131,9 @@ namespace PhxStudio.Modules.ProtoData
 			SourceObjectDatabaseUndefinedMembers = list.UndefinedInterface.UndefinedMembers;
 		}
 
-		public bool IsSourceObjectDatabaseCollectionItemFiltered(object obj)
+		public bool IsSourceObjectDatabaseCollectionItemFiltered(object? obj)
 		{
-			string filter = SourceObjectDatabaseCollectionFilter;
+			string? filter = SourceObjectDatabaseCollectionFilter;
 			if (string.IsNullOrEmpty(filter))
 			{
 				return true;

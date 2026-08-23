@@ -9,7 +9,7 @@ namespace PhxStudio.Modules.TraceList
 	public sealed class TraceSourceSetting
 		: PropertyChangedBase
 	{
-		string mName;
+		string mName = string.Empty;
 		public string Name
 		{
 			get { return mName; }

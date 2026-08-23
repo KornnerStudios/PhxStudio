@@ -8,7 +8,7 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 	public abstract class PropertyEditorBuilder
 	{
 		public abstract bool IsApplicable(PropertyDescriptor propertyDescriptor);
-		public abstract IEditor BuildEditor(PropertyDescriptor propertyDescriptor);
+		public abstract IEditor? BuildEditor(PropertyDescriptor propertyDescriptor);
 	};
 
 	public sealed class StandardPropertyEditorBuilder<T, TEditor>
@@ -18,7 +18,7 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 		public override bool IsApplicable(PropertyDescriptor propertyDescriptor)
 			=> propertyDescriptor.PropertyType == typeof(T);
 
-		public override IEditor BuildEditor(PropertyDescriptor propertyDescriptor)
+		public override IEditor? BuildEditor(PropertyDescriptor propertyDescriptor)
 			=> new TEditor();
 	};
 
@@ -28,7 +28,7 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 		public override bool IsApplicable(PropertyDescriptor propertyDescriptor)
 			=> typeof(Enum).IsAssignableFrom(propertyDescriptor.PropertyType);
 
-		public override IEditor BuildEditor(PropertyDescriptor propertyDescriptor)
+		public override IEditor? BuildEditor(PropertyDescriptor propertyDescriptor)
 			=> new EnumEditorViewModel(propertyDescriptor.PropertyType);
 	};
 
@@ -51,7 +51,7 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 			return false;
 		}
 
-		public override IEditor BuildEditor(PropertyDescriptor propertyDescriptor)
+		public override IEditor? BuildEditor(PropertyDescriptor propertyDescriptor)
 		{
 			foreach (var attr in propertyDescriptor.Attributes)
 			{

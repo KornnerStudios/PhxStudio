@@ -12,9 +12,9 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 	public sealed class FolderItemViewModel
 		: TreeViewItemBase
 	{
-		IEditorProviderSelector mEditorProviderSelector;
+		IEditorProviderSelector? mEditorProviderSelector;
 
-		ObservableCollection<ITreeViewItem> mChildren;
+		ObservableCollection<ITreeViewItem>? mChildren;
 		public ObservableCollection<ITreeViewItem> Children
 		{
 			get
@@ -25,7 +25,7 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 					RefreshChildren();
 				}
 
-				return mChildren;
+				return mChildren!;
 			}
 			private set
 			{
@@ -33,7 +33,7 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 			}
 		}
 
-		public FolderItemViewModel(IEditorProviderSelector editorProviderSelector, string directoryPath)
+		public FolderItemViewModel(IEditorProviderSelector? editorProviderSelector, string directoryPath)
 		{
 			mEditorProviderSelector = editorProviderSelector;
 

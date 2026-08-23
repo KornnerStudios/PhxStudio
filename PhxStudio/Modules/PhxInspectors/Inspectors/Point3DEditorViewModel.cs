@@ -46,7 +46,7 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 			}
 		}
 
-		public override void NotifyOfPropertyChange([CallerMemberName] string propertyName = null)
+		public override void NotifyOfPropertyChange([CallerMemberName] string? propertyName = null)
 		{
 			if (propertyName == nameof(base.Value))
 			{

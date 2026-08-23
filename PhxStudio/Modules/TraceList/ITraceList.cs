@@ -25,8 +25,8 @@ namespace PhxStudio.Modules.TraceList
 
 		IObservableCollection<TraceListItem> Items { get; }
 
-		void AddItem(TraceListItemType type, long timeStamp, string sourceName, string message
-			, object[] data = null, System.Action onClick = null);
+		void AddItem(TraceListItemType type, long timeStamp, string? sourceName, string? message
+			, object?[]? data = null, System.Action? onClick = null);
 
 		void ClearAll();
 	};

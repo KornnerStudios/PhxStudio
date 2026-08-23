@@ -8,8 +8,8 @@ namespace PhxStudio.Modules.PhxInspectors.Controls
 	public class PhxInspectorItemTemplateSelector
 		: DataTemplateSelector
 	{
-		public DataTemplate LabelledTemplate { get; set; }
-		public DataTemplate DefaultTemplate { get; set; }
+		public DataTemplate LabelledTemplate { get; set; } = null!;
+		public DataTemplate DefaultTemplate { get; set; } = null!;
 
 		public override DataTemplate SelectTemplate(object item, DependencyObject container)
 		{

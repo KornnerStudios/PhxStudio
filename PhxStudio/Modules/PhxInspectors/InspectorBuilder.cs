@@ -22,21 +22,17 @@ namespace PhxStudio.Modules.PhxInspectors
 
 		public bool HasInspectors => mInspectors != null && mInspectors.Count > 0;
 
-		private Dictionary<Type, PropertyDescriptorCollection> mCachedPropertyDescriptors;
+		private Dictionary<Type, PropertyDescriptorCollection>? mCachedPropertyDescriptors;
 
 		protected PropertyDescriptorCollection GetPropertyDescriptors(Type type)
 		{
-			if (mCachedPropertyDescriptors == null)
-				mCachedPropertyDescriptors = new Dictionary<Type, PropertyDescriptorCollection>();
+			var cache = mCachedPropertyDescriptors ??= new Dictionary<Type, PropertyDescriptorCollection>();
+			if (cache.TryGetValue(type, out var propertyDescriptors))
+				return propertyDescriptors;
 
-			PropertyDescriptorCollection pdc;
-			if (!mCachedPropertyDescriptors.TryGetValue(type, out pdc))
-			{
-				pdc = TypeDescriptor.GetProperties(type);
-				mCachedPropertyDescriptors.Add(type, pdc);
-			}
-
-			return pdc;
+			propertyDescriptors = TypeDescriptor.GetProperties(type);
+			cache.Add(type, propertyDescriptors);
+			return propertyDescriptors;
 		}
 
 		protected static void AddProperties(object instance, IEnumerable<PropertyDescriptor> properties, List<IInspector> inspectors)
@@ -140,13 +136,14 @@ namespace PhxStudio.Modules.PhxInspectors
 		}
 
 		public TBuilder WithObjectProperty<T, TProperty>(T instance, Expression<Func<T, TProperty>> propertyExpression)
+			where T : notnull
 		{
 			var propertyName = KSoft.Reflection.Util.PropertyNameFromExpr(propertyExpression);
 
 			return WithObjectProperty(instance, propertyName, typeof(T));
 		}
 
-		public TBuilder WithObjectProperty(object instance, string propertyName, Type instanceType = null)
+		public TBuilder WithObjectProperty(object instance, string propertyName, Type? instanceType = null)
 		{
 			if (string.IsNullOrEmpty(propertyName))
 				throw new ArgumentNullException(nameof(propertyName));
@@ -154,8 +151,7 @@ namespace PhxStudio.Modules.PhxInspectors
 			if (instance == null)
 				throw new ArgumentNullException(nameof(instance), propertyName);
 
-			if (instanceType == null)
-				instanceType = instance.GetType();
+			instanceType ??= instance.GetType();
 
 			var propDescs = GetPropertyDescriptors(instanceType);
 			var propDesc = propDescs.Find(propertyName, ignoreCase: false);

@@ -66,8 +66,9 @@ namespace PhxStudio.Modules.Main
 
 			layoutSerializer.LayoutSerializationCallback += (s, e) =>
 			{
-				ILayoutItem item;
-				if (items.TryGetValue(e.Model.ContentId, out item))
+				if (e.Model.ContentId is string contentId
+					&& items.TryGetValue(contentId, out var item)
+					&& item is not null)
 				{
 					e.Content = item;
 
@@ -98,7 +99,7 @@ namespace PhxStudio.Modules.Main
 
 						// Nasty hack to get around issue that occurs if documents are loaded from state,
 						// and more documents are opened programmatically.
-						layoutDocument.GetType().GetProperty(nameof(layoutDocument.IsLastFocusedDocument)).SetValue(layoutDocument, false, null);
+						layoutDocument.GetType().GetProperty(nameof(layoutDocument.IsLastFocusedDocument))!.SetValue(layoutDocument, false, null);
 						document.IsSelected = layoutDocument.IsSelected;
 						return;
 					}

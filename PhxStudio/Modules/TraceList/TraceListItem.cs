@@ -32,37 +32,38 @@ namespace PhxStudio.Modules.TraceList
 			set { this.SetFieldVal(ref mTimeStamp, value); }
 		}
 
-		string mSourceName;
+		string? mSourceName;
 		[ReadOnly(true)]
-		public string SourceName
+		public string? SourceName
 		{
 			get { return mSourceName; }
-			set { this.SetFieldObj(ref mSourceName, value); }
+			set { this.SetField(ref mSourceName, value); }
 		}
 
-		string mMessage;
+		string? mMessage;
 		[ReadOnly(true)]
-		public string Message
+		public string? Message
 		{
 			get { return mMessage; }
-			set { this.SetFieldObj(ref mMessage, value); }
+			set { this.SetField(ref mMessage, value); }
 		}
 
 		// #HACK_PHXSTUDIO using EmptyArray here because Gemini's Inspector won't update
 		// the TraceDataEditorView when using null and the previous item selected
 		// actually had data.
 		// Also not using ReadOnly because it disables the View's DataGrid completely.
-		object[] mData = KSoft.Util.EmptyArray;
+		object?[] mData = KSoft.Util.EmptyArray;
 		[Browsable(false)]
-		public object[] Data
+		public object?[] Data
 		{
 			get { return mData; }
 			set
 			{
-				if (value.IsNullOrEmpty())
-					value = KSoft.Util.EmptyArray;
+				var data = value;
+				if (data is null || data.Length == 0)
+					data = KSoft.Util.EmptyArray;
 
-				if (this.SetFieldRef(ref mData, value))
+				if (this.SetFieldRef(ref mData, data))
 				{
 					NotifyOfPropertyChange(nameof(HasData));
 				}
@@ -72,6 +73,6 @@ namespace PhxStudio.Modules.TraceList
 		public bool HasData => !mData.IsNullOrEmpty() && mData != KSoft.Util.EmptyArray;
 
 		[Browsable(false)]
-		public System.Action OnClick { get; set; }
+		public System.Action? OnClick { get; set; }
 	};
 }

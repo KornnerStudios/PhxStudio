@@ -13,23 +13,19 @@ namespace PhxStudio.Modules.Project
 
 		#region FileType
 		public static string FileExtension => ".phxproj";
-		private static EditorFileType gFileType;
-		public static EditorFileType FileType { get {
-			if (gFileType == null)
-				gFileType = new EditorFileType("PhxStudio Project", FileExtension);
-			return gFileType;
-		} }
+		private static EditorFileType? gFileType;
+		public static EditorFileType FileType => gFileType ??= new EditorFileType("PhxStudio Project", FileExtension);
 		#endregion
 
 		#region ProjectFilePath
-		string mProjectFilePath;
+		string? mProjectFilePath;
 		/// <summary>Not serialized, just for remembering where a project was loaded and should be saved to</summary>
-		public string ProjectFilePath
+		public string? ProjectFilePath
 		{
 			get { return mProjectFilePath; }
 			set
 			{
-				if (!SetFieldObj(ref mProjectFilePath, value))
+				if (!SetField(ref mProjectFilePath, value))
 					return;
 
 				IsOnDisk = IsOnDisk;
@@ -76,13 +72,13 @@ namespace PhxStudio.Modules.Project
 		#endregion
 
 		#region WorkDirectory
-		string mWorkDirectory;
-		public string WorkDirectory
+		string? mWorkDirectory;
+		public string? WorkDirectory
 		{
 			get { return mWorkDirectory; }
 			set
 			{
-				if (this.SetFieldObj(ref mWorkDirectory, value))
+				if (this.SetField(ref mWorkDirectory, value))
 				{
 					CreateOrUnloadEngine();
 				}
@@ -91,17 +87,17 @@ namespace PhxStudio.Modules.Project
 		#endregion
 
 		#region FinalDirectory
-		string mFinalDirectory;
-		public string FinalDirectory
+		string? mFinalDirectory;
+		public string? FinalDirectory
 		{
 			get { return mFinalDirectory; }
-			set { this.SetFieldObj(ref mFinalDirectory, value); }
+			set { this.SetField(ref mFinalDirectory, value); }
 		}
 		#endregion
 
 		#region Engine
-		KSoft.Phoenix.Engine.PhxEngine mEngine;
-		public KSoft.Phoenix.Engine.PhxEngine Engine
+		KSoft.Phoenix.Engine.PhxEngine? mEngine;
+		public KSoft.Phoenix.Engine.PhxEngine? Engine
 		{
 			get { return mEngine; }
 			private set { this.SetField(ref mEngine, value); }
@@ -132,8 +128,12 @@ namespace PhxStudio.Modules.Project
 
 			if (reload || load)
 			{
+				var workDirectory = WorkDirectory;
+				if (workDirectory is null)
+					return;
+
 				var engine = KSoft.Phoenix.Engine.PhxEngine.CreateForHaloWars(
-					WorkDirectory, WorkDirectory,
+					workDirectory, workDirectory,
 					GameVersion == GameVersionType.Xbox360);
 
 				Engine = engine;

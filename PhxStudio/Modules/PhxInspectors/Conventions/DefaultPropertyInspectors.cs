@@ -64,7 +64,7 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 			Add(new StandardPropertyEditorBuilder<T, TEditor>());
 		}
 
-		public static IEditor CreateEditor(PropertyDescriptor propertyDescriptor)
+		public static IEditor? CreateEditor(PropertyDescriptor propertyDescriptor)
 		{
 			foreach (var inspectorBuilder in gInspectorBuilders)
 			{

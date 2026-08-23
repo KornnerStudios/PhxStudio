@@ -6,8 +6,8 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 {
 	public sealed class EnumValueViewModel<TEnum>
 	{
-		public TEnum Value { get; set; }
-		public string Text { get; set; }
+		public TEnum Value { get; set; } = default!;
+		public string? Text { get; set; }
 	};
 
 	public class EnumEditorViewModel<TEnum>
@@ -21,15 +21,15 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 			Items = Enum.GetValues(typeof(TEnum)).Cast<TEnum>().Select(x => new EnumValueViewModel<TEnum>
 			{
 				Value = x,
-				Text = Enum.GetName(typeof(TEnum), x)
+				Text = Enum.GetName(typeof(TEnum), x!)
 			}).ToList();
 		}
 	};
 
 	public sealed class EnumValueViewModel
 	{
-		public object Value { get; set; }
-		public string Text { get; set; }
+		public object Value { get; set; } = null!;
+		public string? Text { get; set; }
 	};
 
 	public sealed class EnumEditorViewModel

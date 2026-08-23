@@ -7,6 +7,6 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 	{
 		string FilePath { get; }
 		string FileName { get; }
-		string FileExtension { get; }
+		string? FileExtension { get; }
 	};
 }

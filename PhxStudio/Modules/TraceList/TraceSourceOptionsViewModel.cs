@@ -27,7 +27,7 @@ namespace PhxStudio.Modules.TraceList
 				source_setting.PropertyChanged += ModelSourceSettingPropertyChanged;
 		}
 
-		private void ModelSourceSettingPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		private void ModelSourceSettingPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			mIsDirty = true;
 		}

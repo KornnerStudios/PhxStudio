@@ -18,11 +18,11 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 
 		public IProtoDataReferenceAttribute ReferenceAttribute { get; private set; }
 
-		string mText;
-		public string Text
+		string? mText;
+		public string? Text
 		{
 			get { return mText; }
-			private set { this.SetFieldObj(ref mText, value); }
+			private set { this.SetField(ref mText, value); }
 		}
 
 		public ProtoDataReferenceViewModel(IProtoDataReferenceAttribute attr)
@@ -47,7 +47,13 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 					return;
 				}
 
-				var provider = lookup.SourceObjectDatabase.Provider;
+				if (lookup.SourceObjectDatabase is not { } sourceObjectDatabase)
+				{
+					Text = "INTERNAL ERROR";
+					return;
+				}
+
+				var provider = sourceObjectDatabase.Provider;
 				var list = provider.GetNamesInterface(lookup.SourceObjectDatabaseKindId);
 				Text = list.TryGetMemberName(this.Value);
 			}
@@ -60,7 +66,7 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 			UpdateText();
 		}
 
-		public override void NotifyOfPropertyChange([CallerMemberName] string propertyName = null)
+		public override void NotifyOfPropertyChange([CallerMemberName] string? propertyName = null)
 		{
 			if (propertyName == nameof(base.Value))
 			{

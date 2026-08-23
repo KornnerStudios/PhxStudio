@@ -9,19 +9,19 @@ namespace PhxStudio.Modules.TraceList
 	public sealed class TraceListItemTypeToImageConverter
 		: IValueConverter
 	{
-		public ImageSource InvalidImageSource { get; set; }
+		public ImageSource? InvalidImageSource { get; set; }
 
-		public ImageSource CriticalImageSource { get; set; }
-		public ImageSource ErrorImageSource { get; set; }
-		public ImageSource WarningImageSource { get; set; }
-		public ImageSource InformationImageSource { get; set; }
-		public ImageSource VerboseImageSource { get; set; }
+		public ImageSource CriticalImageSource { get; set; } = null!;
+		public ImageSource ErrorImageSource { get; set; } = null!;
+		public ImageSource WarningImageSource { get; set; } = null!;
+		public ImageSource InformationImageSource { get; set; } = null!;
+		public ImageSource VerboseImageSource { get; set; } = null!;
 
-		public ImageSource StartImageSource { get; set; }
-		public ImageSource StopImageSource { get; set; }
-		public ImageSource SuspendImageSource { get; set; }
-		public ImageSource ResumeImageSource { get; set; }
-		public ImageSource TransferImageSource { get; set; }
+		public ImageSource StartImageSource { get; set; } = null!;
+		public ImageSource StopImageSource { get; set; } = null!;
+		public ImageSource SuspendImageSource { get; set; } = null!;
+		public ImageSource ResumeImageSource { get; set; } = null!;
+		public ImageSource TransferImageSource { get; set; } = null!;
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -50,7 +50,7 @@ namespace PhxStudio.Modules.TraceList
 					return TransferImageSource;
 
 				default:
-					return InvalidImageSource;
+					return InvalidImageSource!;
 			}
 		}
 

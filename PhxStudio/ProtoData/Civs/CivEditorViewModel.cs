@@ -15,22 +15,23 @@ namespace PhxStudio.ProtoData.Civs
 		{
 			base.BuildProtoInspector(builder);
 
-			base.BuildInspector(builder, Proto.UserInterfaceTextData);
+			var proto = RequiredProto;
+			base.BuildInspector(builder, proto.UserInterfaceTextData);
 
 			builder
-				.WithCheckBoxEditor(Proto, o => o.IsExcludedFromAlpha)
-				.WithCheckBoxEditor(Proto, o => o.PowerFromHero)
-				.WithObjectProperty(Proto, o => o.TechID)
-				.WithObjectProperty(Proto, o => o.CommandAckObjectID)
-				.WithObjectProperty(Proto, o => o.RallyPointObjectID)
-				.WithObjectProperty(Proto, o => o.LocalRallyPointObjectID)
-				.WithObjectProperty(Proto, o => o.TransportObjectID)
-				.WithObjectProperty(Proto, o => o.TransportTriggerObjectID)
-				.WithObjectProperty(Proto, o => o.HullExpansionRadius)
-				.WithObjectProperty(Proto, o => o.TerrainPushOffRadius)
-				.WithObjectProperty(Proto, o => o.BuildingMagnetRange)
-				.WithObjectProperty(Proto, o => o.SoundBank)
-				.WithObjectProperty(Proto, o => o.UIControlBackground)
+				.WithCheckBoxEditor(proto, o => o.IsExcludedFromAlpha)
+				.WithCheckBoxEditor(proto, o => o.PowerFromHero)
+				.WithObjectProperty(proto, o => o.TechID)
+				.WithObjectProperty(proto, o => o.CommandAckObjectID)
+				.WithObjectProperty(proto, o => o.RallyPointObjectID)
+				.WithObjectProperty(proto, o => o.LocalRallyPointObjectID)
+				.WithObjectProperty(proto, o => o.TransportObjectID)
+				.WithObjectProperty(proto, o => o.TransportTriggerObjectID)
+				.WithObjectProperty(proto, o => o.HullExpansionRadius)
+				.WithObjectProperty(proto, o => o.TerrainPushOffRadius)
+				.WithObjectProperty(proto, o => o.BuildingMagnetRange)
+				.WithObjectProperty(proto, o => o.SoundBank)
+				.WithObjectProperty(proto, o => o.UIControlBackground)
 				;
 		}
 
@@ -39,7 +40,7 @@ namespace PhxStudio.ProtoData.Civs
 			base.BuildInspectorForUserInterfaceText(group);
 
 			group
-				.WithObjectProperty(Proto, o => o.LeaderMenuNameID);
+				.WithObjectProperty(RequiredProto, o => o.LeaderMenuNameID);
 		}
 	};
 }

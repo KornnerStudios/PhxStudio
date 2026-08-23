@@ -14,7 +14,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		#region Imports
 #pragma warning disable 649
 
-		[Import] IShell mShell;
+		[Import] IShell mShell = null!;
 
 #pragma warning restore 649
 		#endregion
@@ -33,7 +33,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		#region Imports
 #pragma warning disable 649
 
-		[Import] ITraceList mTraceList;
+		[Import] ITraceList mTraceList = null!;
 
 #pragma warning restore 649
 		#endregion
@@ -52,7 +52,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		#region Imports
 #pragma warning disable 649
 
-		[Import] ITraceList mTraceList;
+		[Import] ITraceList mTraceList = null!;
 
 #pragma warning restore 649
 		#endregion
@@ -87,7 +87,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 		#region Imports
 #pragma warning disable 649
 
-		[Import] ITraceList mTraceList;
+		[Import] ITraceList mTraceList = null!;
 
 #pragma warning restore 649
 		#endregion

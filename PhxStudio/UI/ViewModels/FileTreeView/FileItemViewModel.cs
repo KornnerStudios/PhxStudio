@@ -12,22 +12,22 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 	public sealed class FileItemViewModel
 		: TreeViewItemBase
 	{
-		ImageSource mIcon;
-		public ImageSource Icon
+		ImageSource? mIcon;
+		public ImageSource? Icon
 		{
 			get { return mIcon; }
-			set { this.SetFieldRef(ref mIcon, value); }
+			set { this.SetField(ref mIcon, value); }
 		}
 
-		public IEditorProvider EditorProvider { get; private set; }
+		public IEditorProvider? EditorProvider { get; private set; }
 		public bool IsEditorAvailable => EditorProvider != null;
 
 		// #HACK_PHXSTUDIO working around an issue where we get errors like:
 		//BindingExpression path error: 'Children' property not found on 'object' ''FileItemViewModel' (HashCode=4583446)'. BindingExpression:Path=Children; DataItem='FileItemViewModel' (HashCode=4583446); target element is 'TreeViewItem' (Name=''); target property is 'ItemsSource' (type 'IEnumerable')
 		// due to where we specify ItemsSource in the Folder's HierarchicalDataTemplate in ProjectExplorerView. Also possibly due to virturalization
-		public IEnumerable Children { get { return null; } }
+		public IEnumerable? Children { get { return null; } }
 
-		public FileItemViewModel(IEditorProviderSelector editorProviderSelector, string filePath)
+		public FileItemViewModel(IEditorProviderSelector? editorProviderSelector, string filePath)
 		{
 			SetPathToFile(filePath);
 
