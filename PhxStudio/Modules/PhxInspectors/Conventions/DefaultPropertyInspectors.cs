@@ -11,16 +11,13 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 
 	public static class DefaultPropertyInspectors
 	{
-		private static readonly List<PropertyEditorBuilder> gInspectorBuilders;
 
 		public static List<PropertyEditorBuilder> InspectorBuilders
 		{
 			get { return gInspectorBuilders; }
 		}
 
-		static DefaultPropertyInspectors()
-		{
-			gInspectorBuilders = new List<PropertyEditorBuilder>
+		private static readonly List<PropertyEditorBuilder> gInspectorBuilders = new List<PropertyEditorBuilder>
 			{
 				new RangePropertyEditorBuilder(),
 				new EnumPropertyEditorBuilder(),
@@ -51,7 +48,6 @@ namespace PhxStudio.Modules.PhxInspectors.Conventions
 				new StandardPropertyEditorBuilder<Point3D, Point3DEditorViewModel>(),
 				new StandardPropertyEditorBuilder<BitmapSource, BitmapSourceEditorViewModel>(),
 			};
-		}
 
 		public static void Add(PropertyEditorBuilder builder)
 		{
