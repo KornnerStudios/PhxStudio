@@ -13,6 +13,7 @@ using KSoft;
 namespace PhxStudio.Modules.Project.Commands
 {
 	[CommandHandler]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
 	class FileNewProjectCommandHandler
 		: CommandHandlerBase<FileNewProjectCommandDefinition>
 	{
@@ -47,6 +48,7 @@ namespace PhxStudio.Modules.Project.Commands
 	};
 
 	[CommandHandler]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
 	class FileOpenProjectCommandHandler
 		: CommandHandlerBase<FileOpenProjectCommandDefinition>
 	{
@@ -92,6 +94,7 @@ namespace PhxStudio.Modules.Project.Commands
 	};
 
 	[CommandHandler]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
 	class FileSaveProjectCommandHandler
 		: CommandHandlerBase<FileSaveProjectCommandDefinition>
 	{
@@ -134,6 +137,7 @@ namespace PhxStudio.Modules.Project.Commands
 	};
 
 	[CommandHandler]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
 	class FileSaveProjectAsCommandHandler
 		: CommandHandlerBase<FileSaveProjectAsCommandDefinition>
 	{
@@ -175,6 +179,7 @@ namespace PhxStudio.Modules.Project.Commands
 	};
 
 	[CommandHandler]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
 	class ProjectLoadCommandHandler
 		: CommandHandlerBase<ProjectLoadCommandDefinition>
 	{
@@ -312,6 +317,7 @@ namespace PhxStudio.Modules.Project.Commands
 	};
 
 	[CommandHandler]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
 	class ProjectEnginePreloadCommandHandler
 		: CommandHandlerBase<ProjectEnginePreloadCommandDefinition>
 	{
@@ -347,6 +353,7 @@ namespace PhxStudio.Modules.Project.Commands
 	};
 
 	[CommandHandler]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
 	class ProjectEngineLoadCommandHandler
 		: CommandHandlerBase<ProjectEngineLoadCommandDefinition>
 	{

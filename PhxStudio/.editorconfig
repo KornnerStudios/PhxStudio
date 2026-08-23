@@ -1,0 +1,7 @@
+[*.cs]
+	# CA2211 "Non-constant fields should not be visible": Gemini command, menu, and toolbar definitions
+	# are intentionally public static instances for framework composition and UI registration.
+	dotnet_diagnostic.CA2211.severity = none
+	# CA2007 "Consider calling ConfigureAwait": WPF/Gemini command and view-model continuations
+	# intentionally resume on the UI synchronization context.
+	dotnet_diagnostic.CA2007.severity = none

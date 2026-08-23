@@ -4,6 +4,7 @@ using Gemini.Framework.Commands;
 namespace PhxStudio.ProtoData.Objects.Commands
 {
 	[CommandDefinition]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Discovered by Gemini through CommandDefinition reflection.")]
 	sealed class ViewObjectsExplorerDefinition
 		: CommandDefinition
 	{
