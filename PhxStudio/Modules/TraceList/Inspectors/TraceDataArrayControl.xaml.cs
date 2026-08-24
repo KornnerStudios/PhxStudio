@@ -12,6 +12,7 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 	/// </summary>
 	public partial class TraceDataArrayControl : UserControl
 	{
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "The model is public for WPF binding.")]
 		public sealed class DataElementModel
 		{
 			public DataElementModel? Parent { get; set; }
@@ -124,7 +125,7 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 						//path = path.Replace('\\', '/');
 
 						const string kBasePath = @"KStudio\Vita\";
-						int base_path_index = path.IndexOf(kBasePath);
+						int base_path_index = path.IndexOf(kBasePath, StringComparison.OrdinalIgnoreCase);
 						if (base_path_index >= 0)
 						{
 							path = path.Substring(base_path_index + kBasePath.Length);

@@ -15,11 +15,11 @@ namespace PhxStudio.Utils.Results
 			OnCompleted(new ResultCompletionEventArgs());
 		}
 
-		protected virtual void OnError(Exception error)
+		protected virtual void OnError(Exception exception)
 		{
 			OnCompleted(new ResultCompletionEventArgs
 			{
-				Error = error
+				Error = exception
 			});
 		}
 
