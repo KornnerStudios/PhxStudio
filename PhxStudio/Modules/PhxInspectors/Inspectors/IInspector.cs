@@ -2,6 +2,7 @@
 
 namespace PhxStudio.Modules.PhxInspectors.Inspectors
 {
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1040:Avoid empty interfaces", Justification = "Marker interface selects labelled inspector templates.")]
 	public interface ILabelledInspector
 	{
 	};

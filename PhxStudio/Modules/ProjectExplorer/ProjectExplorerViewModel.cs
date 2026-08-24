@@ -40,8 +40,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 				mRoot = value;
 				if (this.SetField(ref mRoot, value, overrideChecks: true))
 				{
-					// trigger INPC
-					Items = Items;
+					this.SetPropertyChanged(nameof(Items));
 				}
 			}
 		}
@@ -127,7 +126,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 			if (file.EditorProvider is not { } editor)
 			{
 				Debug.Trace.PhxStudio.TraceEvent(System.Diagnostics.TraceEventType.Warning, 0,
-					"Can't find editor for file",
+					"Can't find editor for file: {0}",
 					file.FilePath);
 			}
 			else

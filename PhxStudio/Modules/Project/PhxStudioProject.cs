@@ -28,7 +28,7 @@ namespace PhxStudio.Modules.Project
 				if (!SetField(ref mProjectFilePath, value))
 					return;
 
-				IsOnDisk = IsOnDisk;
+				OnPropertyChanged(nameof(IsOnDisk));
 			}
 		}
 
