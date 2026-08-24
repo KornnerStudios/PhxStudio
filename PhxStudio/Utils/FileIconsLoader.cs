@@ -13,6 +13,7 @@ namespace PhxStudio.Utils
 		const uint SHGFI_SMALLICON = 0x1;
 		const uint SHGFI_LARGEICON = 0x0;
 
+		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
 		struct ShFileInfo
 		{
 			// Handle to the icon representing the file
@@ -29,8 +30,9 @@ namespace PhxStudio.Utils
 			public string szTypeName;
 		};
 
-		[DllImport("Shell32.dll")]
-		static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref ShFileInfo psfi,
+		[DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+		[DllImport("Shell32.dll", EntryPoint = "SHGetFileInfoW", CharSet = CharSet.Unicode, ExactSpelling = true)]
+		static extern IntPtr SHGetFileInfo([MarshalAs(UnmanagedType.LPWStr)] string pszPath, uint dwFileAttributes, ref ShFileInfo psfi,
 			int cbFileInfo, uint uFlags);
 
 		static ImageSource GetIcon(string fileName, uint flags)
