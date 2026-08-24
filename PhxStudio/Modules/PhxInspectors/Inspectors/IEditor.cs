@@ -28,7 +28,7 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 		private BoundPropertyDescriptor mBoundPropertyDescriptor = null!;
 		protected IShell mShell;
 
-		public EditorBase()
+		protected EditorBase()
 		{
 			mShell = IoC.Get<IShell>();
 			IsUndoEnabled = true;

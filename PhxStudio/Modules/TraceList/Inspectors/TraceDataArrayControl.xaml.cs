@@ -149,6 +149,7 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 		};
 
 		#region DataElements
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA2227:Collection properties should be read only", Justification = "WPF dependency-property binding requires the public collection setter.")]
 		public ObservableCollection<DataElementModel> DataElements
 		{
 			get { return (ObservableCollection<DataElementModel>)GetValue(DataElementsProperty); }
