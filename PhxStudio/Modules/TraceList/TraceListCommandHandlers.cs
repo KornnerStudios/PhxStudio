@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Globalization;
 using System.Threading.Tasks;
 using Gemini.Framework.Commands;
 using Gemini.Framework.Services;
@@ -208,7 +209,8 @@ namespace PhxStudio.Modules.TraceList.Commands
 			command.Enabled = group_count > 0;
 			command.Checked = command.Enabled && showGroup;
 
-			string text = string.Format("{0} {1}", group_count, type.ToDisplayString(group_count != 1));
+			string text = string.Create(CultureInfo.CurrentCulture,
+				$"{group_count} {type.ToDisplayString(group_count != 1)}");
 			command.Text = command.ToolTip = text;
 		}
 

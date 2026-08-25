@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using System.Globalization;
 
 namespace PhxStudio.Modules.ProtoData
 {
@@ -38,8 +39,8 @@ namespace PhxStudio.Modules.ProtoData
 			var proto = Proto;
 			if (proto is null)
 			{
-				DisplayName = string.Format("Null.{0}",
-					typeof(TProto).Name);
+				DisplayName = string.Create(CultureInfo.CurrentCulture,
+					$"Null.{typeof(TProto).Name}");
 			}
 			else
 			{

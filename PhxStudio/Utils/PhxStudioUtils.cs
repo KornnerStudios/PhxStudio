@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using EditorFileType = Gemini.Framework.Services.EditorFileType;
@@ -142,8 +143,8 @@ namespace PhxStudio
 		public static void SetupViaEditorFileType(this FileDialog dialog, EditorFileType fileType)
 		{
 			dialog.AddExtension = true;
-			dialog.Filter = string.Format("{0} | *{1}",
-				fileType.Name, fileType.FileExtension);
+			dialog.Filter = string.Create(CultureInfo.CurrentCulture,
+				$"{fileType.Name} | *{fileType.FileExtension}");
 			dialog.DefaultExt = fileType.FileExtension;
 		}
 	};

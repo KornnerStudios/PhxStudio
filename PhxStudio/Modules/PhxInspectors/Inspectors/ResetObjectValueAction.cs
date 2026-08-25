@@ -31,10 +31,8 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 					newText = mNewValue?.ToString();
 				}
 
-				return string.Format("Reset {0} from {1} to {2}",
-					mBoundPropertyDescriptor.PropertyDescriptor.DisplayName,
-					origText,
-					newText);
+				return string.Create(CultureInfo.CurrentCulture,
+					$"Reset {mBoundPropertyDescriptor.PropertyDescriptor.DisplayName} from {origText} to {newText}");
 			}
 		}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Gemini.Framework.Commands;
 
 namespace PhxStudio.Modules.TraceList.Commands
@@ -65,8 +66,8 @@ namespace PhxStudio.Modules.TraceList.Commands
 		{
 			mCommandName = commandName;
 
-			mImageSource = new Uri(string.Format("/Modules/TraceList/Images/{0}.png",
-				groupType.ToString()),
+			mImageSource = new Uri(string.Create(CultureInfo.InvariantCulture,
+				$"/Modules/TraceList/Images/{groupType}.png"),
 				UriKind.Relative);
 		}
 

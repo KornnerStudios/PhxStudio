@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -250,8 +251,8 @@ namespace PhxStudio.Modules.Project.Commands
 			{
 				if (trace_count_for_preload > 0)
 				{
-					string arg = string.Format("Traces logged during preload: {0}",
-						trace_count_for_preload);
+					string arg = string.Create(CultureInfo.InvariantCulture,
+						$"Traces logged during preload: {trace_count_for_preload}");
 					event_args.Add(arg);
 				}
 
@@ -273,8 +274,8 @@ namespace PhxStudio.Modules.Project.Commands
 			{
 				if (trace_count_for_load > 0)
 				{
-					string arg = string.Format("Traces logged during load: {0}",
-						trace_count_for_load);
+					string arg = string.Create(CultureInfo.InvariantCulture,
+						$"Traces logged during load: {trace_count_for_load}");
 					event_args.Add(arg);
 				}
 

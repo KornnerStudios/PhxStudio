@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Windows.Media;
@@ -157,9 +158,8 @@ namespace PhxStudio.Modules.PhxInspectors
 			var propDesc = propDescs.Find(propertyName, ignoreCase: false);
 
 			if (propDesc == null)
-				throw new ArgumentException(string.Format(
-					"Property '{0}' not found on {1}",
-					propertyName, instanceType)
+				throw new ArgumentException(string.Create(CultureInfo.InvariantCulture,
+					$"Property '{propertyName}' not found on {instanceType}")
 					, nameof(propertyName));
 
 			return WithObjectProperty(instance, propDesc);

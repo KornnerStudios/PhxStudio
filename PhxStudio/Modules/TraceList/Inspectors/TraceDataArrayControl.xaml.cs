@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using KSoft;
@@ -27,7 +28,7 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 					var model = new DataElementModel
 					{
 						Parent = null,
-						Level = x.ToString(),
+						Level = x.ToString(CultureInfo.CurrentCulture),
 					};
 					collection.Add(model);
 
@@ -61,7 +62,7 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 					var inner_model = new DataElementModel
 					{
 						Parent = model,
-						Level = string.Format("{0}.{1}", root.Level, depth),
+						Level = string.Create(CultureInfo.CurrentCulture, $"{root.Level}.{depth}"),
 					};
 					collection.Add(inner_model);
 
