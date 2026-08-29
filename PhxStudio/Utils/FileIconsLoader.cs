@@ -35,26 +35,40 @@ namespace PhxStudio.Utils
 		static extern IntPtr SHGetFileInfo([MarshalAs(UnmanagedType.LPWStr)] string pszPath, uint dwFileAttributes, ref ShFileInfo psfi,
 			int cbFileInfo, uint uFlags);
 
-		static ImageSource GetIcon(string fileName, uint flags)
+		[DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+		[DllImport("User32.dll", ExactSpelling = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		static extern bool DestroyIcon(IntPtr hIcon);
+
+		static ImageSource? GetIcon(string fileName, uint flags)
 		{
 			var shinfo = new ShFileInfo();
-			SHGetFileInfo(fileName, 0, ref shinfo, Marshal.SizeOf(shinfo), SHGFI_ICON | flags);
+			var result = SHGetFileInfo(fileName, 0, ref shinfo, Marshal.SizeOf(shinfo), SHGFI_ICON | flags);
+			if (result == IntPtr.Zero || shinfo.hIcon == IntPtr.Zero)
+				return null;
 
-			using (var icon = System.Drawing.Icon.FromHandle(shinfo.hIcon))
+			try
 			{
-				var img = Imaging.CreateBitmapSourceFromHIcon(icon.Handle,
-					new Int32Rect(0, 0, icon.Width, icon.Height),
-					BitmapSizeOptions.FromEmptyOptions());
-				return img;
+				using (var icon = System.Drawing.Icon.FromHandle(shinfo.hIcon))
+				{
+					var img = Imaging.CreateBitmapSourceFromHIcon(icon.Handle,
+						new Int32Rect(0, 0, icon.Width, icon.Height),
+						BitmapSizeOptions.FromEmptyOptions());
+					return img;
+				}
+			}
+			finally
+			{
+				DestroyIcon(shinfo.hIcon);
 			}
 		}
 
-		public static ImageSource GetSmallIcon(string fileName)
+		public static ImageSource? GetSmallIcon(string fileName)
 		{
 			return GetIcon(fileName, SHGFI_SMALLICON);
 		}
 
-		public static ImageSource GetLargeIcon(string fileName)
+		public static ImageSource? GetLargeIcon(string fileName)
 		{
 			return GetIcon(fileName, SHGFI_LARGEICON);
 		}
