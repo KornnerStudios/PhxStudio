@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
 using KSoft;
 using KSoft.IO;
 
@@ -26,6 +27,7 @@ namespace PhxStudio.Modules.Project
 			return caught_exception;
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Project-open failures are returned to the UI as an Exception result.")]
 		internal Exception? OpenInternal(string path)
 		{
 			Exception? caught_exception = null;
@@ -40,7 +42,8 @@ namespace PhxStudio.Modules.Project
 				}
 
 				this.Model = opened_project_model;
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				caught_exception = ex;
 			}
@@ -56,7 +59,7 @@ namespace PhxStudio.Modules.Project
 					path = Model.ProjectFilePath;
 				if (path.IsNullOrEmpty())
 				{
-					throw new InvalidOperationException(
+					return new InvalidOperationException(
 						"Tried to save project with a null-or-empty path.");
 				}
 
@@ -67,13 +70,23 @@ namespace PhxStudio.Modules.Project
 
 					s.Document.Save(path);
 				}
-			} catch (Exception ex)
+			}
+			catch (XmlException ex)
+			{
+				caught_exception = ex;
+			}
+			catch (UnauthorizedAccessException ex)
+			{
+				caught_exception = ex;
+			}
+			catch (IOException ex)
 			{
 				caught_exception = ex;
 			}
 			return caught_exception;
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Engine initialization failures are intentionally returned to the UI as recoverable operation failures.")]
 		internal Exception? PreloadEngineInternal()
 		{
 			if (Model == null)
@@ -103,6 +116,7 @@ namespace PhxStudio.Modules.Project
 			return caught_exception;
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Engine load failures are intentionally returned to the UI as recoverable operation failures.")]
 		internal Exception? LoadEngineInternal()
 		{
 			if (Model == null)

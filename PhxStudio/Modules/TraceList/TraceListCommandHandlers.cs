@@ -242,6 +242,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 			return TaskUtility.Completed;
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Debug exception factory intentionally captures any exception to provide nested test data to the trace viewer.")]
 		private static Exception GetTestException()
 		{
 			try

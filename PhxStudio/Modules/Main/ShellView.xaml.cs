@@ -113,7 +113,10 @@ namespace PhxStudio.Modules.Main
 			{
 				layoutSerializer.Deserialize(stream);
 			}
-			catch
+			catch (InvalidOperationException)
+			{
+			}
+			catch (ArgumentException)
 			{
 			}
 		}
