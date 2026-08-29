@@ -44,6 +44,9 @@ namespace PhxStudio.Modules.PhxInspectors
 
 		public void RecurseEditors(IEnumerable<Inspectors.IInspector> inspectors, Action<Inspectors.IEditor?> action)
 		{
+			ArgumentNullException.ThrowIfNull(inspectors);
+			ArgumentNullException.ThrowIfNull(action);
+
 			foreach (var inspector in inspectors)
 			{
 				var group = inspector as Inspectors.CollapsibleGroupViewModel;

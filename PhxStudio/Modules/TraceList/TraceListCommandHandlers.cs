@@ -64,6 +64,7 @@ namespace PhxStudio.Modules.TraceList.Commands
 			return TaskUtility.Completed;
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "The Gemini command framework supplies a non-null command to this override.")]
 		public override void Update(Command command)
 		{
 			base.Update(command);

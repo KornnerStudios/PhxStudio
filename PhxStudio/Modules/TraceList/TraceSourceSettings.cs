@@ -42,6 +42,8 @@ namespace PhxStudio.Modules.TraceList
 
 		public void Sync(TraceSourceSettings src)
 		{
+			ArgumentNullException.ThrowIfNull(src);
+
 			if (this.SourceSettings.Count != src.SourceSettings.Count)
 				throw new ArgumentException("Counts are not equal");
 

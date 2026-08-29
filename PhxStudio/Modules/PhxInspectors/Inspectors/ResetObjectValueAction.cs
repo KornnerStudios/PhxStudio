@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Windows.Data;
 using Gemini.Modules.UndoRedo;
 
@@ -36,9 +37,14 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 			}
 		}
 
-		public ResetObjectValueAction(BoundPropertyDescriptor boundPropertyDescriptor, IValueConverter? stringConverter) :
-			this(boundPropertyDescriptor, boundPropertyDescriptor.Value, stringConverter)
-		{ }
+		public ResetObjectValueAction(BoundPropertyDescriptor boundPropertyDescriptor, IValueConverter? stringConverter)
+		{
+			ArgumentNullException.ThrowIfNull(boundPropertyDescriptor);
+
+			mBoundPropertyDescriptor = boundPropertyDescriptor;
+			mOriginalValue = boundPropertyDescriptor.Value;
+			mStringConverter = stringConverter;
+		}
 
 		public ResetObjectValueAction(BoundPropertyDescriptor boundPropertyDescriptor, object? originalValue, IValueConverter? stringConverter)
 		{

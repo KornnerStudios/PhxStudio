@@ -22,6 +22,9 @@ namespace PhxStudio.Modules.TraceList.Inspectors
 
 			public static void Populate(ObservableCollection<DataElementModel> collection, object[] source)
 			{
+				ArgumentNullException.ThrowIfNull(source);
+				ArgumentNullException.ThrowIfNull(collection);
+
 				for (int x = 0; x < source.Length; x++)
 				{
 					var src = source[x];

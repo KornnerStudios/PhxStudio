@@ -38,6 +38,9 @@ namespace PhxStudio.Modules.PhxInspectors
 
 		protected static void AddProperties(object instance, IEnumerable<PropertyDescriptor> properties, List<IInspector> inspectors)
 		{
+			ArgumentNullException.ThrowIfNull(properties);
+			ArgumentNullException.ThrowIfNull(inspectors);
+
 			foreach (var property in properties)
 			{
 				var editor = DefaultPropertyInspectors.CreateEditor(property);
@@ -56,12 +59,16 @@ namespace PhxStudio.Modules.PhxInspectors
 	{
 		public TBuilder WithCollapsibleGroup(string name, Func<CollapsibleGroupBuilder, CollapsibleGroupBuilder> callback)
 		{
+			ArgumentNullException.ThrowIfNull(callback);
+
 			var builder = new CollapsibleGroupBuilder();
 			return WithCollapsibleGroup(name, callback(builder));
 		}
 
 		public TBuilder WithCollapsibleGroup(string name, CollapsibleGroupBuilder builder)
 		{
+			ArgumentNullException.ThrowIfNull(builder);
+
 			Inspectors.Add(builder.ToCollapsibleGroup(name));
 			return (TBuilder)this;
 		}

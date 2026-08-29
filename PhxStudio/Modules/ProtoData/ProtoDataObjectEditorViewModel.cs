@@ -62,6 +62,8 @@ namespace PhxStudio.Modules.ProtoData
 		protected void BuildInspector(PhxInspectors.InspectablePhxObjectBuilder builder
 			, KSoft.Phoenix.Phx.DatabaseObjectUserInterfaceTextData? data)
 		{
+			System.ArgumentNullException.ThrowIfNull(builder);
+
 			if (data == null)
 				return;
 

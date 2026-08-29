@@ -43,6 +43,8 @@ namespace PhxStudio.Modules.TraceList
 
 		public void Sync(TraceSourceSetting src)
 		{
+			ArgumentNullException.ThrowIfNull(src);
+
 			this.Name = src.Name;
 			this.Level = src.Level;
 			this.Disabled = src.Disabled;

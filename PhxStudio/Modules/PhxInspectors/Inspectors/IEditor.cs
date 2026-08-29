@@ -98,6 +98,8 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 			get { return mBoundPropertyDescriptor; }
 			set
 			{
+				ArgumentNullException.ThrowIfNull(value);
+
 				CleanupPropertyChanged();
 
 				mBoundPropertyDescriptor = value;
