@@ -15,6 +15,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 
 	[Export(typeof(ProjectExplorerViewModel))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini tool view model activated by MEF composition.")]
 	class ProjectExplorerViewModel
 		: Tool
 		, IHandle<ProjectOpeningEventArgs>

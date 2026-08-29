@@ -8,6 +8,7 @@ namespace PhxStudio.Modules.TraceList
 {
 	[Export(typeof(ISettingsEditor))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini settings editor activated by MEF composition.")]
 	class TraceSourceOptionsViewModel
 		: PropertyChangedBase
 		, ISettingsEditor

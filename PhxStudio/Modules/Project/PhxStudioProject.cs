@@ -5,6 +5,7 @@ using GameVersionType = KSoft.Phoenix.HaloWars.GameVersionType;
 
 namespace PhxStudio.Modules.Project
 {
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "WPF project binding model.")]
 	class PhxStudioProject
 		: KSoft.ObjectModel.BasicViewModel
 		, KSoft.IO.ITagElementStringNameStreamable

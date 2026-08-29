@@ -7,6 +7,7 @@ using KSoft.IO;
 namespace PhxStudio.Modules.Project
 {
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini composition when the project module is loaded.")]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "WPF project binding view model.")]
 	class PhxStudioProjectViewModel
 		: KSoft.ObjectModel.BasicViewModel
 	{

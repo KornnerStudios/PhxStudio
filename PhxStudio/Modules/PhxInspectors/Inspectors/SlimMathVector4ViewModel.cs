@@ -3,6 +3,7 @@ using Vector4f = System.Numerics.Vector4;
 
 namespace PhxStudio.Modules.PhxInspectors.Inspectors
 {
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "WPF inspector binding view model.")]
 	class SlimMathVector4ViewModel
 		: EditorBase<Vector4f>
 		, ILabelledInspector

@@ -7,6 +7,7 @@ namespace PhxStudio.ProtoData.Leaders
 
 	[Export(typeof(LeadersExplorerViewModel))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini view model activated by MEF composition.")]
 	class LeadersExplorerViewModel
 		: ProtoDataObjectExplorerViewModel
 	{
@@ -20,6 +21,7 @@ namespace PhxStudio.ProtoData.Leaders
 	[Export(typeof(LeadersLookupViewModel))]
 	[Export(kExportContractName, typeof(IProtoDataObjectLookup))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini view model activated by MEF composition.")]
 	class LeadersLookupViewModel
 		: ProtoDataObjectLookupViewModel
 	{

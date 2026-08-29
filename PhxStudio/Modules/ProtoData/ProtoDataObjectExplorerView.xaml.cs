@@ -71,6 +71,7 @@ namespace PhxStudio.Modules.ProtoData
 	};
 
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Instantiated by XAML as the list view data-template selector.")]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "WPF template selector instantiated by XAML.")]
 	class SourceObjectDatabaseCollectionListViewDataTemplateSelector
 		: DataTemplateSelector
 	{

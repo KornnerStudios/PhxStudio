@@ -7,6 +7,7 @@ namespace PhxStudio.ProtoData.Squads
 
 	[Export(typeof(SquadsExplorerViewModel))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini view model activated by MEF composition.")]
 	class SquadsExplorerViewModel
 		: ProtoDataObjectExplorerViewModel
 	{
@@ -20,6 +21,7 @@ namespace PhxStudio.ProtoData.Squads
 	[Export(typeof(SquadsLookupViewModel))]
 	[Export(kExportContractName, typeof(IProtoDataObjectLookup))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini view model activated by MEF composition.")]
 	class SquadsLookupViewModel
 		: ProtoDataObjectLookupViewModel
 	{

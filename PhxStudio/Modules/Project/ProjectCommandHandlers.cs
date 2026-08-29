@@ -15,6 +15,7 @@ namespace PhxStudio.Modules.Project.Commands
 {
 	[CommandHandler]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini command handler activated by MEF composition.")]
 	class FileNewProjectCommandHandler
 		: CommandHandlerBase<FileNewProjectCommandDefinition>
 	{
@@ -50,6 +51,7 @@ namespace PhxStudio.Modules.Project.Commands
 
 	[CommandHandler]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini command handler activated by MEF composition.")]
 	class FileOpenProjectCommandHandler
 		: CommandHandlerBase<FileOpenProjectCommandDefinition>
 	{
@@ -96,6 +98,7 @@ namespace PhxStudio.Modules.Project.Commands
 
 	[CommandHandler]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini command handler activated by MEF composition.")]
 	class FileSaveProjectCommandHandler
 		: CommandHandlerBase<FileSaveProjectCommandDefinition>
 	{
@@ -139,6 +142,7 @@ namespace PhxStudio.Modules.Project.Commands
 
 	[CommandHandler]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini command handler activated by MEF composition.")]
 	class FileSaveProjectAsCommandHandler
 		: CommandHandlerBase<FileSaveProjectAsCommandDefinition>
 	{
@@ -181,6 +185,7 @@ namespace PhxStudio.Modules.Project.Commands
 
 	[CommandHandler]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini command handler activated by MEF composition.")]
 	class ProjectLoadCommandHandler
 		: CommandHandlerBase<ProjectLoadCommandDefinition>
 	{
@@ -319,6 +324,7 @@ namespace PhxStudio.Modules.Project.Commands
 
 	[CommandHandler]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini command handler activated by MEF composition.")]
 	class ProjectEnginePreloadCommandHandler
 		: CommandHandlerBase<ProjectEnginePreloadCommandDefinition>
 	{
@@ -355,6 +361,7 @@ namespace PhxStudio.Modules.Project.Commands
 
 	[CommandHandler]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini through CommandHandler MEF discovery.")]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini command handler activated by MEF composition.")]
 	class ProjectEngineLoadCommandHandler
 		: CommandHandlerBase<ProjectEngineLoadCommandDefinition>
 	{

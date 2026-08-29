@@ -42,6 +42,7 @@ namespace PhxStudio.Modules.Main
 			yield return new ConfirmQuitMessageBoxResult();
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Caliburn.Micro workflow result invoked by the shell.")]
 		private class ConfirmQuitMessageBoxResult
 			: IResult
 		{

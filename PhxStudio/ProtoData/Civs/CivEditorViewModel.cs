@@ -8,6 +8,7 @@ namespace PhxStudio.ProtoData.Civs
 
 	[Export(typeof(CivEditorViewModel))]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini view model activated by MEF composition.")]
 	class CivEditorViewModel
 		: ProtoDataObjectEditorViewModel<KSoft.Phoenix.Phx.BCiv, CivsExplorerViewModel>
 	{

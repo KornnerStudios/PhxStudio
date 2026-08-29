@@ -7,6 +7,7 @@ namespace PhxStudio.ProtoData.Techs
 
 	[Export(typeof(TechsExplorerViewModel))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini view model activated by MEF composition.")]
 	class TechsExplorerViewModel
 		: ProtoDataObjectExplorerViewModel
 	{
@@ -20,6 +21,7 @@ namespace PhxStudio.ProtoData.Techs
 	[Export(typeof(TechsLookupViewModel))]
 	[Export(kExportContractName, typeof(IProtoDataObjectLookup))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini view model activated by MEF composition.")]
 	class TechsLookupViewModel
 		: ProtoDataObjectLookupViewModel
 	{

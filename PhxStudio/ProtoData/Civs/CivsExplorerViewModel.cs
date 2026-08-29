@@ -7,6 +7,7 @@ namespace PhxStudio.ProtoData.Civs
 
 	[Export(typeof(CivsExplorerViewModel))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini view model activated by MEF composition.")]
 	class CivsExplorerViewModel
 		: ProtoDataObjectExplorerViewModel
 	{
@@ -28,6 +29,7 @@ namespace PhxStudio.ProtoData.Civs
 	[Export(typeof(CivsLookupViewModel))]
 	[Export(kExportContractName, typeof(IProtoDataObjectLookup))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini view model activated by MEF composition.")]
 	class CivsLookupViewModel
 		: ProtoDataObjectLookupViewModel
 	{

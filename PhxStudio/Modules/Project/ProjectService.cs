@@ -6,6 +6,7 @@ namespace PhxStudio.Modules.Project
 {
 	[Export(typeof(IProjectService))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini service activated by MEF composition.")]
 	class ProjectService
 		: PropertyChangedBase
 		, IProjectService
