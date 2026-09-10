@@ -6,31 +6,22 @@ using Caliburn.Micro;
 namespace PhxStudio.Modules.TraceList
 {
 	[SettingsSerializeAs(SettingsSerializeAs.Xml)]
-	public sealed class TraceSourceSetting
+	public sealed partial class TraceSourceSetting
 		: PropertyChangedBase
 	{
 		string mName = string.Empty;
-		public string Name
-		{
-			get { return mName; }
-			set { this.SetFieldObj(ref mName, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mName))]
+		public partial string Name { get; set; }
 
 		TraceLevel mLevel = TraceLevel.Verbose;
 		[DefaultSettingValue(nameof(TraceLevel.Verbose))]
-		public TraceLevel Level
-		{
-			get { return mLevel; }
-			set { this.SetFieldEnum(ref mLevel, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mLevel))]
+		public partial TraceLevel Level { get; set; }
 
 		bool mDisabled;
 		[DefaultSettingValue("false")]
-		public bool Disabled
-		{
-			get { return mDisabled; }
-			set { this.SetFieldVal(ref mDisabled, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mDisabled))]
+		public partial bool Disabled { get; set; }
 
 		public TraceSourceSetting Clone()
 		{
