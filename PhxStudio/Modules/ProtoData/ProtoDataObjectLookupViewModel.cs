@@ -50,12 +50,13 @@ namespace PhxStudio.Modules.ProtoData
 		public int SourceObjectDatabaseKindId { get; private set; }
 
 		KSoft.Phoenix.Phx.ProtoDataObjectDatabase? mSourceObjectDatabase;
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedEventArgs]
 		public KSoft.Phoenix.Phx.ProtoDataObjectDatabase? SourceObjectDatabase
 		{
 			get { return mSourceObjectDatabase; }
 			protected set
 			{
-				if (this.SetField(ref mSourceObjectDatabase, value))
+				if (this.SetField(ref mSourceObjectDatabase, value, kSourceObjectDatabaseChangedEventArgs))
 				{
 					SetupSourceObjectDatabaseCollection();
 				}
@@ -71,12 +72,13 @@ namespace PhxStudio.Modules.ProtoData
 		public partial string? SourceObjectDatabaseCollectionFilter { get; set; }
 
 		ObservableCollection<string>? mSourceObjectDatabaseUndefinedMembers;
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedEventArgs]
 		public ObservableCollection<string>? SourceObjectDatabaseUndefinedMembers
 		{
 			get { return mSourceObjectDatabaseUndefinedMembers; }
 			private set
 			{
-				if (this.SetField(ref mSourceObjectDatabaseUndefinedMembers, value))
+				if (this.SetField(ref mSourceObjectDatabaseUndefinedMembers, value, kSourceObjectDatabaseUndefinedMembersChangedEventArgs))
 				{
 					this.OnPropertyChanged(nameof(HasSourceObjectDatabaseUndefinedMembers));
 				}

@@ -21,12 +21,13 @@ namespace PhxStudio.Modules.Project
 		#region ProjectFilePath
 		string? mProjectFilePath;
 		/// <summary>Not serialized, just for remembering where a project was loaded and should be saved to</summary>
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedEventArgs]
 		public string? ProjectFilePath
 		{
 			get { return mProjectFilePath; }
 			set
 			{
-				if (!SetField(ref mProjectFilePath, value))
+				if (!SetField(ref mProjectFilePath, value, kProjectFilePathChangedEventArgs))
 					return;
 
 				OnPropertyChanged(nameof(IsOnDisk));
@@ -71,12 +72,13 @@ namespace PhxStudio.Modules.Project
 
 		#region WorkDirectory
 		string? mWorkDirectory;
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedEventArgs]
 		public string? WorkDirectory
 		{
 			get { return mWorkDirectory; }
 			set
 			{
-				if (this.SetField(ref mWorkDirectory, value))
+				if (this.SetField(ref mWorkDirectory, value, kWorkDirectoryChangedEventArgs))
 				{
 					CreateOrUnloadEngine();
 				}
