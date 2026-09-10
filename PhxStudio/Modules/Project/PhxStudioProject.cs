@@ -6,7 +6,7 @@ using GameVersionType = KSoft.Phoenix.HaloWars.GameVersionType;
 namespace PhxStudio.Modules.Project
 {
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "WPF project binding model.")]
-	class PhxStudioProject
+	partial class PhxStudioProject
 		: KSoft.ObjectModel.BasicViewModel
 		, KSoft.IO.ITagElementStringNameStreamable
 	{
@@ -65,11 +65,8 @@ namespace PhxStudio.Modules.Project
 
 		#region GameVersion
 		GameVersionType mGameVersion = GameVersionType.DefinitiveEdition;
-		public GameVersionType GameVersion
-		{
-			get { return mGameVersion; }
-			set { this.SetFieldEnum(ref mGameVersion, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mGameVersion))]
+		public partial GameVersionType GameVersion { get; set; }
 		#endregion
 
 		#region WorkDirectory
@@ -89,20 +86,14 @@ namespace PhxStudio.Modules.Project
 
 		#region FinalDirectory
 		string? mFinalDirectory;
-		public string? FinalDirectory
-		{
-			get { return mFinalDirectory; }
-			set { this.SetField(ref mFinalDirectory, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mFinalDirectory))]
+		public partial string? FinalDirectory { get; set; }
 		#endregion
 
 		#region Engine
 		KSoft.Phoenix.Engine.PhxEngine? mEngine;
-		public KSoft.Phoenix.Engine.PhxEngine? Engine
-		{
-			get { return mEngine; }
-			private set { this.SetField(ref mEngine, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mEngine))]
+		public partial KSoft.Phoenix.Engine.PhxEngine? Engine { get; private set; }
 		#endregion
 
 		bool mEngineCreationDisabled;

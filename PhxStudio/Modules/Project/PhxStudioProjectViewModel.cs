@@ -8,15 +8,12 @@ namespace PhxStudio.Modules.Project
 {
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Activated by Gemini composition when the project module is loaded.")]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "WPF project binding view model.")]
-	class PhxStudioProjectViewModel
+	partial class PhxStudioProjectViewModel
 		: KSoft.ObjectModel.BasicViewModel
 	{
 		PhxStudioProject mModel = new PhxStudioProject();
-		public PhxStudioProject Model
-		{
-			get { return mModel; }
-			private set { this.SetField(ref mModel, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mModel))]
+		public partial PhxStudioProject Model { get; private set; }
 
 		internal Exception? CreateNewInternal()
 		{

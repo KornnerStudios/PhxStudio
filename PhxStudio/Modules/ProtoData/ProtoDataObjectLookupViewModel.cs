@@ -25,7 +25,7 @@ namespace PhxStudio.Modules.ProtoData
 		bool HasSourceObjectDatabaseUndefinedMembers { get; }
 	};
 
-	public abstract class ProtoDataObjectLookupViewModel
+	public abstract partial class ProtoDataObjectLookupViewModel
 		: KSoft.ObjectModel.BasicViewModel
 		, IProtoDataObjectLookup
 		, IHandle<Project.ProjectEngineUnloadedEventArgs>
@@ -44,11 +44,8 @@ namespace PhxStudio.Modules.ProtoData
 		#endregion
 
 		KSoft.Phoenix.Phx.ProtoDataObjectSource mObjectSource = null!;
-		public KSoft.Phoenix.Phx.ProtoDataObjectSource ObjectSource
-		{
-			get { return mObjectSource; }
-			protected set { this.SetField(ref mObjectSource, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mObjectSource))]
+		public partial KSoft.Phoenix.Phx.ProtoDataObjectSource ObjectSource { get; protected set; }
 
 		public int SourceObjectDatabaseKindId { get; private set; }
 
@@ -66,18 +63,12 @@ namespace PhxStudio.Modules.ProtoData
 		}
 
 		object? mSourceObjectDatabaseCollection;
-		public object? SourceObjectDatabaseCollection
-		{
-			get { return mSourceObjectDatabaseCollection; }
-			private set { this.SetField(ref mSourceObjectDatabaseCollection, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mSourceObjectDatabaseCollection))]
+		public partial object? SourceObjectDatabaseCollection { get; private set; }
 
 		string? mSourceObjectDatabaseCollectionFilter;
-		public string? SourceObjectDatabaseCollectionFilter
-		{
-			get { return mSourceObjectDatabaseCollectionFilter; }
-			set { this.SetField(ref mSourceObjectDatabaseCollectionFilter, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mSourceObjectDatabaseCollectionFilter))]
+		public partial string? SourceObjectDatabaseCollectionFilter { get; set; }
 
 		ObservableCollection<string>? mSourceObjectDatabaseUndefinedMembers;
 		public ObservableCollection<string>? SourceObjectDatabaseUndefinedMembers
