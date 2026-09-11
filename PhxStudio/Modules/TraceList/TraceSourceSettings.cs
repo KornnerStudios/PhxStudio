@@ -9,16 +9,13 @@ namespace PhxStudio.Modules.TraceList
 {
 	[SettingsSerializeAs(SettingsSerializeAs.Xml)]
 	[XmlRoot("TraceSourceSettings")]
-	public sealed class TraceSourceSettings
+	public sealed partial class TraceSourceSettings
 		: PropertyChangedBase
 	{
 		int mMaxTraceListItems = KSoft.TypeExtensions.kNone;
 		[DefaultSettingValue("-1")]
-		public int MaxTraceListItems
-		{
-			get { return mMaxTraceListItems; }
-			set { this.SetFieldVal(ref mMaxTraceListItems, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mMaxTraceListItems))]
+		public partial int MaxTraceListItems { get; set; }
 
 		[XmlArray(ElementName="SourceSettings")]
 		[XmlArrayItem(ElementName="Source", Type=typeof(TraceSourceSetting))]

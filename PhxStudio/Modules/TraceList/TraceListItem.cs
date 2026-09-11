@@ -5,48 +5,33 @@ using KSoft;
 
 namespace PhxStudio.Modules.TraceList
 {
-	public sealed class TraceListItem
+	public sealed partial class TraceListItem
 		: PropertyChangedBase
 	{
 		TraceListItemType mItemType = TraceListItemType.Invalid;
 		[ReadOnly(true)]
-		public TraceListItemType ItemType
-		{
-			get { return mItemType; }
-			set { this.SetFieldEnum(ref mItemType, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mItemType))]
+		public partial TraceListItemType ItemType { get; set; }
 
 		int mNumber;
 		[ReadOnly(true)]
-		public int Number
-		{
-			get { return mNumber; }
-			set { this.SetFieldVal(ref mNumber, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mNumber))]
+		public partial int Number { get; set; }
 
 		long mTimeStamp;
 		[ReadOnly(true)]
-		public long TimeStamp
-		{
-			get { return mTimeStamp; }
-			set { this.SetFieldVal(ref mTimeStamp, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mTimeStamp))]
+		public partial long TimeStamp { get; set; }
 
 		string? mSourceName;
 		[ReadOnly(true)]
-		public string? SourceName
-		{
-			get { return mSourceName; }
-			set { this.SetField(ref mSourceName, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mSourceName))]
+		public partial string? SourceName { get; set; }
 
 		string? mMessage;
 		[ReadOnly(true)]
-		public string? Message
-		{
-			get { return mMessage; }
-			set { this.SetField(ref mMessage, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mMessage))]
+		public partial string? Message { get; set; }
 
 		// #HACK_PHXSTUDIO using EmptyArray here because Gemini's Inspector won't update
 		// the TraceDataEditorView when using null and the previous item selected

@@ -14,7 +14,7 @@ namespace PhxStudio.Modules.TraceList
 
 	[Export(typeof(ITraceList))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
-	public sealed class TraceListViewModel
+	public sealed partial class TraceListViewModel
 		: Tool
 		, ITraceList
 	{
@@ -55,20 +55,14 @@ namespace PhxStudio.Modules.TraceList
 
 		#region PauseTracing
 		bool mPauseTracing;
-		public bool PauseTracing
-		{
-			get { return mPauseTracing; }
-			set { this.SetFieldVal(ref mPauseTracing, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mPauseTracing))]
+		public partial bool PauseTracing { get; set; }
 		#endregion
 
 		#region TotalNumberOfTraces
 		int mTotalNumberOfTraces;
-		public int TotalNumberOfTraces
-		{
-			get { return mTotalNumberOfTraces; }
-			set { this.SetFieldVal(ref mTotalNumberOfTraces, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mTotalNumberOfTraces))]
+		public partial int TotalNumberOfTraces { get; set; }
 		#endregion
 
 		private bool ShowEverything
@@ -236,11 +230,8 @@ namespace PhxStudio.Modules.TraceList
 		#region TailTraces
 		bool mTailTraces = true;
 		[Description("When enabled, UI will snap to new traces as they come in")]
-		public bool TailTraces
-		{
-			get { return mTailTraces; }
-			set { this.SetFieldVal(ref mTailTraces, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mTailTraces))]
+		public partial bool TailTraces { get; set; }
 		#endregion
 
 		public TraceListViewModel()
