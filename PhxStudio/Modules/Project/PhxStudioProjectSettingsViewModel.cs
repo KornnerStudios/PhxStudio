@@ -12,7 +12,7 @@ namespace PhxStudio.Modules.Project
 	[Export(typeof(ISettingsEditor))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini settings editor activated by MEF composition.")]
-	class PhxStudioProjectSettingsViewModel
+	partial class PhxStudioProjectSettingsViewModel
 		: PropertyChangedBase
 		, ISettingsEditor
 	{
@@ -39,29 +39,20 @@ namespace PhxStudio.Modules.Project
 
 		#region GameVersion
 		GameVersionType mGameVersion = GameVersionType.DefinitiveEdition;
-		public GameVersionType GameVersion
-		{
-			get { return mGameVersion; }
-			set { this.SetFieldEnum(ref mGameVersion, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mGameVersion))]
+		public partial GameVersionType GameVersion { get; set; }
 		#endregion
 
 		#region WorkDirectory
 		string? mWorkDirectory;
-		public string? WorkDirectory
-		{
-			get { return mWorkDirectory; }
-			set { this.SetField(ref mWorkDirectory, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mWorkDirectory))]
+		public partial string? WorkDirectory { get; set; }
 		#endregion
 
 		#region FinalDirectory
 		string? mFinalDirectory;
-		public string? FinalDirectory
-		{
-			get { return mFinalDirectory; }
-			set { this.SetField(ref mFinalDirectory, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mFinalDirectory))]
+		public partial string? FinalDirectory { get; set; }
 		#endregion
 
 		#region RevertSettingsCommand
