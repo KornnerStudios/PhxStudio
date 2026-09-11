@@ -21,18 +21,10 @@ namespace PhxStudio.Modules.Project
 		#region ProjectFilePath
 		string? mProjectFilePath;
 		/// <summary>Not serialized, just for remembering where a project was loaded and should be saved to</summary>
-		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedEventArgs]
-		public string? ProjectFilePath
-		{
-			get { return mProjectFilePath; }
-			set
-			{
-				if (!SetField(ref mProjectFilePath, value, kProjectFilePathChangedEventArgs))
-					return;
-
-				OnPropertyChanged(nameof(IsOnDisk));
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mProjectFilePath),
+			DependentProperties = new[] { nameof(IsOnDisk) })]
+		public partial string? ProjectFilePath { get; set; }
 
 		public bool IsOnDisk
 		{
@@ -49,17 +41,10 @@ namespace PhxStudio.Modules.Project
 		const string kDefaultProjectName = "HaloWars Mod";
 
 		string mProjectName = kDefaultProjectName;
-		public string ProjectName
-		{
-			get { return mProjectName; }
-			set
-			{
-				if (this.SetFieldObj(ref mProjectName, value))
-				{
-					this.OnPropertyChanged(nameof(ProjectNameIsValid));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mProjectName),
+			DependentProperties = new[] { nameof(ProjectNameIsValid) })]
+		public partial string ProjectName { get; set; }
 
 		public bool ProjectNameIsValid => ProjectName.IsNotNullOrEmpty();
 		#endregion

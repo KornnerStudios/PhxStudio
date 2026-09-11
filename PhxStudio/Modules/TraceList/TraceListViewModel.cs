@@ -79,152 +79,82 @@ namespace PhxStudio.Modules.TraceList
 
 		#region ShowCritical
 		bool mShowCritical = true;
-		public bool ShowCritical
-		{
-			get { return mShowCritical; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowCritical, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowCritical),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowCritical { get; set; }
 		#endregion
 
 		#region ShowError
 		bool mShowError = true;
-		public bool ShowError
-		{
-			get { return mShowError; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowError, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowError),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowError { get; set; }
 		#endregion
 
 		#region ShowWarning
 		bool mShowWarning = true;
-		public bool ShowWarning
-		{
-			get { return mShowWarning; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowWarning, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowWarning),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowWarning { get; set; }
 		#endregion
 
 		#region ShowInformation
 		bool mShowInformation = true;
-		public bool ShowInformation
-		{
-			get { return mShowInformation; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowInformation, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowInformation),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowInformation { get; set; }
 		#endregion
 
 		#region ShowVerbose
 		bool mShowVerbose = true;
-		public bool ShowVerbose
-		{
-			get { return mShowVerbose; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowVerbose, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowVerbose),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowVerbose { get; set; }
 		#endregion
 
 		#region ShowStart
 		bool mShowStart = true;
-		public bool ShowStart
-		{
-			get { return mShowStart; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowStart, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowStart),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowStart { get; set; }
 		#endregion
 
 		#region ShowStop
 		bool mShowStop = true;
-		public bool ShowStop
-		{
-			get { return mShowStop; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowStop, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowStop),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowStop { get; set; }
 		#endregion
 
 		#region ShowSuspend
 		bool mShowSuspend = true;
-		public bool ShowSuspend
-		{
-			get { return mShowSuspend; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowSuspend, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowSuspend),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowSuspend { get; set; }
 		#endregion
 
 		#region ShowResume
 		bool mShowResume = true;
-		public bool ShowResume
-		{
-			get { return mShowResume; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowResume, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowResume),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowResume { get; set; }
 		#endregion
 
 		#region ShowTransfer
 		bool mShowTransfer = true;
-		public bool ShowTransfer
-		{
-			get { return mShowTransfer; }
-			set
-			{
-				if (this.SetFieldVal(ref mShowTransfer, value))
-				{
-					NotifyOfPropertyChange(nameof(FilteredItems));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mShowTransfer),
+			DependentProperties = new[] { nameof(FilteredItems) })]
+		public partial bool ShowTransfer { get; set; }
 		#endregion
 
 		#region TailTraces

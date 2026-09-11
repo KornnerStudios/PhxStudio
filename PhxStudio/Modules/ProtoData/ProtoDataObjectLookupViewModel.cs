@@ -72,18 +72,10 @@ namespace PhxStudio.Modules.ProtoData
 		public partial string? SourceObjectDatabaseCollectionFilter { get; set; }
 
 		ObservableCollection<string>? mSourceObjectDatabaseUndefinedMembers;
-		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedEventArgs]
-		public ObservableCollection<string>? SourceObjectDatabaseUndefinedMembers
-		{
-			get { return mSourceObjectDatabaseUndefinedMembers; }
-			private set
-			{
-				if (this.SetField(ref mSourceObjectDatabaseUndefinedMembers, value, kSourceObjectDatabaseUndefinedMembersChangedEventArgs))
-				{
-					this.OnPropertyChanged(nameof(HasSourceObjectDatabaseUndefinedMembers));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mSourceObjectDatabaseUndefinedMembers),
+			DependentProperties = new[] { nameof(HasSourceObjectDatabaseUndefinedMembers) })]
+		public partial ObservableCollection<string>? SourceObjectDatabaseUndefinedMembers { get; private set; }
 
 		public bool HasSourceObjectDatabaseUndefinedMembers => SourceObjectDatabaseUndefinedMembers != null && SourceObjectDatabaseUndefinedMembers.Count > 0;
 

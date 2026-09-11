@@ -16,7 +16,7 @@ namespace PhxStudio.Modules.ProjectExplorer
 	[Export(typeof(ProjectExplorerViewModel))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini tool view model activated by MEF composition.")]
-	class ProjectExplorerViewModel
+	partial class ProjectExplorerViewModel
 		: Tool
 		, IHandle<ProjectOpeningEventArgs>
 		, IHandle<ProjectClosingEventArgs>
@@ -33,18 +33,11 @@ namespace PhxStudio.Modules.ProjectExplorer
 		#endregion
 
 		FolderItemViewModel? mRoot;
-		public FolderItemViewModel? Root
-		{
-			get { return mRoot; }
-			private set
-			{
-				mRoot = value;
-				if (this.SetField(ref mRoot, value, overrideChecks: true))
-				{
-					this.SetPropertyChanged(nameof(Items));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mRoot),
+			AlwaysNotify = true,
+			DependentProperties = new[] { nameof(Items) })]
+		public partial FolderItemViewModel? Root { get; private set; }
 
 		public ObservableCollection<ITreeViewItem>? Items
 		{

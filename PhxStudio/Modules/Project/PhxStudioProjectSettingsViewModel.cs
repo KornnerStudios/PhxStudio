@@ -22,17 +22,10 @@ namespace PhxStudio.Modules.Project
 
 		#region ProjectName
 		string mProjectName = string.Empty;
-		public string ProjectName
-		{
-			get { return mProjectName; }
-			set
-			{
-				if (this.SetFieldObj(ref mProjectName, value))
-				{
-					this.NotifyOfPropertyChange(nameof(ProjectNameIsValid));
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mProjectName),
+			DependentProperties = new[] { nameof(ProjectNameIsValid) })]
+		public partial string ProjectName { get; set; }
 
 		public bool ProjectNameIsValid => ProjectName.IsNotNullOrEmpty();
 		#endregion
