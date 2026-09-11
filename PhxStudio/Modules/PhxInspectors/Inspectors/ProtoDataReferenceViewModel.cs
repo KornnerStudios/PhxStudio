@@ -10,7 +10,7 @@ using KSoft.Phoenix.Phx.Meta;
 
 namespace PhxStudio.Modules.PhxInspectors.Inspectors
 {
-	public class ProtoDataReferenceViewModel
+	public partial class ProtoDataReferenceViewModel
 		: EditorBase<int>
 		, ILabelledInspector
 	{
@@ -19,11 +19,8 @@ namespace PhxStudio.Modules.PhxInspectors.Inspectors
 		public IProtoDataReferenceAttribute ReferenceAttribute { get; private set; }
 
 		string? mText;
-		public string? Text
-		{
-			get { return mText; }
-			private set { this.SetField(ref mText, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mText))]
+		public partial string? Text { get; private set; }
 
 		public ProtoDataReferenceViewModel(IProtoDataReferenceAttribute attr)
 		{

@@ -17,16 +17,13 @@ namespace PhxStudio.Modules.Main
 	[Export(typeof(IShell))]
 	[Export(typeof(IPhxShell))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
-	public class ShellViewModel
+	public partial class ShellViewModel
 		: Gemini.Modules.Shell.ViewModels.ShellViewModel
 		, IPhxShell
 	{
 		bool mIsBusy;
-		public bool IsBusy
-		{
-			get { return mIsBusy; }
-			set { this.SetFieldVal(ref mIsBusy, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mIsBusy))]
+		public partial bool IsBusy { get; set; }
 
 		public override Task<bool> CanCloseAsync(CancellationToken cancellationToken)
 		{

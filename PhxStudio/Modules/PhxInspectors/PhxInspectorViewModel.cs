@@ -4,15 +4,12 @@ using Gemini.Framework;
 
 namespace PhxStudio.Modules.PhxInspectors
 {
-	public class PhxInspectorViewModel
+	public partial class PhxInspectorViewModel
 		: Document
 	{
 		IInspectableObject? mInspectableModel;
-		public IInspectableObject? InspectableModel
-		{
-			get { return mInspectableModel; }
-			set { this.SetField(ref mInspectableModel, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mInspectableModel))]
+		public partial IInspectableObject? InspectableModel { get; set; }
 
 		public void HandleViewLoaded()
 		{
