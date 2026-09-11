@@ -4,39 +4,33 @@ using Caliburn.Micro;
 
 namespace PhxStudio.UI.ViewModels.FileTreeView
 {
-	public abstract class TreeViewItemBase
+	public abstract partial class TreeViewItemBase
 		: PropertyChangedBase
 		, ITreeViewItem
 	{
 		string mFilePath = string.Empty;
-		public string FilePath
-		{
-			get { return mFilePath; }
-			private set { this.SetFieldObj(ref mFilePath, value, overrideChecks: true); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mFilePath),
+			AlwaysNotify = true)]
+		public partial string FilePath { get; private set; }
 
 		string mFileName = string.Empty;
-		public string FileName
-		{
-			get { return mFileName; }
-			private set { this.SetFieldObj(ref mFileName, value, overrideChecks: true); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mFileName),
+			AlwaysNotify = true)]
+		public partial string FileName { get; private set; }
 
 		string? mFileExtension;
-		public string? FileExtension
-		{
-			get { return mFileExtension; }
-			private set { this.SetField(ref mFileExtension, value, overrideChecks: true); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mFileExtension),
+			AlwaysNotify = true)]
+		public partial string? FileExtension { get; private set; }
 
 		public string FileNameAndExtension { get; private set; } = string.Empty;
 
 		object? mUserData;
-		public object? UserData
-		{
-			get { return mUserData; }
-			set { this.SetField(ref mUserData, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mUserData))]
+		public partial object? UserData { get; set; }
 
 		protected void SetPathToFile(string filePath)
 		{

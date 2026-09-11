@@ -9,15 +9,12 @@ namespace PhxStudio.UI.ViewModels.FileTreeView
 	// #TODO_PHXSTUDIO need a service that allows configuring how file info is gathered by items
 	// * How to look for file icons
 
-	public sealed class FileItemViewModel
+	public sealed partial class FileItemViewModel
 		: TreeViewItemBase
 	{
 		ImageSource? mIcon;
-		public ImageSource? Icon
-		{
-			get { return mIcon; }
-			set { this.SetField(ref mIcon, value); }
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mIcon))]
+		public partial ImageSource? Icon { get; set; }
 
 		public IEditorProvider? EditorProvider { get; private set; }
 		public bool IsEditorAvailable => EditorProvider != null;
