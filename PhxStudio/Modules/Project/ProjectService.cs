@@ -7,7 +7,7 @@ namespace PhxStudio.Modules.Project
 	[Export(typeof(IProjectService))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1852:Seal internal types", Justification = "Gemini service activated by MEF composition.")]
-	class ProjectService
+	partial class ProjectService
 		: PropertyChangedBase
 		, IProjectService
 	{
@@ -20,18 +20,16 @@ namespace PhxStudio.Modules.Project
 		public KSoft.Phoenix.Engine.PhxEngine? Engine => CurrentProject.Model.Engine;
 
 		string? mCurrentProjectFilePath;
-		public string? CurrentProjectFilePath
+	[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mCurrentProjectFilePath),
+			ChangedHook = KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedHook.Parameterless)]
+		public partial string? CurrentProjectFilePath { get; set; }
+
+		partial void OnCurrentProjectFilePathChanged()
 		{
-			get { return mCurrentProjectFilePath; }
-			set
+			if (mCurrentProjectFilePath != null && CurrentProject != null)
 			{
-				if (this.SetField(ref mCurrentProjectFilePath, value))
-				{
-					if (mCurrentProjectFilePath != null && CurrentProject != null)
-					{
-						CurrentProject.Model.ProjectFilePath = mCurrentProjectFilePath;
-					}
-				}
+				CurrentProject.Model.ProjectFilePath = mCurrentProjectFilePath;
 			}
 		}
 

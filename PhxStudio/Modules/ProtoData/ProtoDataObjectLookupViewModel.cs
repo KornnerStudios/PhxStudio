@@ -50,18 +50,12 @@ namespace PhxStudio.Modules.ProtoData
 		public int SourceObjectDatabaseKindId { get; private set; }
 
 		KSoft.Phoenix.Phx.ProtoDataObjectDatabase? mSourceObjectDatabase;
-		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedEventArgs]
-		public KSoft.Phoenix.Phx.ProtoDataObjectDatabase? SourceObjectDatabase
-		{
-			get { return mSourceObjectDatabase; }
-			protected set
-			{
-				if (this.SetField(ref mSourceObjectDatabase, value, kSourceObjectDatabaseChangedEventArgs))
-				{
-					SetupSourceObjectDatabaseCollection();
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mSourceObjectDatabase),
+			ChangedHook = KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedHook.Parameterless)]
+		public partial KSoft.Phoenix.Phx.ProtoDataObjectDatabase? SourceObjectDatabase { get; protected set; }
+
+		partial void OnSourceObjectDatabaseChanged() => SetupSourceObjectDatabaseCollection();
 
 		object? mSourceObjectDatabaseCollection;
 		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(BackingField = nameof(mSourceObjectDatabaseCollection))]

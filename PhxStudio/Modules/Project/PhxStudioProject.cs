@@ -57,18 +57,12 @@ namespace PhxStudio.Modules.Project
 
 		#region WorkDirectory
 		string? mWorkDirectory;
-		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedEventArgs]
-		public string? WorkDirectory
-		{
-			get { return mWorkDirectory; }
-			set
-			{
-				if (this.SetField(ref mWorkDirectory, value, kWorkDirectoryChangedEventArgs))
-				{
-					CreateOrUnloadEngine();
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mWorkDirectory),
+			ChangedHook = KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChangedHook.Parameterless)]
+		public partial string? WorkDirectory { get; set; }
+
+		partial void OnWorkDirectoryChanged() => CreateOrUnloadEngine();
 		#endregion
 
 		#region FinalDirectory

@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace PhxStudio.Modules.ProtoData
 {
-	public abstract class ProtoDataObjectEditorViewModel<TProto, TExplorer>
+	public abstract partial class ProtoDataObjectEditorViewModel<TProto, TExplorer>
 		: PhxInspectors.PhxInspectorViewModel
 		where TProto : class, KSoft.Collections.IListAutoIdObject
 		where TExplorer : ProtoDataObjectExplorerViewModel
@@ -19,20 +19,18 @@ namespace PhxStudio.Modules.ProtoData
 		#endregion
 
 		TProto? mProto;
-		public TProto? Proto
-		{
-			get { return mProto; }
-			set
-			{
-				if (this.SetField(ref mProto, value))
-				{
-					InspectableModel = null;
-					OnProtoChanged();
-				}
-			}
-		}
+		[KSoft.PropertyChanged.SourceGeneration.GeneratedPropertyChanged(
+			BackingField = nameof(mProto),
+			ChangedCallback = nameof(OnProtoPropertyChanged))]
+		public partial TProto? Proto { get; set; }
 
 		protected TProto RequiredProto => Proto ?? throw new System.InvalidOperationException("A proto object must be selected before building its inspector.");
+
+		private void OnProtoPropertyChanged()
+		{
+			InspectableModel = null;
+			OnProtoChanged();
+		}
 
 		protected virtual void OnProtoChanged()
 		{
