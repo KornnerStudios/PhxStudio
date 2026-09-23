@@ -20,6 +20,8 @@ namespace PhxStudio
 	/// </summary>
 	public partial class App : Application
 	{
+		bool mTraceListInitialized;
+
 		public static List<TraceSource> AllTraceSources { get; private set; } = KSoft.Debug.AssemblyTraceSourcesCollector.FromClasses(null
 			, KSoft.Program.DebugTraceClass
 			, KSoft.Phoenix.Program.DebugTraceClass
@@ -28,6 +30,11 @@ namespace PhxStudio
 		private static int CompareTraceSourcesByName(TraceSource x, TraceSource y)
 		{
 			return string.CompareOrdinal(x.Name, y.Name);
+		}
+
+		public App()
+		{
+			KSoft.Program.Initialize();
 		}
 
 		internal static Modules.Project.PhxStudioProjectViewModel CurrentProjectViewModel { get {
@@ -41,7 +48,6 @@ namespace PhxStudio
 
 			base.OnStartup(e);
 
-			KSoft.Program.Initialize();
 			KSoft.Phoenix.Program.Initialize();
 
 			var settings = PhxStudio.Properties.Settings.Default;
@@ -49,6 +55,18 @@ namespace PhxStudio
 				settings.TraceSourceOptions = new Modules.TraceList.TraceSourceSettings();
 
 			settings.TraceSourceOptions.UpdateAfterSettingsLoaded();
+			settings.TraceSourceOptions.ApplyTo(AllTraceSources);
+		}
+
+		protected override void OnActivated(EventArgs e)
+		{
+			base.OnActivated(e);
+
+			if (!mTraceListInitialized)
+			{
+				_ = Caliburn.Micro.IoC.Get<Modules.TraceList.ITraceList>();
+				mTraceListInitialized = true;
+			}
 		}
 
 		protected override void OnExit(ExitEventArgs e)

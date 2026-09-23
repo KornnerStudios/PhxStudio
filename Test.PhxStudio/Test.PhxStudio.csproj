@@ -1,0 +1,17 @@
+<Project Sdk="MSTest.Sdk/4.1.0">
+  <PropertyGroup>
+    <RootNamespace>Test.PhxStudio</RootNamespace>
+    <AssemblyName>Test.PhxStudio</AssemblyName>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\PhxStudio\App.config"
+          Link="TraceConfigs\PhxStudio.dll.config"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhxStudio\PhxStudio.csproj" />
+  </ItemGroup>
+</Project>

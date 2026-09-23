@@ -1,0 +1,295 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0-windows7.0": {
+      "Microsoft.Testing.Extensions.CodeCoverage": {
+        "type": "Direct",
+        "requested": "[18.4.1, )",
+        "resolved": "18.4.1",
+        "contentHash": "l1VZM9dg9s76L5D288ipAT4HRYDJ6Vxh8wX20gfS9VnpueedRfN4/aGNn4oA1g6pwq2WSM3Ci7IoSSGPiqu+WQ==",
+        "dependencies": {
+          "Microsoft.DiaSymReader": "2.0.0",
+          "Microsoft.Extensions.DependencyModel": "8.0.2",
+          "Microsoft.Testing.Platform": "2.0.2"
+        }
+      },
+      "Microsoft.Testing.Extensions.TrxReport": {
+        "type": "Direct",
+        "requested": "[2.1.0, )",
+        "resolved": "2.1.0",
+        "contentHash": "cXmP225WcMLLOSrW8xekaNhfzdBwXX3cbXbE5qSzmLbK0KZe3z8rAObKj70FWiPPPzm2W22x0ZW93gsmAfK6Mg==",
+        "dependencies": {
+          "Microsoft.Testing.Extensions.TrxReport.Abstractions": "2.1.0",
+          "Microsoft.Testing.Platform": "2.1.0"
+        }
+      },
+      "MSTest.TestAdapter": {
+        "type": "Direct",
+        "requested": "[4.1.0, )",
+        "resolved": "4.1.0",
+        "contentHash": "bRW1Hftwq0XbcVExcAbj4YAfSZDRAziL0mygDkPBvaUe2nSsWFQIatze5lHVjPFJMvSFgWnItku4pguIy5FowQ==",
+        "dependencies": {
+          "MSTest.TestFramework": "4.1.0",
+          "Microsoft.Testing.Extensions.VSTestBridge": "2.1.0",
+          "Microsoft.Testing.Platform.MSBuild": "2.1.0"
+        }
+      },
+      "MSTest.TestFramework": {
+        "type": "Direct",
+        "requested": "[4.1.0, )",
+        "resolved": "4.1.0",
+        "contentHash": "BzpvsK+CRbk6khwY62h+7HfYzIxtJXyPv9tOI9T90cy5CVy+WI1JkN4ZaNL4Dobqb6dywSwabLTIbPZKpdrr+A==",
+        "dependencies": {
+          "MSTest.Analyzers": "4.1.0"
+        }
+      },
+      "Caliburn.Micro": {
+        "type": "Transitive",
+        "resolved": "4.0.210",
+        "contentHash": "nZTIqZ+skWI3rBE24yS2NHFnmwWk7oh/dcSbVrtZRlGLYSNR/R+olyXDPL6iHxyqWSi/4gVN/HNowJ+5RuX6xA==",
+        "dependencies": {
+          "Caliburn.Micro.Core": "4.0.210",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.37"
+        }
+      },
+      "Caliburn.Micro.Core": {
+        "type": "Transitive",
+        "resolved": "4.0.210",
+        "contentHash": "2rNpLvowRMDQEf7nR9w0fZd1fVlBVnYfQ5c3liCKycK6dFYw+Hk6KMBVXpOHyWjp+sT7+JpKdiT2PUo8cgYW+g=="
+      },
+      "ControlzEx": {
+        "type": "Transitive",
+        "resolved": "4.4.0",
+        "contentHash": "pZ5z4hYWwE4R13UMCVs6vII//nL7hz+Nwn4oJlnsZJRGqJNy6Z9KnJiTZfly6lKFu0pMc1aWBZpx+VqFTQKP1Q==",
+        "dependencies": {
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.19"
+        }
+      },
+      "Dirkster.AvalonDock": {
+        "type": "Transitive",
+        "resolved": "4.72.1",
+        "contentHash": "m5J03HVntDM3eu7GyzLWlNdr2c2TTBAoD33Pq1yCID7vEtk13VVngtlmegp67WUvpL5JUC8G2xU8n+ThZKKz0Q=="
+      },
+      "Dirkster.AvalonDock.Themes.VS2013": {
+        "type": "Transitive",
+        "resolved": "4.60.0",
+        "contentHash": "aPAI8fbkcM2U7kq/LWC6wNL2KMiWniwn4p4PLu6b17a6VoORj+CLXFHG/M2NrPM39aPeFOJRvrxlOs8GjwyQgg==",
+        "dependencies": {
+          "Dirkster.AvalonDock": "4.60.0"
+        }
+      },
+      "DotNetProjects.Extended.Wpf.Toolkit": {
+        "type": "Transitive",
+        "resolved": "5.0.129",
+        "contentHash": "EA4I70HSDHJMlblolKcNhoy0zY/zBx0GIqRzkxrgI3FzpCNM8EX2jFyNOD3bNj3DtkQ8lb+zcwVHswnYEFBmeA=="
+      },
+      "Gemini.Modules.ErrorList": {
+        "type": "Transitive",
+        "resolved": "1.0.76-beta",
+        "contentHash": "js0hJ9jz2gqbpnqgk/wPo2l3qC4Qm2jfoq7D1f0tlTdoFD8zjofYdtd/xg3CaEvkycleQj8+rypg09Dbh+pF9A==",
+        "dependencies": {
+          "GeminiWpf": "1.0.76-beta"
+        }
+      },
+      "Gemini.Modules.Inspector": {
+        "type": "Transitive",
+        "resolved": "1.0.76-beta",
+        "contentHash": "MLnS8RqvjgnKZrVCq80XY8LAQgVLObq+OtWe/xwexTQB7AshU6wiaR7rEAstJbDTzChH4P6J4vr6NS6As0hs6Q==",
+        "dependencies": {
+          "GeminiWpf": "1.0.76-beta"
+        }
+      },
+      "Gemini.Modules.Output": {
+        "type": "Transitive",
+        "resolved": "1.0.76-beta",
+        "contentHash": "ibk7LKHLB6ZEeiVWiAgTl8J1+YHIrMQMkQshxq0UwLjxvgGAVJwUefou/LXi/SyCzOLdfC/pV1Zar6JATbWYBQ==",
+        "dependencies": {
+          "GeminiWpf": "1.0.76-beta"
+        }
+      },
+      "GeminiWpf": {
+        "type": "Transitive",
+        "resolved": "1.0.76-beta",
+        "contentHash": "nSDjDrWtIOpwKtCL5WNNaTg9c6u+bzSjeZQwyuerqZg2oZF2C8aFUldQ2h2s5wW5Q0BaVS3b9iKRUWoUeQggiA==",
+        "dependencies": {
+          "Caliburn.Micro": "4.0.210",
+          "Dirkster.AvalonDock.Themes.VS2013": "4.60.0",
+          "DotNetProjects.Extended.Wpf.Toolkit": "4.6.78",
+          "MahApps.Metro": "2.4.9",
+          "System.ComponentModel.Composition": "6.0.0"
+        }
+      },
+      "MahApps.Metro": {
+        "type": "Transitive",
+        "resolved": "2.4.11",
+        "contentHash": "pvk757N/ViZy+zlbB56AakryuZkts328M6pX2mMn/Z7r5ifkScDrS300zSBjLd+eGOPeHgUjH4f7cZbRiMyvQg==",
+        "dependencies": {
+          "ControlzEx": "[4.4.0, 6.0.0)"
+        }
+      },
+      "Microsoft.ApplicationInsights": {
+        "type": "Transitive",
+        "resolved": "2.23.0",
+        "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw=="
+      },
+      "Microsoft.DiaSymReader": {
+        "type": "Transitive",
+        "resolved": "2.0.0",
+        "contentHash": "QcZrCETsBJqy/vQpFtJc+jSXQ0K5sucQ6NUFbTNVHD4vfZZOwjZ/3sBzczkC4DityhD3AVO/+K/+9ioLs1AgRA=="
+      },
+      "Microsoft.Extensions.DependencyModel": {
+        "type": "Transitive",
+        "resolved": "8.0.2",
+        "contentHash": "mUBDZZRgZrSyFOsJ2qJJ9fXfqd/kXJwf3AiDoqLD9m6TjY5OO/vLNOb9fb4juC0487eq4hcGN/M2Rh/CKS7QYw=="
+      },
+      "Microsoft.Testing.Extensions.Telemetry": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "5TwgTx2u7k9Al/xbZ18QXq4Hdy2xewkVTI6K3sk+jY2ykqUkIKNuj7rFu3GOV5KnEUkevhw6eZcyZs77STHJIA==",
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "2.23.0",
+          "Microsoft.Testing.Platform": "2.1.0"
+        }
+      },
+      "Microsoft.Testing.Extensions.TrxReport.Abstractions": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "D8xmIJYQFJ6D49Rx5/vPrkZZxb338Jkew+eSqZLBfBiWKw4QZKy3i1BOXiLfz0lOmaNErwDz/YWRojCdNl+B9Q==",
+        "dependencies": {
+          "Microsoft.Testing.Platform": "2.1.0"
+        }
+      },
+      "Microsoft.Testing.Extensions.VSTestBridge": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "bNRIEA2YoGr+Y+7LHdA7i1U80+7BAdf4K4Qh4Kx6eKkoBK/NV7QpoMg+GWPP0/eqAFzuUmUOIPVZ87Oo0Vyxmw==",
+        "dependencies": {
+          "Microsoft.TestPlatform.ObjectModel": "18.0.1",
+          "Microsoft.Testing.Extensions.Telemetry": "2.1.0",
+          "Microsoft.Testing.Extensions.TrxReport.Abstractions": "2.1.0",
+          "Microsoft.Testing.Platform": "2.1.0"
+        }
+      },
+      "Microsoft.Testing.Platform": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "aHkjNTGIA+Zbdw6RJgSFrbDrCjO0CgqpElqYcvkRSeUhBv2bKarnvU3ep786U7UqrPlArT/B7VmImRibJD0Zrg=="
+      },
+      "Microsoft.Testing.Platform.MSBuild": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "UpfPebXQtHGrWz21+YLHmJSm+5zsuPE9U9pfdCtoB+67g75fDmWlNgpkH2ZmdVhSwkjNIed9Icg8Iu63z2ei5Q==",
+        "dependencies": {
+          "Microsoft.Testing.Platform": "2.1.0"
+        }
+      },
+      "Microsoft.TestPlatform.ObjectModel": {
+        "type": "Transitive",
+        "resolved": "18.0.1",
+        "contentHash": "qT/mwMcLF9BieRkzOBPL2qCopl8hQu6A1P7JWAoj/FMu5i9vds/7cjbJ/LLtaiwWevWLAeD5v5wjQJ/l6jvhWQ=="
+      },
+      "Microsoft.Xaml.Behaviors.Wpf": {
+        "type": "Transitive",
+        "resolved": "1.1.37",
+        "contentHash": "TxH7g5I/4UzOHfs0GqD1W4evdl7DIHOQCr/KWc4G4BkgtsAhaHHXAW5JbKrkB7cqClN0JYOX6j9/4v4emCjFIA=="
+      },
+      "MSTest.Analyzers": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "4ElL/aqomiUInr090VN4udqz46AuszXLrifHkLrgj0zb7na8eAoyUQt3BwDLTcGd1bSkmk3SfD02rZtKU+ZiqQ=="
+      },
+      "System.ComponentModel.Composition": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "60Qv+F7oxomOjJeTDA5Z4iCyFbQ0B/2Mi5HT+13pxxq0lVnu2ipbWMzFB+RWKr3wWKA8BSncXr9PH/fECwMX5Q=="
+      },
+      "System.Waf.Core": {
+        "type": "Transitive",
+        "resolved": "8.1.0",
+        "contentHash": "JRLWccM+WrJzl7Nlhhd/v2iF0uXAZV+lL7qXNb8Wu3NNP3UTwp5POLD/GzKbJCVWJH92DLNK3Nn2w50LvJbFFA=="
+      },
+      "System.Waf.Wpf": {
+        "type": "Transitive",
+        "resolved": "8.1.0",
+        "contentHash": "eOKSgjNfor5qFyGK7S2ZBBvj/El+ZkmXBX7k+zE5VUIAt/0glzOoO9yjLX9UG/3ciWWqLF3jF4vUtXoeHVP0hw==",
+        "dependencies": {
+          "System.ComponentModel.Composition": "4.7.0",
+          "System.Waf.Core": "8.1.0"
+        }
+      },
+      "ksoft": {
+        "type": "Project"
+      },
+      "ksoft.compression": {
+        "type": "Project",
+        "dependencies": {
+          "KSoft": "[1.0.0, )",
+          "KSoft.Security": "[1.0.0, )"
+        }
+      },
+      "ksoft.io.tagelementstreams": {
+        "type": "Project",
+        "dependencies": {
+          "KSoft": "[1.0.0, )"
+        }
+      },
+      "ksoft.math": {
+        "type": "Project",
+        "dependencies": {
+          "KSoft": "[1.0.0, )"
+        }
+      },
+      "ksoft.phoenix": {
+        "type": "Project",
+        "dependencies": {
+          "KSoft": "[1.0.0, )",
+          "KSoft.Compression": "[1.0.0, )",
+          "KSoft.IO.TagElementStreams": "[1.0.0, )",
+          "KSoft.Math": "[1.0.0, )",
+          "KSoft.Security": "[1.0.0, )",
+          "KSoft.Wwise": "[1.0.0, )"
+        }
+      },
+      "ksoft.security": {
+        "type": "Project",
+        "dependencies": {
+          "KSoft": "[1.0.0, )"
+        }
+      },
+      "ksoft.wpf": {
+        "type": "Project",
+        "dependencies": {
+          "KSoft": "[1.0.0, )"
+        }
+      },
+      "ksoft.wwise": {
+        "type": "Project",
+        "dependencies": {
+          "KSoft": "[1.0.0, )"
+        }
+      },
+      "phxstudio": {
+        "type": "Project",
+        "dependencies": {
+          "Caliburn.Micro": "[4.0.210, )",
+          "Dirkster.AvalonDock": "[4.72.1, )",
+          "DotNetProjects.Extended.Wpf.Toolkit": "[5.0.129, )",
+          "Gemini.Modules.ErrorList": "[1.0.76-beta, )",
+          "Gemini.Modules.Inspector": "[1.0.76-beta, )",
+          "Gemini.Modules.Output": "[1.0.76-beta, )",
+          "GeminiWpf": "[1.0.76-beta, )",
+          "KSoft": "[1.0.0, )",
+          "KSoft.Compression": "[1.0.0, )",
+          "KSoft.IO.TagElementStreams": "[1.0.0, )",
+          "KSoft.Math": "[1.0.0, )",
+          "KSoft.Phoenix": "[1.0.0, )",
+          "KSoft.Security": "[1.0.0, )",
+          "KSoft.WPF": "[1.0.0, )",
+          "KSoft.Wwise": "[1.0.0, )",
+          "MahApps.Metro": "[2.4.11, )",
+          "System.Waf.Wpf": "[8.1.0, )"
+        }
+      }
+    }
+  }
+}

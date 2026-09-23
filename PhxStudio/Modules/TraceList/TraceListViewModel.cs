@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -172,6 +173,8 @@ namespace PhxStudio.Modules.TraceList
 
 			mItems = new BindableCollection<TraceListItem>();
 			mItems.CollectionChanged += OnItemsCollectionChanged;
+
+			TraceListTraceListener.Attach(this);
 		}
 
 		private void OnItemsCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -194,15 +197,11 @@ namespace PhxStudio.Modules.TraceList
 			var traceSettings = settings.TraceSourceOptions;
 			if (traceSettings != null)
 			{
-				if (traceSettings.MaxTraceListItems.IsNotNone())
+				if (!MakeRoomForNewItem(Items, traceSettings.MaxTraceListItems))
 				{
-					int surplus_count = Items.Count;
-					surplus_count += 1; // we're adding one
-					surplus_count -= traceSettings.MaxTraceListItems;
-					while (surplus_count-- > 0)
-					{
-						Items.RemoveAt(0);
-					}
+					++mItemNumber;
+					TotalNumberOfTraces = mItemNumber;
+					return;
 				}
 			}
 
@@ -219,6 +218,21 @@ namespace PhxStudio.Modules.TraceList
 
 			Items.Add(item);
 			TotalNumberOfTraces = mItemNumber;
+		}
+
+		internal static bool MakeRoomForNewItem(IObservableCollection<TraceListItem> items, int maxTraceListItems)
+		{
+			ArgumentNullException.ThrowIfNull(items);
+
+			if (maxTraceListItems == 0)
+				return false;
+			if (maxTraceListItems < 0)
+				return true;
+
+			while (items.Count >= maxTraceListItems)
+				items.RemoveAt(0);
+
+			return true;
 		}
 
 		public void ClearAll() => Items.Clear();

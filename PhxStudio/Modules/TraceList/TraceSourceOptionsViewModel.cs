@@ -48,6 +48,8 @@ namespace PhxStudio.Modules.TraceList
 
 			var settings = PhxStudio.Properties.Settings.Default;
 			settings.TraceSourceOptions.Sync(Model);
+			settings.TraceSourceOptions.ApplyTo(App.AllTraceSources);
+			mIsDirty = false;
 		}
 		#endregion
 	};

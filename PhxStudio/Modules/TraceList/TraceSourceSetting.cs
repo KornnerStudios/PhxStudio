@@ -40,5 +40,26 @@ namespace PhxStudio.Modules.TraceList
 			this.Level = src.Level;
 			this.Disabled = src.Disabled;
 		}
+
+		internal SourceLevels ToSourceLevels()
+		{
+			if (Disabled)
+				return SourceLevels.Off;
+
+			SourceLevels severity = Level switch
+			{
+				TraceLevel.Off => SourceLevels.Off,
+				TraceLevel.Error => SourceLevels.Error,
+				TraceLevel.Warning => SourceLevels.Warning,
+				TraceLevel.Info => SourceLevels.Information,
+				TraceLevel.Verbose => SourceLevels.All,
+				_ => throw new InvalidOperationException($"Unsupported trace level '{Level}'."),
+			};
+
+			if (severity is SourceLevels.Off or SourceLevels.All)
+				return severity;
+
+			return severity | SourceLevels.ActivityTracing;
+		}
 	};
 }

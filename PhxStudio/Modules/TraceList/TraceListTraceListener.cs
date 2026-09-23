@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
-using Caliburn.Micro;
+using System.Windows;
 using KSoft;
 
 namespace PhxStudio.Modules.TraceList
@@ -12,14 +13,101 @@ namespace PhxStudio.Modules.TraceList
 	{
 		const string kTraceAsTraceSource = "Trace";
 
-		ITraceList mTraceList;
+		private readonly record struct PendingTrace(
+			TraceListItemType Type,
+			long TimeStamp,
+			string? SourceName,
+			string? Message,
+			object?[]? Data);
 
-		private static long GetTimeStamp(TraceEventCache? eventCache) => eventCache?.Timestamp ?? 0;
+		static readonly object gListenersLock = new();
+		static readonly List<WeakReference<TraceListTraceListener>> gListeners = [];
+		static ITraceList? gTraceList;
 
 		public TraceListTraceListener()
 		{
-			mTraceList = IoC.Get<ITraceList>();
+			lock (gListenersLock)
+			{
+				mTraceList = gTraceList;
+				gListeners.Add(new WeakReference<TraceListTraceListener>(this));
+			}
 		}
+
+		readonly object mTraceListLock = new();
+		readonly Queue<PendingTrace> mPendingTraces = new();
+		ITraceList? mTraceList;
+
+		internal static void Attach(ITraceList traceList)
+		{
+			ArgumentNullException.ThrowIfNull(traceList);
+
+			List<TraceListTraceListener> listeners = [];
+			lock (gListenersLock)
+			{
+				gTraceList = traceList;
+
+				for (int x = gListeners.Count - 1; x >= 0; x--)
+				{
+					if (gListeners[x].TryGetTarget(out TraceListTraceListener? listener))
+						listeners.Add(listener);
+					else
+						gListeners.RemoveAt(x);
+				}
+			}
+
+			foreach (TraceListTraceListener listener in listeners)
+				listener.AttachCore(traceList);
+		}
+
+		private void AttachCore(ITraceList traceList)
+		{
+			PendingTrace[] pendingTraces;
+			lock (mTraceListLock)
+			{
+				mTraceList = traceList;
+				pendingTraces = mPendingTraces.ToArray();
+				mPendingTraces.Clear();
+			}
+
+			foreach (PendingTrace pendingTrace in pendingTraces)
+				Dispatch(traceList, pendingTrace);
+		}
+
+		private void AddItem(TraceListItemType type, long timeStamp, string? sourceName, string? message, object?[]? data = null)
+		{
+			var pendingTrace = new PendingTrace(type, timeStamp, sourceName, message, data);
+			ITraceList? traceList;
+
+			lock (mTraceListLock)
+			{
+				traceList = mTraceList;
+				if (traceList == null)
+				{
+					mPendingTraces.Enqueue(pendingTrace);
+					return;
+				}
+			}
+
+			Dispatch(traceList, pendingTrace);
+		}
+
+		private static void Dispatch(ITraceList traceList, PendingTrace pendingTrace)
+		{
+			void AddItem() => traceList.AddItem(
+					pendingTrace.Type,
+					pendingTrace.TimeStamp,
+					pendingTrace.SourceName,
+					pendingTrace.Message,
+					pendingTrace.Data);
+
+			var dispatcher = Application.Current?.Dispatcher;
+			if (dispatcher == null || dispatcher.CheckAccess())
+				AddItem();
+			else
+				dispatcher.Invoke(AddItem);
+		}
+
+		private static long GetTimeStamp(TraceEventCache? eventCache) => eventCache?.Timestamp ?? 0;
 
 		public override void Write(string? message) => this.WriteLine(message);
 
@@ -48,7 +136,7 @@ namespace PhxStudio.Modules.TraceList
 			else
 				message = format;
 
-			mTraceList.AddItem(eventType.ToTraceListItemType(),
+			AddItem(eventType.ToTraceListItemType(),
 				GetTimeStamp(eventCache), source, message);
 		}
 
@@ -57,7 +145,7 @@ namespace PhxStudio.Modules.TraceList
 			if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, message, args: null, data1: null, data: null))
 				return;
 
-			mTraceList.AddItem(eventType.ToTraceListItemType(),
+			AddItem(eventType.ToTraceListItemType(),
 				GetTimeStamp(eventCache), source, message);
 		}
 
@@ -69,7 +157,7 @@ namespace PhxStudio.Modules.TraceList
 			var item_data = GetDataEntryForTraceListItem(data);
 			var message = item_data?.ToString();
 
-			mTraceList.AddItem(eventType.ToTraceListItemType(),
+			AddItem(eventType.ToTraceListItemType(),
 				GetTimeStamp(eventCache), source, message, new object?[] { item_data });
 		}
 
@@ -83,7 +171,7 @@ namespace PhxStudio.Modules.TraceList
 				? item_data[0]?.ToString()
 				: "NO MESSAGE";
 
-			mTraceList.AddItem(eventType.ToTraceListItemType(),
+			AddItem(eventType.ToTraceListItemType(),
 				GetTimeStamp(eventCache), source, message, item_data);
 		}
 
@@ -94,7 +182,7 @@ namespace PhxStudio.Modules.TraceList
 			if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, message, args: null, data1: null, data: null))
 				return;
 
-			mTraceList.AddItem(eventType.ToTraceListItemType(),
+			AddItem(eventType.ToTraceListItemType(),
 				GetTimeStamp(eventCache), source, relatedActivityId.ToString());
 		}
 

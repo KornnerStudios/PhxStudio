@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml.Serialization;
 using Caliburn.Micro;
@@ -62,6 +63,21 @@ namespace PhxStudio.Modules.TraceList
 		{
 			RemoveAnySourcesNotInAllTraceSources();
 			AddAllTraceSourcesNotPresent();
+		}
+
+		public void ApplyTo(System.Collections.Generic.IEnumerable<TraceSource> traceSources)
+		{
+			ArgumentNullException.ThrowIfNull(traceSources);
+
+			var settingsByName = SourceSettings.ToDictionary(
+				setting => setting.Name,
+				StringComparer.Ordinal);
+
+			foreach (TraceSource traceSource in traceSources)
+			{
+				if (settingsByName.TryGetValue(traceSource.Name, out TraceSourceSetting? setting))
+					traceSource.Switch.Level = setting.ToSourceLevels();
+			}
 		}
 
 		private void RemoveAnySourcesNotInAllTraceSources()
