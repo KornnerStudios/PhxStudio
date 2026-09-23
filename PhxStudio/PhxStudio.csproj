@@ -8,6 +8,8 @@
     <TargetFramework>net10.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
+    <!-- Gemini discovers MEF exports from physical assemblies and requires extraction when bundled. -->
+    <IncludeAllContentForSelfExtract Condition=" '$(PublishSingleFile)' == 'true' ">true</IncludeAllContentForSelfExtract>
   </PropertyGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
@@ -147,4 +149,11 @@
     <PackageReference Include="MahApps.Metro" Version="2.4.11" />
     <PackageReference Include="System.Waf.Wpf" Version="8.1.0" />
   </ItemGroup>
+  <Target Name="CopySingleFileDiagnosticsConfig"
+          AfterTargets="Publish"
+          Condition=" '$(PublishSingleFile)' == 'true' ">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\App.config"
+          DestinationFiles="$(PublishDir)$(AssemblyName).dll.config"
+          SkipUnchangedFiles="true" />
+  </Target>
 </Project>
