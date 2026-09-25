@@ -73,12 +73,6 @@
           "ControlzEx": "[4.4.0, 6.0.0)"
         }
       },
-      "Microsoft.NET.ILLink.Tasks": {
-        "type": "Direct",
-        "requested": "[10.0.11, )",
-        "resolved": "10.0.11",
-        "contentHash": "IBf7lbovvjGWVWXZX5cJ/cO0WXbId0Zq4BuSeT94mGZuOAP66oMeH9PTBZ9Jpp3Jb6jtK0qm/NyUbPRo1gC/wQ=="
-      },
       "System.Waf.Wpf": {
         "type": "Direct",
         "requested": "[8.1.0, )",
@@ -176,7 +170,6 @@
           "KSoft": "[1.0.0, )"
         }
       }
-    },
-    "net10.0-windows7.0/win-x64": {}
+    }
   }
 }
