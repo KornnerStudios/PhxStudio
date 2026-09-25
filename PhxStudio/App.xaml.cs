@@ -25,6 +25,7 @@ namespace PhxStudio
 		public static List<TraceSource> AllTraceSources { get; private set; } = KSoft.Debug.AssemblyTraceSourcesCollector.FromClasses(null
 			, KSoft.Program.DebugTraceClass
 			, KSoft.Phoenix.Program.DebugTraceClass
+			, KSoft.Wwise.Program.DebugTraceClass
 			, typeof(Debug.Trace)
 			).SortAndReturn(CompareTraceSourcesByName);
 		private static int CompareTraceSourcesByName(TraceSource x, TraceSource y)
