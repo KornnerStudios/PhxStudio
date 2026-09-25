@@ -1,4 +1,6 @@
+using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using Gemini.Framework;
 using Gemini.Framework.Services;
@@ -26,6 +28,28 @@ public sealed class TraceListTraceListenerTests
 		Assert.AreEqual("queued", traceList.Items[0].Message);
 		Assert.AreEqual("AttachedSource", traceList.Items[1].SourceName);
 		Assert.AreEqual("attached", traceList.Items[1].Message);
+	}
+
+	[TestMethod]
+	public void BackgroundTrace_SchedulesWithoutWaitingForDrain()
+	{
+		var scheduledDrains = new ConcurrentQueue<System.Action>();
+		using var listener = new TraceListTraceListener(scheduledDrains.Enqueue);
+		var traceList = new RecordingTraceList();
+		TraceListTraceListener.Attach(traceList);
+
+		Task traceTask = Task.Run(() =>
+			listener.TraceEvent(null, "BackgroundSource", TraceEventType.Information, 3, "background"));
+
+		Assert.IsTrue(traceTask.Wait(System.TimeSpan.FromSeconds(1)), "Background trace blocked waiting for the UI drain.");
+		Assert.IsEmpty(traceList.Items);
+		Assert.IsTrue(scheduledDrains.TryDequeue(out System.Action? drain));
+		Assert.IsNotNull(drain);
+
+		drain();
+
+		Assert.HasCount(1, traceList.Items);
+		Assert.AreEqual("background", traceList.Items[0].Message);
 	}
 
 	[TestMethod]

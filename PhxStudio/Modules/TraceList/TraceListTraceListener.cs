@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using System.Windows;
+using System.Windows.Threading;
 using KSoft;
 
 namespace PhxStudio.Modules.TraceList
@@ -24,8 +25,15 @@ namespace PhxStudio.Modules.TraceList
 		static readonly List<WeakReference<TraceListTraceListener>> gListeners = [];
 		static ITraceList? gTraceList;
 
-		public TraceListTraceListener()
+		public TraceListTraceListener() : this(ScheduleOnUIThread)
 		{
+		}
+
+		internal TraceListTraceListener(Action<Action> scheduleDrain)
+		{
+			ArgumentNullException.ThrowIfNull(scheduleDrain);
+			mScheduleDrain = scheduleDrain;
+
 			lock (gListenersLock)
 			{
 				mTraceList = gTraceList;
@@ -35,7 +43,9 @@ namespace PhxStudio.Modules.TraceList
 
 		readonly object mTraceListLock = new();
 		readonly Queue<PendingTrace> mPendingTraces = new();
+		readonly Action<Action> mScheduleDrain;
 		ITraceList? mTraceList;
+		bool mDrainScheduled;
 
 		internal static void Attach(ITraceList traceList)
 		{
@@ -61,50 +71,99 @@ namespace PhxStudio.Modules.TraceList
 
 		private void AttachCore(ITraceList traceList)
 		{
-			PendingTrace[] pendingTraces;
+			bool scheduleDrain;
 			lock (mTraceListLock)
 			{
 				mTraceList = traceList;
-				pendingTraces = mPendingTraces.ToArray();
-				mPendingTraces.Clear();
+				scheduleDrain = TryScheduleDrain();
 			}
 
-			foreach (PendingTrace pendingTrace in pendingTraces)
-				Dispatch(traceList, pendingTrace);
+			if (scheduleDrain)
+				ScheduleDrain();
 		}
 
 		private void AddItem(TraceListItemType type, long timeStamp, string? sourceName, string? message, object?[]? data = null)
 		{
 			var pendingTrace = new PendingTrace(type, timeStamp, sourceName, message, data);
-			ITraceList? traceList;
+			bool scheduleDrain;
 
 			lock (mTraceListLock)
 			{
-				traceList = mTraceList;
-				if (traceList == null)
-				{
-					mPendingTraces.Enqueue(pendingTrace);
-					return;
-				}
+				mPendingTraces.Enqueue(pendingTrace);
+				scheduleDrain = TryScheduleDrain();
 			}
 
-			Dispatch(traceList, pendingTrace);
+			if (scheduleDrain)
+				ScheduleDrain();
 		}
 
-		private static void Dispatch(ITraceList traceList, PendingTrace pendingTrace)
+		private bool TryScheduleDrain()
 		{
-			void AddItem() => traceList.AddItem(
-					pendingTrace.Type,
-					pendingTrace.TimeStamp,
-					pendingTrace.SourceName,
-					pendingTrace.Message,
-					pendingTrace.Data);
+			if (mTraceList == null || mPendingTraces.Count == 0 || mDrainScheduled)
+				return false;
 
+			mDrainScheduled = true;
+			return true;
+		}
+
+		private void ScheduleDrain()
+		{
+			try
+			{
+				mScheduleDrain(DrainPendingTraces);
+			}
+			catch
+			{
+				lock (mTraceListLock)
+					mDrainScheduled = false;
+				throw;
+			}
+		}
+
+		private void DrainPendingTraces()
+		{
+			try
+			{
+				while (true)
+				{
+					PendingTrace pendingTrace;
+					ITraceList traceList;
+
+					lock (mTraceListLock)
+					{
+						if (mTraceList == null || mPendingTraces.Count == 0)
+						{
+							mDrainScheduled = false;
+							return;
+						}
+
+						traceList = mTraceList;
+						pendingTrace = mPendingTraces.Dequeue();
+					}
+
+					traceList.AddItem(
+						pendingTrace.Type,
+						pendingTrace.TimeStamp,
+						pendingTrace.SourceName,
+						pendingTrace.Message,
+						pendingTrace.Data);
+				}
+			}
+			catch
+			{
+				lock (mTraceListLock)
+					mDrainScheduled = false;
+				throw;
+			}
+		}
+
+		private static void ScheduleOnUIThread(Action drain)
+		{
 			var dispatcher = Application.Current?.Dispatcher;
 			if (dispatcher == null || dispatcher.CheckAccess())
-				AddItem();
+				drain();
 			else
-				dispatcher.Invoke(AddItem);
+				_ = dispatcher.BeginInvoke(DispatcherPriority.DataBind, drain);
 		}
 
 		private static long GetTimeStamp(TraceEventCache? eventCache) => eventCache?.Timestamp ?? 0;
