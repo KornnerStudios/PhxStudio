@@ -36,6 +36,7 @@ namespace PhxStudio
 		public App()
 		{
 			KSoft.Program.Initialize();
+			KSoft.Program.RegisterTraceSources(AllTraceSources);
 		}
 
 		internal static Modules.Project.PhxStudioProjectViewModel CurrentProjectViewModel { get {
