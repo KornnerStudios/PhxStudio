@@ -1,4 +1,4 @@
-<Project Sdk="MSTest.Sdk/4.1.0">
+<Project Sdk="MSTest.Sdk">
   <PropertyGroup>
     <RootNamespace>Test.PhxStudio</RootNamespace>
     <AssemblyName>Test.PhxStudio</AssemblyName>
