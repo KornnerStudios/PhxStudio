@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "dependencies": {
     "net10.0-windows7.0": {
       "Microsoft.Testing.Extensions.CodeCoverage": {
@@ -43,20 +43,6 @@
           "MSTest.Analyzers": "4.1.0"
         }
       },
-      "Caliburn.Micro": {
-        "type": "Transitive",
-        "resolved": "4.0.210",
-        "contentHash": "nZTIqZ+skWI3rBE24yS2NHFnmwWk7oh/dcSbVrtZRlGLYSNR/R+olyXDPL6iHxyqWSi/4gVN/HNowJ+5RuX6xA==",
-        "dependencies": {
-          "Caliburn.Micro.Core": "4.0.210",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.37"
-        }
-      },
-      "Caliburn.Micro.Core": {
-        "type": "Transitive",
-        "resolved": "4.0.210",
-        "contentHash": "2rNpLvowRMDQEf7nR9w0fZd1fVlBVnYfQ5c3liCKycK6dFYw+Hk6KMBVXpOHyWjp+sT7+JpKdiT2PUo8cgYW+g=="
-      },
       "ControlzEx": {
         "type": "Transitive",
         "resolved": "4.4.0",
@@ -65,66 +51,12 @@
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.19"
         }
       },
-      "Dirkster.AvalonDock": {
-        "type": "Transitive",
-        "resolved": "4.72.1",
-        "contentHash": "m5J03HVntDM3eu7GyzLWlNdr2c2TTBAoD33Pq1yCID7vEtk13VVngtlmegp67WUvpL5JUC8G2xU8n+ThZKKz0Q=="
-      },
       "Dirkster.AvalonDock.Themes.VS2013": {
         "type": "Transitive",
         "resolved": "4.60.0",
         "contentHash": "aPAI8fbkcM2U7kq/LWC6wNL2KMiWniwn4p4PLu6b17a6VoORj+CLXFHG/M2NrPM39aPeFOJRvrxlOs8GjwyQgg==",
         "dependencies": {
           "Dirkster.AvalonDock": "4.60.0"
-        }
-      },
-      "DotNetProjects.Extended.Wpf.Toolkit": {
-        "type": "Transitive",
-        "resolved": "5.0.129",
-        "contentHash": "EA4I70HSDHJMlblolKcNhoy0zY/zBx0GIqRzkxrgI3FzpCNM8EX2jFyNOD3bNj3DtkQ8lb+zcwVHswnYEFBmeA=="
-      },
-      "Gemini.Modules.ErrorList": {
-        "type": "Transitive",
-        "resolved": "1.0.76-beta",
-        "contentHash": "js0hJ9jz2gqbpnqgk/wPo2l3qC4Qm2jfoq7D1f0tlTdoFD8zjofYdtd/xg3CaEvkycleQj8+rypg09Dbh+pF9A==",
-        "dependencies": {
-          "GeminiWpf": "1.0.76-beta"
-        }
-      },
-      "Gemini.Modules.Inspector": {
-        "type": "Transitive",
-        "resolved": "1.0.76-beta",
-        "contentHash": "MLnS8RqvjgnKZrVCq80XY8LAQgVLObq+OtWe/xwexTQB7AshU6wiaR7rEAstJbDTzChH4P6J4vr6NS6As0hs6Q==",
-        "dependencies": {
-          "GeminiWpf": "1.0.76-beta"
-        }
-      },
-      "Gemini.Modules.Output": {
-        "type": "Transitive",
-        "resolved": "1.0.76-beta",
-        "contentHash": "ibk7LKHLB6ZEeiVWiAgTl8J1+YHIrMQMkQshxq0UwLjxvgGAVJwUefou/LXi/SyCzOLdfC/pV1Zar6JATbWYBQ==",
-        "dependencies": {
-          "GeminiWpf": "1.0.76-beta"
-        }
-      },
-      "GeminiWpf": {
-        "type": "Transitive",
-        "resolved": "1.0.76-beta",
-        "contentHash": "nSDjDrWtIOpwKtCL5WNNaTg9c6u+bzSjeZQwyuerqZg2oZF2C8aFUldQ2h2s5wW5Q0BaVS3b9iKRUWoUeQggiA==",
-        "dependencies": {
-          "Caliburn.Micro": "4.0.210",
-          "Dirkster.AvalonDock.Themes.VS2013": "4.60.0",
-          "DotNetProjects.Extended.Wpf.Toolkit": "4.6.78",
-          "MahApps.Metro": "2.4.9",
-          "System.ComponentModel.Composition": "6.0.0"
-        }
-      },
-      "MahApps.Metro": {
-        "type": "Transitive",
-        "resolved": "2.4.11",
-        "contentHash": "pvk757N/ViZy+zlbB56AakryuZkts328M6pX2mMn/Z7r5ifkScDrS300zSBjLd+eGOPeHgUjH4f7cZbRiMyvQg==",
-        "dependencies": {
-          "ControlzEx": "[4.4.0, 6.0.0)"
         }
       },
       "Microsoft.ApplicationInsights": {
@@ -146,14 +78,6 @@
         "type": "Transitive",
         "resolved": "8.0.2",
         "contentHash": "mUBDZZRgZrSyFOsJ2qJJ9fXfqd/kXJwf3AiDoqLD9m6TjY5OO/vLNOb9fb4juC0487eq4hcGN/M2Rh/CKS7QYw=="
-      },
-      "Microsoft.Extensions.Logging.Abstractions": {
-        "type": "Transitive",
-        "resolved": "10.0.0",
-        "contentHash": "FU/IfjDfwaMuKr414SSQNTIti/69bHEMb+QKrskRb26oVqpx3lNFXMjs/RC9ZUuhBhcwDM2BwOgoMw+PZ+beqQ==",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0"
-        }
       },
       "Microsoft.Testing.Extensions.Telemetry": {
         "type": "Transitive",
@@ -220,15 +144,6 @@
         "type": "Transitive",
         "resolved": "8.1.0",
         "contentHash": "JRLWccM+WrJzl7Nlhhd/v2iF0uXAZV+lL7qXNb8Wu3NNP3UTwp5POLD/GzKbJCVWJH92DLNK3Nn2w50LvJbFFA=="
-      },
-      "System.Waf.Wpf": {
-        "type": "Transitive",
-        "resolved": "8.1.0",
-        "contentHash": "eOKSgjNfor5qFyGK7S2ZBBvj/El+ZkmXBX7k+zE5VUIAt/0glzOoO9yjLX9UG/3ciWWqLF3jF4vUtXoeHVP0hw==",
-        "dependencies": {
-          "System.ComponentModel.Composition": "4.7.0",
-          "System.Waf.Core": "8.1.0"
-        }
       },
       "ksoft": {
         "type": "Project",
@@ -304,6 +219,102 @@
           "KSoft.Wwise": "[1.0.0, )",
           "MahApps.Metro": "[2.4.11, )",
           "System.Waf.Wpf": "[8.1.0, )"
+        }
+      },
+      "Caliburn.Micro": {
+        "type": "CentralTransitive",
+        "requested": "[4.0.210, )",
+        "resolved": "4.0.210",
+        "contentHash": "nZTIqZ+skWI3rBE24yS2NHFnmwWk7oh/dcSbVrtZRlGLYSNR/R+olyXDPL6iHxyqWSi/4gVN/HNowJ+5RuX6xA==",
+        "dependencies": {
+          "Caliburn.Micro.Core": "4.0.210",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.37"
+        }
+      },
+      "Caliburn.Micro.Core": {
+        "type": "CentralTransitive",
+        "requested": "[4.0.210, )",
+        "resolved": "4.0.210",
+        "contentHash": "2rNpLvowRMDQEf7nR9w0fZd1fVlBVnYfQ5c3liCKycK6dFYw+Hk6KMBVXpOHyWjp+sT7+JpKdiT2PUo8cgYW+g=="
+      },
+      "Dirkster.AvalonDock": {
+        "type": "CentralTransitive",
+        "requested": "[4.72.1, )",
+        "resolved": "4.72.1",
+        "contentHash": "m5J03HVntDM3eu7GyzLWlNdr2c2TTBAoD33Pq1yCID7vEtk13VVngtlmegp67WUvpL5JUC8G2xU8n+ThZKKz0Q=="
+      },
+      "DotNetProjects.Extended.Wpf.Toolkit": {
+        "type": "CentralTransitive",
+        "requested": "[5.0.129, )",
+        "resolved": "5.0.129",
+        "contentHash": "EA4I70HSDHJMlblolKcNhoy0zY/zBx0GIqRzkxrgI3FzpCNM8EX2jFyNOD3bNj3DtkQ8lb+zcwVHswnYEFBmeA=="
+      },
+      "Gemini.Modules.ErrorList": {
+        "type": "CentralTransitive",
+        "requested": "[1.0.76-beta, )",
+        "resolved": "1.0.76-beta",
+        "contentHash": "js0hJ9jz2gqbpnqgk/wPo2l3qC4Qm2jfoq7D1f0tlTdoFD8zjofYdtd/xg3CaEvkycleQj8+rypg09Dbh+pF9A==",
+        "dependencies": {
+          "GeminiWpf": "1.0.76-beta"
+        }
+      },
+      "Gemini.Modules.Inspector": {
+        "type": "CentralTransitive",
+        "requested": "[1.0.76-beta, )",
+        "resolved": "1.0.76-beta",
+        "contentHash": "MLnS8RqvjgnKZrVCq80XY8LAQgVLObq+OtWe/xwexTQB7AshU6wiaR7rEAstJbDTzChH4P6J4vr6NS6As0hs6Q==",
+        "dependencies": {
+          "GeminiWpf": "1.0.76-beta"
+        }
+      },
+      "Gemini.Modules.Output": {
+        "type": "CentralTransitive",
+        "requested": "[1.0.76-beta, )",
+        "resolved": "1.0.76-beta",
+        "contentHash": "ibk7LKHLB6ZEeiVWiAgTl8J1+YHIrMQMkQshxq0UwLjxvgGAVJwUefou/LXi/SyCzOLdfC/pV1Zar6JATbWYBQ==",
+        "dependencies": {
+          "GeminiWpf": "1.0.76-beta"
+        }
+      },
+      "GeminiWpf": {
+        "type": "CentralTransitive",
+        "requested": "[1.0.76-beta, )",
+        "resolved": "1.0.76-beta",
+        "contentHash": "nSDjDrWtIOpwKtCL5WNNaTg9c6u+bzSjeZQwyuerqZg2oZF2C8aFUldQ2h2s5wW5Q0BaVS3b9iKRUWoUeQggiA==",
+        "dependencies": {
+          "Caliburn.Micro": "4.0.210",
+          "Dirkster.AvalonDock.Themes.VS2013": "4.60.0",
+          "DotNetProjects.Extended.Wpf.Toolkit": "4.6.78",
+          "MahApps.Metro": "2.4.9",
+          "System.ComponentModel.Composition": "6.0.0"
+        }
+      },
+      "MahApps.Metro": {
+        "type": "CentralTransitive",
+        "requested": "[2.4.11, )",
+        "resolved": "2.4.11",
+        "contentHash": "pvk757N/ViZy+zlbB56AakryuZkts328M6pX2mMn/Z7r5ifkScDrS300zSBjLd+eGOPeHgUjH4f7cZbRiMyvQg==",
+        "dependencies": {
+          "ControlzEx": "[4.4.0, 6.0.0)"
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions": {
+        "type": "CentralTransitive",
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "FU/IfjDfwaMuKr414SSQNTIti/69bHEMb+QKrskRb26oVqpx3lNFXMjs/RC9ZUuhBhcwDM2BwOgoMw+PZ+beqQ==",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0"
+        }
+      },
+      "System.Waf.Wpf": {
+        "type": "CentralTransitive",
+        "requested": "[8.1.0, )",
+        "resolved": "8.1.0",
+        "contentHash": "eOKSgjNfor5qFyGK7S2ZBBvj/El+ZkmXBX7k+zE5VUIAt/0glzOoO9yjLX9UG/3ciWWqLF3jF4vUtXoeHVP0hw==",
+        "dependencies": {
+          "System.ComponentModel.Composition": "4.7.0",
+          "System.Waf.Core": "8.1.0"
         }
       }
     }

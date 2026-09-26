@@ -137,17 +137,15 @@
     <Resource Include="UI\Images\ImageCatalog\ClearWindowContent.16.16.png" />
   </ItemGroup>
   <ItemGroup>
-		<!--5.0.258 is out, but 4.0.210 is what latest Gemini references-->
-    <PackageReference Include="Caliburn.Micro" Version="4.0.210" />
-    <PackageReference Include="Dirkster.AvalonDock" Version="4.72.1" />
-    <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="5.0.129" />
-    <!-- <PackageReference Include="Extended.Wpf.Toolkit" Version="5.0.0" /> -->
-    <PackageReference Include="GeminiWpf" Version="1.0.76-beta" />
-    <PackageReference Include="Gemini.Modules.ErrorList" Version="1.0.76-beta" />
-    <PackageReference Include="Gemini.Modules.Inspector" Version="1.0.76-beta" />
-    <PackageReference Include="Gemini.Modules.Output" Version="1.0.76-beta" />
-    <PackageReference Include="MahApps.Metro" Version="2.4.11" />
-    <PackageReference Include="System.Waf.Wpf" Version="8.1.0" />
+    <PackageReference Include="Caliburn.Micro" />
+    <PackageReference Include="Dirkster.AvalonDock" />
+    <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" />
+    <PackageReference Include="GeminiWpf" />
+    <PackageReference Include="Gemini.Modules.ErrorList" />
+    <PackageReference Include="Gemini.Modules.Inspector" />
+    <PackageReference Include="Gemini.Modules.Output" />
+    <PackageReference Include="MahApps.Metro" />
+    <PackageReference Include="System.Waf.Wpf" />
   </ItemGroup>
   <Target Name="CopySingleFileDiagnosticsConfig"
           AfterTargets="Publish"
